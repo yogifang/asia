@@ -162,3 +162,10 @@ input[type=text]:not(.browser-default):focus:not([readonly]){
 [type="radio"]:checked+span:after{
     border: 2px solid #1B1464!important;
 }
+button:focus{
+    background-color: unset;
+}
+/* 上方標籤按鈕的底線 */
+.jss7{
+    background-color: #1B1464!important;
+}
