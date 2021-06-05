@@ -6,7 +6,7 @@ import Status from './status';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 import Select from 'react-select';
-import countryList from 'react-select-country-list';
+import countryList from '../components/controls/country-list';
 
 const initialFValues = {
   email: '',
