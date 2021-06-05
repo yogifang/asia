@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import Controls from '../components/controls/Controls';
 import { useForm, Form } from '../components/useForm';
-import Status from './status';
 import Part2 from './fmPerformanceP2';
 import Part3 from './fmPerformanceP3';
 import Part4 from './fmPerformanceP4';
@@ -100,78 +99,73 @@ export default function BaseballPerformance() {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
-        <Grid item xs={1}>
-          <Status />
-        </Grid>{' '}
-        <Grid item xs={10}>
-          <div>
-            <div className='row div-scroll'>
-              <div className='col s12 center-align'>
-                <p>
-                  <span className='text-purple'>個人運動表現與比賽數據</span>
+        <div>
+          <div className='row div-scroll'>
+            <div className='col s12 center-align'>
+              <p>
+                <span className='text-purple'>個人運動表現與比賽數據</span>
+                <br />
+                <span className='text-orange'>若以下資料有不便回答者 可填入N</span>
+              </p>
+              <div className='bg-orange d-inline-block mb-3 p-1'>
+                <p className='m-0'>
+                  <span>速度</span>
                   <br />
-                  <span className='text-orange'>若以下資料有不便回答者 可填入N</span>
+                  <span>Sprint meansurements (time)</span>
                 </p>
-                <div className='bg-orange d-inline-block mb-3 p-1'>
-                  <p className='m-0'>
-                    <span>速度</span>
-                    <br />
-                    <span>Sprint meansurements (time)</span>
-                  </p>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>10碼衝刺（秒）</label>
+                  <label className='small' htmlFor>
+                    10 Yard Split (Sec.)
+                  </label>
                 </div>
               </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor>10碼衝刺（秒）</label>
-                    <label className='small' htmlFor>
-                      10 Yard Split (Sec.)
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <input
-                      id='user_TenYardSplit'
-                      type='number'
-                      className='validate'
-                      name='TenYardSplit'
-                      onChange={handleInputChange}
-                      value={values.TenYardSplit}
-                    />
-                  </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id='user_TenYardSplit'
+                    type='number'
+                    className='validate'
+                    name='TenYardSplit'
+                    onChange={handleInputChange}
+                    value={values.TenYardSplit}
+                  />
                 </div>
               </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor>60碼衝刺（秒）</label>
-                    <label className='small' htmlFor>
-                      60 Yard Split (Sec.)
-                    </label>
-                  </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>60碼衝刺（秒）</label>
+                  <label className='small' htmlFor>
+                    60 Yard Split (Sec.)
+                  </label>
                 </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <input
-                      id='user_SixtyYardSplit'
-                      type='number'
-                      className='validate'
-                      name='SixtyYardSplit'
-                      onChange={handleInputChange}
-                      value={values.SixtyYardSplit}
-                    />
-                  </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id='user_SixtyYardSplit'
+                    type='number'
+                    className='validate'
+                    name='SixtyYardSplit'
+                    onChange={handleInputChange}
+                    value={values.SixtyYardSplit}
+                  />
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <Part2 />
+        <Part2 />
 
-          <Part3 />
-          <Part4 />
-        </Grid>{' '}
+        <Part3 />
+        <Part4 />
       </Grid>{' '}
     </Form>
   );
