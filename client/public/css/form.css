@@ -52,10 +52,16 @@ body{
 .div-content{
     padding-top: 120px;
 }
+.bar-header{
+    background-color: unset!important;
+    box-shadow: unset!important;
+}
 .div-header{
     margin: 0 auto;
+    padding-top: 20px;
     display: flex;
-    width: 1000px;
+    width: 1000px!important;
+    min-height: 64px!important;
     background: #ffffff;
 }
 .div-header ul{
@@ -91,6 +97,10 @@ body{
     width: 1000px;
     height: calc(100vh - 325px);
     background: #ffffff;
+    overflow-y: auto;
+}
+.form-container{
+    box-shadow: unset!important;
 }
 .div-step{
     position: absolute;
@@ -149,6 +159,10 @@ select{
 .input-xs{
     width: 50px!important;
 }
+.browser-default input{
+    width: unset!important;
+    border: unset!important;
+}
 select{
     padding: 0 0 0 5px;
     height: 27px!important;
@@ -161,4 +175,11 @@ input[type=text]:not(.browser-default):focus:not([readonly]){
 }
 [type="radio"]:checked+span:after{
     border: 2px solid #1B1464!important;
+}
+button:focus{
+    background-color: unset;
+}
+/* 上方標籤按鈕的底線 */
+.PrivateTabIndicator-colorSecondary-7{
+    background-color: #1B1464!important;
 }

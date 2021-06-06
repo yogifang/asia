@@ -37,6 +37,7 @@ function getStatePicture ( position , state ) {
    
 }
 
+// status 的部分需刪除
 export default function status(props) {
     const  values  = props;
     

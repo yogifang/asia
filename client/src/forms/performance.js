@@ -14,7 +14,7 @@ export default function Performance() {
 
   return (
     <>
-      <Paper className={classes.pageContent}>
+      <Paper className={classes.pageContent, 'form-container'}>
         <PerformanceForm />
       </Paper>{' '}
     </>

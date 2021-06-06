@@ -6,6 +6,32 @@ export default function Input2 ( props ) {
     return ( 
         <div className="div-scroll">
         <div className="row">
+        <div className="col s12">
+            <div className="col s5">
+              <div className="input-title">
+                <p>*您是否持有歐盟護照或居住在歐洲</p>
+                <span>*Are you an EU citizen or holding an EU citizenship?</span>
+              </div>
+            </div>
+            <div className="col s7">
+              <div className="d-flex">
+                <div className="ml-2">
+                  <label>
+                    <input name="group1" type="radio" />
+                    <span>是</span>
+                    <span>YES</span>
+                  </label>
+                </div>
+                <div className="ml-2">
+                  <label>
+                    <input name="group1" type="radio" />
+                    <span>否</span>
+                    <span>NO</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="col s12">
             <div className="col s5">
               <div className="mb-3">
@@ -32,28 +58,13 @@ export default function Input2 ( props ) {
           </div>
           <div className="col s12">
             <div className="col s5">
-              <div className="input-title">
-                <p>*您是否持有歐盟護照或居住在歐洲</p>
-                <span>*Are you an EU citizen or holding an EU citizenship?</span>
+              <div className="mb-3">
+                <label className="right-align" htmlFor="">確認密碼</label>
+                <label className="right-align small" htmlFor="">Repeat password</label>
               </div>
             </div>
             <div className="col s7">
-              <div className="d-flex">
-                <div className="ml-2">
-                  <label>
-                    <input name="group1" type="radio" />
-                    <span>是</span>
-                    <span>YES</span>
-                  </label>
-                </div>
-                <div className="ml-2">
-                  <label>
-                    <input name="group1" type="radio" />
-                    <span>否</span>
-                    <span>NO</span>
-                  </label>
-                </div>
-              </div>
+              <input id="" type="text" className="validate" />
             </div>
           </div>
           <div className="col s12 center-align mt-100">

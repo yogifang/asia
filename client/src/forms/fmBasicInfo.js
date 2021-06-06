@@ -2,7 +2,6 @@ import { Grid, Box } from '@material-ui/core';
 
 import { useForm, Form } from '../components/useForm';
 import * as asiaService from '../services/asiaService';
-import Status from './status';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import React, { Component, useState } from 'react';
@@ -92,7 +91,7 @@ export default function BasicInfoForm() {
     control: (provided, state) => ({
       ...provided,
       background: '#fff',
-      borderColor: '#9e9e9e',
+      borderColor: '#1B1464',
       minHeight: '30px',
       height: '30px',
       boxShadow: state.isFocused ? null : null,
@@ -127,10 +126,6 @@ export default function BasicInfoForm() {
     <Form onSubmit={handleSubmit}>
       <Box pl={100} />
       <Grid container>
-        <Grid item xs={1}>
-          <Status />
-        </Grid>{' '}
-        <Grid item xs={11}>
           <div className='div-scroll'>
             <div className='row'>
               <div className='col s12'>
@@ -391,7 +386,6 @@ export default function BasicInfoForm() {
               </div>
             </div>
           </div>
-        </Grid>{' '}
       </Grid>{' '}
     </Form>
   );

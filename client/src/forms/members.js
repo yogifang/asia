@@ -14,7 +14,7 @@ export default function Members() {
  
   return (
     <>
-      <Paper className={classes.pageContent}>
+      <Paper className={classes.pageContent , 'form-container'}>
         <MemberForm />
       </Paper>{' '}
     </>

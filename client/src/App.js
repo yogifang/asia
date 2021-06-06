@@ -22,15 +22,15 @@ const useStyles = makeStyles({
   },
   customStyleOnTab: {
     fontSize: '12px',
-    color: 'lightBlue',
+    color: '#A8AFD4',
   },
   customStyleOnActiveTab: {
-    color: 'darkblue',
+    color: '#1B1464',
   },
   activeTab: {
     fontSize: '12px',
     fontWeight: '500',
-    color: 'darkblue',
+    color: '#1B1464',
   },
 });
 
@@ -43,6 +43,7 @@ function TabPanel(props) {
       hidden={value !== index}
       id={'simple-tabpanel-${index}'}
       aria-labelledby={'simple-tab-${index}'}
+      className="div-form"
       {...other}
     >
       {value === index && (
@@ -78,18 +79,10 @@ function App() {
     <>
       <CssBaseline />
       <div className='App-body'>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <div className='App-action' style={{ marginLeft: 350, width: '1200px', background: 'white' }}>
-          <AppBar position='relative' style={{ background: 'white' }}>
+        <div className='App-action div-content'>
+          <AppBar position='relative' className='bar-header'>
             <Toolbar>
-              <Tabs value={value} onChange={handleChange} aria-label='asia-scouting main buttons'>
+              <Tabs className='div-header' value={value} onChange={handleChange} aria-label='asia-scouting main buttons'>
                 <Tab
                   label={
                     <span className={value === 0 ? classes.activeTab : classes.customStyleOnTab}>

@@ -14,7 +14,7 @@ export default function BasicInfo() {
 
   return (
     <>
-      <Paper className={classes.pageContent}>
+      <Paper className={classes.pageContent, 'form-container'}>
         <ContactsForm />
       </Paper>{' '}
     </>
