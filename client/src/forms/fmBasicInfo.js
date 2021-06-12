@@ -5,6 +5,7 @@ import { useForm, Form } from '../components/useForm';
 import axios from '../components/axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import customStyles from './customStyles';
 
 import Select from 'react-select';
 
@@ -126,41 +127,6 @@ export default function BasicInfoForm() {
     console.log(recMember.email);
     values.member = recMember.email;
     await axios.post('/asia-scouting/baseballinfos/', values);
-  };
-
-  const customStyles = {
-    control: (provided, state) => ({
-      ...provided,
-      background: '#fff',
-      borderColor: '#1B1464',
-      minHeight: '30px',
-      height: '30px',
-      boxShadow: state.isFocused ? null : null,
-    }),
-    placeholder: (defaultStyles) => {
-      return {
-        ...defaultStyles,
-        borderColor: '#ff',
-      };
-    },
-    valueContainer: (provided, state) => ({
-      ...provided,
-      height: '30px',
-      margin: '0px',
-      padding: '0px , 0px',
-    }),
-
-    input: (provided, state) => ({
-      ...provided,
-      margin: '0px',
-    }),
-    indicatorSeparator: (state) => ({
-      display: 'none',
-    }),
-    indicatorsContainer: (provided, state) => ({
-      ...provided,
-      height: '30px',
-    }),
   };
 
   return (

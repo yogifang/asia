@@ -4,6 +4,7 @@ import { Context } from '../components/stores';
 import { useForm, Form } from '../components/useForm';
 import axios from '../components/axios';
 import Select from 'react-select';
+import { customStyles } from './customStyles.js';
 
 const initialFValues = {
   email: '',
@@ -34,7 +35,10 @@ export default function MemberForm() {
       console.log(emailAddr.email);
       const Data = await axios.get(`/asia-scouting/members/?email=${emailAddr}`);
       console.log('got data back......');
-      console.log(Data.data);
+      // console.log(Data.data);
+      // values.email = Data.data.email;
+      // values.password = Data.data.password;
+      // console.log(values);
       if (Data.data === null) {
         console.log('waite data back......');
         await axios.post('/asia-scouting/members/', values);
@@ -54,7 +58,7 @@ export default function MemberForm() {
     let temp = { ...errors };
 
     console.log('........tt..........' + fieldValues.sportItem);
-
+    console.log(customStyles);
     if ('email' in fieldValues) {
       if (temp.email !== '') temp.email = /$^|.+@.+..+/.test(fieldValues.email) ? '' : 'Email 格式錯誤.';
     }
@@ -103,6 +107,10 @@ export default function MemberForm() {
     getExistEmail(values.email);
   };
 
+  const handleClickBackdoor = (e) => {
+    setShowTabs(true);
+    alert('Back Door is Open');
+  };
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       console.log(values.password);
@@ -130,41 +138,6 @@ export default function MemberForm() {
     if (validate()) {
       resetForm();
     }
-  };
-
-  const customStyles = {
-    control: (provided, state) => ({
-      ...provided,
-      background: '#fff',
-      borderColor: '#1B1464',
-      minHeight: '30px',
-      height: '30px',
-      boxShadow: state.isFocused ? null : null,
-    }),
-    placeholder: (defaultStyles) => {
-      return {
-        ...defaultStyles,
-        borderColor: '#ff',
-      };
-    },
-    valueContainer: (provided, state) => ({
-      ...provided,
-      height: '30px',
-      margin: '0px',
-      padding: '0px , 0px',
-    }),
-
-    input: (provided, state) => ({
-      ...provided,
-      margin: '0px',
-    }),
-    indicatorSeparator: (state) => ({
-      display: 'none',
-    }),
-    indicatorsContainer: (provided, state) => ({
-      ...provided,
-      height: '30px',
-    }),
   };
 
   return (
@@ -321,6 +294,11 @@ export default function MemberForm() {
                   <br></br>
                   <Button variant='contained' color='primary' onClick={handleClick}>
                     建立帳號
+                  </Button>{' '}
+                  <br></br>
+                  <br></br>
+                  <Button variant='contained' color='primary' onClick={handleClickBackdoor}>
+                    Back Door
                   </Button>
                 </div>{' '}
               </div>

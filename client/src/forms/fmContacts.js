@@ -7,6 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 import countryList from '../components/controls/country-list';
+import customStyles from './customStyles';
 
 const initialFValues = {
   email: '222',
@@ -71,35 +72,6 @@ export default function BasicInfoForm() {
       //employeeService.insertEmployee(values);
       resetForm();
     }
-  };
-
-  const customStyles = {
-    control: (provided, state) => ({
-      ...provided,
-      background: '#fff',
-      borderColor: '#9e9e9e',
-      minHeight: '30px',
-      height: '30px',
-      boxShadow: state.isFocused ? null : null,
-    }),
-
-    valueContainer: (provided, state) => ({
-      ...provided,
-      height: '30px',
-      padding: '6px',
-    }),
-
-    input: (provided, state) => ({
-      ...provided,
-      margin: '0px',
-    }),
-    indicatorSeparator: (state) => ({
-      display: 'none',
-    }),
-    indicatorsContainer: (provided, state) => ({
-      ...provided,
-      height: '30px',
-    }),
   };
 
   return (
