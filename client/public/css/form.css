@@ -183,3 +183,14 @@ button:focus{
 .PrivateTabIndicator-colorSecondary-7{
     background-color: #1B1464!important;
 }
+/* 儲存按鈕 */
+.btn-save{
+    position: absolute;
+    top: 120px;
+    right: 100px;
+    width: 85px;
+    height: 47px;
+    border: none;
+    background-image: url('../images/save.png');
+    background-size: contain;
+}

@@ -263,17 +263,17 @@ export default function MemberForm() {
                 <div className='col s12'>
                   <div className='col s5'>
                     <div className='mb-3'>
-                      <label className='right-align' htmlFor=''>
+                      <label className='right-align' htmlFor='passwordConfirm'>
                         確認密碼{' '}
                       </label>{' '}
-                      <label className='right-align small' htmlFor=''>
+                      <label className='right-align small' htmlFor='passwordConfirm'>
                         Create a password{' '}
                       </label>{' '}
                     </div>{' '}
                   </div>{' '}
                   <div className='col s5'>
                     <input
-                      id=''
+                      id='passwordConfirm'
                       type='password'
                       className='validate'
                       name='passwordConfirm'
