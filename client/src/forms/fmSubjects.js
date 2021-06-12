@@ -3,7 +3,7 @@ import { Grid, Button } from '@material-ui/core';
 import axios from '../components/axios';
 import Context from '../components/stores';
 import { useForm, Form } from '../components/useForm';
-
+import saveImage from '../assets/buttons/save.png'
 import Status from './status';
 
 const initialFValues = {
@@ -57,6 +57,7 @@ export default function BasicInfoForm() {
     <Form onSubmit={handleSubmit}>
       <Grid container>
         <div className='row'>
+          <Button className='btn-save' variant='contained' color='primary' onClick={handleClick} style={{ backgroundImage: "url("+ saveImage +")"}}></Button>
           <div className='col s12'>
             <div className='col s12 text-orange center-align'>
               <div className='bg-orange d-inline-block mb-3 p-1'>
@@ -256,9 +257,6 @@ export default function BasicInfoForm() {
                   value={values.IntentMajor}
                 />
               </div>
-              <Button variant='contained' color='primary' onClick={handleClick}>
-                儲存資料
-              </Button>
             </div>
           </div>
         </div>

@@ -119,7 +119,6 @@ body{
 }
 .div-scroll{
     height: 100%;
-    overflow-y: auto;
 }
 label{
     display: block;
@@ -185,7 +184,7 @@ button:focus{
 }
 /* 儲存按鈕 */
 .btn-save{
-    position: absolute;
+    position: absolute!important;
     top: 120px;
     right: 100px;
     width: 85px;
@@ -193,4 +192,29 @@ button:focus{
     border: none;
     background-image: url('../images/save.png');
     background-size: contain;
+    background-color: unset!important;
+}
+
+/* mobile */
+@media (max-width: 575.98px) { 
+    .div-header,
+    .div-form{
+        width: 400px!important;
+    }
+}
+
+/* pad */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .div-header,
+    .div-form{
+        width: 600px!important;
+    }
+}
+
+/* pc */
+@media (min-width: 992px) {
+    .div-header,
+    .div-form{
+        width: 1000px!important;
+    }
 }

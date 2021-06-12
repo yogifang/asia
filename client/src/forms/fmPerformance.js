@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Button } from '@material-ui/core';
 import Controls from '../components/controls/Controls';
 import { useForm, Form } from '../components/useForm';
 import DatePicker from 'react-datepicker';
+import saveImage from '../assets/buttons/save.png'
 
 const initialFValues = {
   member: '',
@@ -98,6 +99,7 @@ export default function BaseballPerformance() {
       <Grid container>
         <div>
           <div className='row div-scroll'>
+            <Button className='btn-save' variant='contained' color='primary' style={{ backgroundImage: "url("+ saveImage +")"}}></Button>
             <div className='col s12 center-align'>
               <p>
                 <span className='text-purple'>個人運動表現與比賽數據</span>

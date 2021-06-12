@@ -8,6 +8,7 @@ import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 import countryList from '../components/controls/country-list';
 import customStyles from './customStyles';
+import saveImage from '../assets/buttons/save.png'
 
 const initialFValues = {
   email: '222',
@@ -78,6 +79,7 @@ export default function BasicInfoForm() {
     <Form onSubmit={handleSubmit}>
       <Grid container>
         <div className='row'>
+          <Button className='btn-save' variant='contained' color='primary' onClick={handleClick} style={{ backgroundImage: "url("+ saveImage +")"}}></Button>
           <div className='col s12'>
             <div className='col s4 right-align'>
               <div className='mb-3'>
@@ -221,9 +223,6 @@ export default function BasicInfoForm() {
               <br />
               並註明您的姓名及生日，謝謝！
             </p>
-            <Button variant='contained' color='primary' onClick={handleClick}>
-              儲存資料
-            </Button>
           </div>
         </div>
       </Grid>{' '}
