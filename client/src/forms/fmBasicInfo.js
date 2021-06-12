@@ -197,6 +197,7 @@ export default function BasicInfoForm() {
             style={{ backgroundImage: 'url(' + saveImage + ')' }}
           ></Button>
           <div className='row'>
+            <Button className='btn-save' variant='contained' color='primary' onClick={handleClick} style={{ backgroundImage: "url("+ saveImage +")"}}></Button>
             <div className='col s12'>
               <p className='center-align text-orange'>若以下資料有不便回答者 可填入N</p>
             </div>
@@ -485,9 +486,6 @@ export default function BasicInfoForm() {
                     showMonthYearPicker
                   />
                 </div>
-                <Button className='btn-save' variant='contained' color='primary' onClick={handleClick}>
-                  儲存資料
-                </Button>
               </div>
             </div>
           </div>

@@ -136,6 +136,7 @@ export default function BaseballPerformance() {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
+<<<<<<< HEAD
         <div className='div-scroll'>
           <div className='row'>
             <Button
@@ -144,6 +145,11 @@ export default function BaseballPerformance() {
               color='primary'
               style={{ backgroundImage: 'url(' + saveImage + ')' }}
             ></Button>
+=======
+        <div>
+          <div className='row div-scroll'>
+            <Button className='btn-save' variant='contained' color='primary' style={{ backgroundImage: "url(" + saveImage + ")" }}></Button>
+>>>>>>> 49eef10... 修改儲存按鈕的圖
             <div className='col s12 center-align'>
               <p>
                 <span className='text-purple'>個人運動表現與比賽數據</span>
