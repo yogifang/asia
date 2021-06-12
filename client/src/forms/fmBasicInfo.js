@@ -485,6 +485,9 @@ export default function BasicInfoForm() {
                     showMonthYearPicker
                   />
                 </div>
+                <Button className='btn-save' variant='contained' color='primary' onClick={handleClick}>
+                  儲存資料
+                </Button>
               </div>
             </div>
           </div>
