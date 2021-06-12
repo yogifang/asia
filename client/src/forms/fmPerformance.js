@@ -5,6 +5,7 @@ import { useForm, Form } from '../components/useForm';
 import axios from '../components/axios';
 import Context from '../components/stores';
 import DatePicker from 'react-datepicker';
+import saveImage from '../assets/buttons/save.png'
 
 const initialFValues = {
   _id: '',
@@ -137,6 +138,7 @@ export default function BaseballPerformance() {
       <Grid container>
         <div>
           <div className='row div-scroll'>
+            <Button className='btn-save' variant='contained' color='primary' style={{ backgroundImage: "url(" + saveImage + ")" }}></Button>
             <div className='col s12 center-align'>
               <p>
                 <span className='text-purple'>個人運動表現與比賽數據</span>
