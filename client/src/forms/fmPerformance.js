@@ -3,9 +3,6 @@ import { Grid, Typography } from '@material-ui/core';
 import Controls from '../components/controls/Controls';
 import { useForm, Form } from '../components/useForm';
 import DatePicker from 'react-datepicker';
-import Part2 from './fmPerformanceP2';
-import Part3 from './fmPerformanceP3';
-import Part4 from './fmPerformanceP4';
 
 const initialFValues = {
   member: '',
