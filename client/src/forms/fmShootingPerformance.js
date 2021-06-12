@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { Grid, Button, Select } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 import Context from '../components/stores';
 import axios from '../components/axios';
 import { useForm, Form } from '../components/useForm';
 import DatePicker from 'react-datepicker';
+import Select from 'react-select';
 
 const initialFValues = {
   member: '',
@@ -226,11 +227,11 @@ export default function ShootingPerformance() {
                   <div className='mb-3'>
                     <Select
                       id='user_nationality'
-                      placeholder='Select Hands'
-                      className='browser-default col s5 mb-2'
+                      placeholder='Select Level'
+                      className='browser-default col s6 mb-2'
                       name='best10MLevel'
                       autosize={true}
-                      value={values.best10MLevel.label}
+                      value=''
                       options={optionsGameLevel}
                       onChange={(e) => {
                         values.best10MLevel = e.target;
@@ -300,14 +301,14 @@ export default function ShootingPerformance() {
                   <div className='mb-3'>
                     <Select
                       id='user_nationality'
-                      placeholder='Select Hands'
-                      className='browser-default col s5 mb-2'
+                      placeholder='Select Level'
+                      className='browser-default col s6 mb-2'
                       name='best10MLevel'
                       autosize={true}
-                      value={values.best10MLevel.label}
+                      value={values.best10MLevel.value}
                       options={optionsGameLevel}
                       onChange={(e) => {
-                        values.best10MLevel = e.target;
+                        values.best50M3x40 = e.target;
                       }}
                       styles={customStyles}
                     />
@@ -372,15 +373,19 @@ export default function ShootingPerformance() {
                 </div>
                 <div className='col s8'>
                   <div className='mb-3'>
-                    <select className='browser-default' id='user_nationality'>
-                      <option value disabled selected>
-                        Choose your option
-                      </option>
-                      <option value={1}>奧運</option>
-                      <option value={2}>奧運資格賽/世錦賽/世界盃/世大運</option>
-                      <option value={3}>亞運/亞錦賽/亞洲盃</option>
-                      <option value={4}>其他</option>
-                    </select>
+                    <Select
+                      id='user_nationality'
+                      placeholder='Select Level'
+                      className='browser-default col s6 mb-2'
+                      name='best10MLevel'
+                      autosize={true}
+                      value={values.best10MLevel.value}
+                      options={optionsGameLevel}
+                      onChange={(e) => {
+                        values.best50M3x40 = e.target;
+                      }}
+                      styles={customStyles}
+                    />
                   </div>
                 </div>
               </div>

@@ -1,6 +1,7 @@
-import React from 'react';
-import { Grid } from '@material-ui/core';
-import Controls from '../components/controls/Controls';
+import React, { useState, useMemo, useContext } from 'react';
+import { Grid, Button } from '@material-ui/core';
+import axios from '../components/axios';
+import Context from '../components/stores';
 import { useForm, Form } from '../components/useForm';
 import Status from './status';
 
@@ -14,9 +15,12 @@ const initialFValues = {
   SAT: 0,
   ACT: 0,
   IntentMajor: '',
+  bFilled: false,
 };
 
 export default function BasicInfoForm() {
+  const { recMember, setMember } = useContext(Context);
+
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
 
@@ -32,6 +36,13 @@ export default function BasicInfoForm() {
     true,
     validate
   );
+
+  const handleClick = async (e) => {
+    console.log(values);
+    console.log(recMember.email);
+    values.member = recMember.email;
+    await axios.post('/asia-scouting/subjects/', values);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -235,8 +246,18 @@ export default function BasicInfoForm() {
             </div>
             <div className='col s8'>
               <div className='mb-3'>
-                <input id type='text' className='validate' />
+                <input
+                  id=' '
+                  type='text'
+                  className='validate'
+                  name='IntentMajor'
+                  onChange={handleInputChange}
+                  value={values.IntentMajor}
+                />
               </div>
+              <Button variant='contained' color='primary' onClick={handleClick}>
+                儲存資料
+              </Button>
             </div>
           </div>
         </div>

@@ -47,6 +47,7 @@ router.post(strUrlPath, cors(), function (req, res, next) {
   let data = {
     email: req.body.email,
     password: req.body.password,
+    sportItem: req.body.sportItem,
     bEUcitizen: req.body.passport === 'true' ? true : false,
     bPrivacy: req.body.isPrivacy === 'on' ? true : false,
     bFilled: false,

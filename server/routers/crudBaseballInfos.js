@@ -1,26 +1,29 @@
 const express = require('express');
 const router = express.Router();
 var table = require('../models/baseballinfos');
+//var table = require('../models/members');
 var cors = require('cors'); // We will use CORS to enable cross origin domain requests.
 
 const strUrlPath = '/';
 
 /* GET ALL BOOKS */
 router.get(strUrlPath, cors(), function (req, res, next) {
-  if (req.query.email === undefined) {
+  if (req.query.member === undefined) {
     console.log('I am get all +++++baseballinfos+++++++');
     table.find(function (err, products) {
       if (err) return next(err);
       res.json(products);
+      console.log('--------- ' + products);
     });
+
     return;
   }
-  if (req.query.email.length > 0) {
+  if (req.query.member.length > 0) {
     console.log('I am here++++baseballinfos++');
     console.log(req.query.email);
     let qryStr = req.query.email;
 
-    table.findOne({ email: qryStr }, function (err, post) {
+    table.findOne({ member: qryStr }, function (err, post) {
       if (err) return next(err);
       res.json(post);
     });
@@ -28,7 +31,7 @@ router.get(strUrlPath, cors(), function (req, res, next) {
 });
 
 /* GET SINGLE BY ID */
-router.get(strUrlPath + '/:email', cors(), function (req, res, next) {
+router.get(strUrlPath + '/:member', cors(), function (req, res, next) {
   console.log('baseballinfos+++1111+++');
   console.log(req.query.email);
 
@@ -43,14 +46,7 @@ router.get(strUrlPath + '/:email', cors(), function (req, res, next) {
 /* SAVE  */
 router.post(strUrlPath, cors(), function (req, res, next) {
   console.log(req.body);
-
-  let data = {
-    email: req.body.email,
-    password: req.body.password,
-    bEUcitizen: req.body.passport === 'true' ? true : false,
-    bPrivacy: req.body.isPrivacy === 'on' ? true : false,
-    bFilled: false,
-  };
+  let data = req.body;
   console.log(data);
   table
     .create(data)

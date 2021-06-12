@@ -7,7 +7,7 @@ const strUrlPath = '/';
 
 /* GET ALL BOOKS */
 router.get(strUrlPath, cors(), function (req, res, next) {
-  if (req.query.email === undefined) {
+  if (req.query.member === undefined) {
     console.log('I am get all ++++contacts++++++++');
     table.find(function (err, products) {
       if (err) return next(err);
@@ -15,12 +15,12 @@ router.get(strUrlPath, cors(), function (req, res, next) {
     });
     return;
   }
-  if (req.query.email.length > 0) {
+  if (req.query.member.length > 0) {
     console.log('I am here++++++');
-    console.log(req.query.email);
-    let qryStr = req.query.email;
+    console.log(req.query.member);
+    let qryStr = req.query.member;
 
-    table.findOne({ email: qryStr }, function (err, post) {
+    table.findOne({ member: qryStr }, function (err, post) {
       if (err) return next(err);
       res.json(post);
     });
@@ -28,13 +28,13 @@ router.get(strUrlPath, cors(), function (req, res, next) {
 });
 
 /* GET SINGLE BY ID */
-router.get(strUrlPath + '/:email', cors(), function (req, res, next) {
+router.get(strUrlPath + '/:member', cors(), function (req, res, next) {
   console.log('I am here+++1111+++');
-  console.log(req.query.email);
+  console.log(req.query.member);
 
-  var email = req.query.email;
+  var member = req.query.member;
 
-  table.findById(email, function (err, post) {
+  table.findById(member, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });

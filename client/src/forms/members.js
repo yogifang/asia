@@ -11,10 +11,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Members() {
   const classes = useStyles();
- 
+
   return (
     <>
-      <Paper className={classes.pageContent , 'form-container'}>
+      <Paper className={(classes.pageContent, 'form-container')}>
         <MemberForm />
       </Paper>{' '}
     </>

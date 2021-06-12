@@ -1,10 +1,11 @@
-import { Grid, Box } from '@material-ui/core';
-
+import React, { useState, useContext } from 'react';
+import { Grid, Box, Button } from '@material-ui/core';
+import { Context } from '../components/stores';
 import { useForm, Form } from '../components/useForm';
-import * as asiaService from '../services/asiaService';
+import axios from '../components/axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import React, { Component, useState } from 'react';
+
 import Select from 'react-select';
 
 const optionsPosition = [
@@ -21,10 +22,10 @@ const optionsPosition = [
 ];
 
 const optionsHands = [
-  { value: 'L', label: '左投左打' },
-  { value: 'R', label: '右投右打' },
-  { value: 'LR', label: '左投右打' },
-  { value: 'RL', label: '右投左打' },
+  { value: 'LPLH', label: '左投左打' },
+  { value: 'RPRH', label: '右投右打' },
+  { value: 'LPRH', label: '左投右打' },
+  { value: 'RPLH', label: '右投左打' },
 ];
 
 const optionsGrads = [
@@ -61,11 +62,13 @@ const initialFValues = {
 export default function BasicInfoForm() {
   const [startDate, setStartDate] = useState(new Date());
 
+  const { recMember, setRecMember, recBaseballInfos, setRecBaseballInfos } = useContext(Context);
+
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
-    if ('fullName' in fieldValues) temp.fullName = fieldValues.fullName ? '' : '此欄位不得空白。';
-    if ('englishName' in fieldValues) temp.englishName = fieldValues.englishName ? '' : '此欄位不得空白。';
-    if ('email' in fieldValues) temp.email = /$^|.+@.+..+/.test(fieldValues.email) ? '' : 'Email 格式錯誤.';
+    if ('ChineseName' in fieldValues) temp.ChineseName = fieldValues.ChineseName ? '' : '此欄位不得空白。';
+    if ('PassportName' in fieldValues) temp.PassportName = fieldValues.PassportName ? '' : '此欄位不得空白。';
+
     setErrors({
       ...temp,
     });
@@ -79,12 +82,50 @@ export default function BasicInfoForm() {
     validate
   );
 
+  async function handleRefresh() {
+    console.log('handle test..........');
+    console.log('q-------------' + recMember.email);
+    let member = recMember.email;
+    try {
+      let Data = await axios.get(`/asia-scouting/baseballinfos/?member=${recMember.email}`);
+      console.log('got data back......');
+      console.log(Data.data);
+      if (Data.data === null) {
+        setValues(initialFValues);
+      } else {
+        console.log('waite data back......' + Data.data);
+      }
+    } catch (error) {}
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
       //employeeService.insertEmployee(values);
       resetForm();
     }
+  };
+
+  const handelSelectPriPosition = (e) => {
+    values.PriPosition = e.value;
+  };
+
+  const handelSelectSecPosition = (e) => {
+    values.SecPosition = e.value;
+  };
+
+  const handelSelectLRHand = (e) => {
+    values.LeftRightHand = e.value;
+  };
+  const handelSelectCurrentGrad = (e) => {
+    values.currentGrad = e.value;
+  };
+
+  const handleClick = async (e) => {
+    console.log(values);
+    console.log(recMember.email);
+    values.member = recMember.email;
+    await axios.post('/asia-scouting/baseballinfos/', values);
   };
 
   const customStyles = {
@@ -126,266 +167,279 @@ export default function BasicInfoForm() {
     <Form onSubmit={handleSubmit}>
       <Box pl={100} />
       <Grid container>
-          <div className='div-scroll'>
-            <div className='row'>
-              <div className='col s12'>
-                <p className='center-align text-orange'>若以下資料有不便回答者 可填入N</p>
-              </div>
-              <div className='col s12'>
-                <div className='col s4'>
-                  <div className='mb-3'>
-                    <label className='right-align' htmlFor='user_name_zh'>
-                      *中文姓名
-                    </label>
-                    <label className='right-align small' htmlFor='user_name_zh'>
-                      *Preferred Name
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <input
-                      id='user_name_zh'
-                      type='text'
-                      className='validate'
-                      name='ChineseName'
-                      value={values.ChineseName}
-                      onChange={handleInputChange}
-                    />
-                  </div>
+        <div className='div-scroll'>
+          <div className='row'>
+            <div className='col s12'>
+              <p className='center-align text-orange'>若以下資料有不便回答者 可填入N</p>
+            </div>
+            <div className='col s12'>
+              <div className='col s4'>
+                <div className='mb-3'>
+                  <label className='right-align' for='user_name_zh'>
+                    *中文姓名
+                  </label>
+                  <label className='right-align small' for='user_name_zh'>
+                    *Preferred Name
+                  </label>
                 </div>
               </div>
-              <div className='col s12'>
-                <div className='col s4'>
-                  <div className='mb-3'>
-                    <label className='right-align' htmlFor='user_name'>
-                      *護照英文名
-                    </label>
-                    <label className='right-align small' htmlFor='user_name'>
-                      *First Name and Last Name
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <input
-                      id='user_name'
-                      type='text'
-                      className='validate'
-                      name='PassportName'
-                      value={values.PassportName}
-                      onChange={handleInputChange}
-                    />
-                  </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id='user_name_zh'
+                    type='text'
+                    className='validate'
+                    name='ChineseName'
+                    value={values.ChineseName}
+                    onChange={handleInputChange}
+                  />
+                  <label className='left-align small'> {errors.ChineseName} </label>{' '}
                 </div>
               </div>
-              <div className='col s12'>
-                <div className='col s4'>
-                  <div className='input-title mb-3'>
-                    <p>*性別</p>
-                    <span>*Sex</span>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='d-flex mb-3'>
-                    <div className='ml-2'>
-                      <label>
-                        <input name='Gender' type='radio' onChange={handleInputChange} value='Male' />
-                        <span>男</span>
-                        <span>Male</span>
-                      </label>
-                    </div>
-                    <div className='ml-2'>
-                      <label>
-                        <input name='Gender' type='radio' onChange={handleInputChange} value='Female' />
-                        <span>女</span>
-                        <span>Female</span>
-                      </label>
-                    </div>
-                    <div className='ml-2'>
-                      <label>
-                        <input name='Gender' type='radio' onChange={handleInputChange} value='Others' />
-                        <span>其他</span>
-                        <span>Other</span>
-                      </label>
-                    </div>
-                  </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4'>
+                <div className='mb-3'>
+                  <label className='right-align' htmlFor='user_name'>
+                    *護照英文名
+                  </label>
+                  <label className='right-align small' htmlFor='user_name'>
+                    *First Name and Last Name
+                  </label>
                 </div>
               </div>
-              <div className='col s12'>
-                <div className='col s4'>
-                  <div className='mb-3'>
-                    <label className='right-align' htmlFor='user_position'>
-                      *守備位置
-                    </label>
-                    <label className='right-align small' htmlFor='user_position'>
-                      *Position
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <Select
-                      placeholder='Select Position'
-                      className='browser-default col s5 mb-2'
-                      name='PriPosition'
-                      autosize={true}
-                      id='user_position'
-                      options={optionsPosition}
-                      styles={customStyles}
-                    />
-                  </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id='user_name'
+                    type='text'
+                    className='validate'
+                    name='PassportName'
+                    value={values.PassportName}
+                    onChange={handleInputChange}
+                  />
+                  <label className='left-align small'> {errors.PassportName} </label>
                 </div>
               </div>
-              <div className='col s12'>
-                <div className='col s4'>
-                  <div className='mb-3'>
-                    <label className='right-align' htmlFor='user_second_position'>
-                      *第二守備位置
-                    </label>
-                    <label className='right-align small' htmlFor='user_second_position'>
-                      *Second Position(s)
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <Select
-                      placeholder='Select Position'
-                      className='browser-default col s5 mb-2'
-                      name='SecPosition'
-                      autosize={true}
-                      id='user_position'
-                      options={optionsPosition}
-                      styles={customStyles}
-                    />
-                  </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4'>
+                <div className='input-title mb-3'>
+                  <p>*性別</p>
+                  <span>*Sex</span>
                 </div>
               </div>
-              <div className='col s12'>
-                <div className='col s4'>
-                  <div className='mb-3'>
-                    <label className='right-align' htmlFor='user_height'>
-                      身高（公分）
-                    </label>
-                    <label className='right-align small' htmlFor='user_height'>
-                      Height (cm)
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <input
-                      id='user_height'
-                      type='number'
-                      className='validate'
-                      name='Height'
-                      onChange={handleInputChange}
-                      value={values.Height}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4'>
-                  <div className='mb-3'>
-                    <label className='right-align' htmlFor='user_weight'>
-                      體重（公斤）
-                    </label>
-                    <label className='right-align small' htmlFor='user_weight'>
-                      Weight (kg)
+              <div className='col s8'>
+                <div className='d-flex mb-3'>
+                  <div className='ml-2'>
+                    <label>
+                      <input name='Gender' type='radio' onChange={handleInputChange} value='Male' />
+                      <span>男</span>
+                      <span>Male</span>
                     </label>
                   </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <input
-                      id='user_weight'
-                      type='number'
-                      className='validate'
-                      name='Weight'
-                      onChange={handleInputChange}
-                      value={values.Weight}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4'>
-                  <div className='mb-3'>
-                    <label className='right-align' htmlFor>
-                      投/打慣用手
-                    </label>
-                    <label className='right-align small' htmlFor>
-                      B/T
+                  <div className='ml-2'>
+                    <label>
+                      <input name='Gender' type='radio' onChange={handleInputChange} value='Female' />
+                      <span>女</span>
+                      <span>Female</span>
                     </label>
                   </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <Select
-                      placeholder='Select Hands'
-                      className='browser-default col s5 mb-2'
-                      name='LeftRightHand'
-                      autosize={true}
-                      id='user_position'
-                      options={optionsHands}
-                      styles={customStyles}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4'>
-                  <div className='mb-3'>
-                    <label className='right-align' htmlFor='user_grad'>
-                      年級
+                  <div className='ml-2'>
+                    <label>
+                      <input name='Gender' type='radio' onChange={handleInputChange} value='Others' />
+                      <span>其他</span>
+                      <span>Other</span>
                     </label>
-                    <label className='right-align small' htmlFor='user_grad'>
-                      School Grad Year
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <Select
-                      placeholder='Select Grad'
-                      className='browser-default col s5 mb-2'
-                      name='currentGrad'
-                      autosize={true}
-                      id='user_position'
-                      options={optionsGrads}
-                      styles={customStyles}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className='col s12'>
-                <div className='col s4'>
-                  <div className='mb-3'>
-                    <label className='right-align' htmlFor='user_graduation'>
-                      高中預計畢業日期（年月）
-                    </label>
-                    <label className='right-align small' htmlFor='user_graduation'>
-                      High School Expected Graduation Date
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <DatePicker
-                      name='GradData'
-                      selected={startDate}
-                      onChange={(date) => setStartDate(date)}
-                      dateFormat='MM/yyyy'
-                      showMonthYearPicker
-                    />
                   </div>
                 </div>
               </div>
             </div>
+            <div className='col s12'>
+              <div className='col s4'>
+                <div className='mb-3'>
+                  <label className='right-align' htmlFor='user_position'>
+                    *守備位置
+                  </label>
+                  <label className='right-align small' htmlFor='user_position'>
+                    *Position
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <Select
+                    placeholder='Select Position'
+                    className='browser-default col s5 mb-2'
+                    name='PriPosition'
+                    autosize={true}
+                    id='user_position'
+                    value={values.PriPosition.label}
+                    options={optionsPosition}
+                    onChange={handelSelectPriPosition}
+                    styles={customStyles}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4'>
+                <div className='mb-3'>
+                  <label className='right-align' htmlFor='user_second_position'>
+                    *第二守備位置
+                  </label>
+                  <label className='right-align small' htmlFor='user_second_position'>
+                    *Second Position(s)
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <Select
+                    placeholder='Select Position'
+                    className='browser-default col s5 mb-2'
+                    name='SecPosition'
+                    autosize={true}
+                    id='user_position'
+                    value={values.SecPosition.label}
+                    onChange={handelSelectSecPosition}
+                    options={optionsPosition}
+                    styles={customStyles}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4'>
+                <div className='mb-3'>
+                  <label className='right-align' htmlFor='user_height'>
+                    身高（公分）
+                  </label>
+                  <label className='right-align small' htmlFor='user_height'>
+                    Height (cm)
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id='user_height'
+                    type='number'
+                    className='validate'
+                    name='Height'
+                    onChange={handleInputChange}
+                    value={values.Height}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4'>
+                <div className='mb-3'>
+                  <label className='right-align' htmlFor='user_weight'>
+                    體重（公斤）
+                  </label>
+                  <label className='right-align small' htmlFor='user_weight'>
+                    Weight (kg)
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id='user_weight'
+                    type='number'
+                    className='validate'
+                    name='Weight'
+                    onChange={handleInputChange}
+                    value={values.Weight}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4'>
+                <div className='mb-3'>
+                  <label className='right-align' htmlFor>
+                    投/打慣用手
+                  </label>
+                  <label className='right-align small' htmlFor>
+                    B/T
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <Select
+                    placeholder='Select Hands'
+                    className='browser-default col s5 mb-2'
+                    name='LeftRightHand'
+                    autosize={true}
+                    id='user_position'
+                    value={values.LeftRightHand.label}
+                    onChange={handelSelectLRHand}
+                    options={optionsHands}
+                    styles={customStyles}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4'>
+                <div className='mb-3'>
+                  <label className='right-align' htmlFor='user_grad'>
+                    年級
+                  </label>
+                  <label className='right-align small' htmlFor='user_grad'>
+                    School Grad Year
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <Select
+                    placeholder='Select Grad'
+                    className='browser-default col s5 mb-2'
+                    name='currentGrad'
+                    autosize={true}
+                    id='user_position'
+                    value={values.currentGrad.label}
+                    onChange={handelSelectCurrentGrad}
+                    options={optionsGrads}
+                    styles={customStyles}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className='col s12'>
+              <div className='col s4'>
+                <div className='mb-3'>
+                  <label className='right-align' htmlFor='user_graduation'>
+                    高中預計畢業日期（年月）
+                  </label>
+                  <label className='right-align small' htmlFor='user_graduation'>
+                    High School Expected Graduation Date
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <DatePicker
+                    name='GradData'
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                    dateFormat='MM/yyyy'
+                    showMonthYearPicker
+                  />
+                </div>
+                <Button variant='contained' color='primary' onClick={handleClick}>
+                  儲存資料
+                </Button>
+              </div>
+            </div>
           </div>
+        </div>
       </Grid>{' '}
     </Form>
   );

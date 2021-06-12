@@ -1,16 +1,18 @@
 const mongoose = require('mongoose');
 const schemaMembers = new mongoose.Schema({
-    email: String,
+  email: String,
 
-    password: String,
+  password: String,
 
-    bEUcitizen: Boolean,
+  bEUcitizen: Boolean,
 
-    bPrivacy: Boolean,
+  bPrivacy: Boolean,
 
-    bFilled: Boolean,
+  bFilled: Boolean,
 
-    summitDate: { type: Date, default: Date.now },
+  sportItem: String,
+
+  summitDate: { type: Date, default: Date.now },
 });
 
 const table = mongoose.model('members', schemaMembers);
