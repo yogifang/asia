@@ -3,7 +3,7 @@ export const customStyles = {
   control: (provided, state) => ({
     ...provided,
     background: '#fff',
-    borderColor: '#1B1464',
+    borderColor: '#333333',
     minHeight: '30px',
     height: '30px',
     boxShadow: state.isFocused ? null : null,

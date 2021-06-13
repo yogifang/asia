@@ -49,15 +49,15 @@ const useStyles = makeStyles({
   },
   customStyleOnTab: {
     fontSize: '12px',
-    color: '#A8AFD4',
+    color: '#CCCCCC',
   },
   customStyleOnActiveTab: {
-    color: '#1B1464',
+    color: '#333333',
   },
   activeTab: {
     fontSize: '12px',
     fontWeight: '500',
-    color: '#1B1464',
+    color: '#333333',
   },
 });
 
@@ -155,7 +155,7 @@ function App() {
                           成績及運動表現 <br></br>Physical Performance{' '}
                         </span>
                       ) : (
-                        <span className={value === 3 ? classes.activeTab : classes.customStyleOnTab}>
+                        <span className={value === 2 ? classes.activeTab : classes.customStyleOnTab}>
                           射擊成績 <br></br>Shooting{' '}
                         </span>
                       )
@@ -165,7 +165,7 @@ function App() {
                   />{' '}
                   <Tab
                     label={
-                      <span className={value === 4 ? classes.activeTab : classes.customStyleOnTab}>
+                      <span className={value === 3 ? classes.activeTab : classes.customStyleOnTab}>
                         {' '}
                         聯繫資料 <br></br>Contact{' '}
                       </span>
@@ -175,7 +175,7 @@ function App() {
                   />{' '}
                   <Tab
                     label={
-                      <span className={value === 5 ? classes.activeTab : classes.customStyleOnTab}>
+                      <span className={value === 4 ? classes.activeTab : classes.customStyleOnTab}>
                         學科相關成績 <br></br>Academic Achievements{' '}
                       </span>
                     }
@@ -184,7 +184,7 @@ function App() {
                   />{' '}
                   <Tab
                     label={
-                      <span className={value === 6 ? classes.activeTab : classes.customStyleOnTab}>
+                      <span className={value === 5 ? classes.activeTab : classes.customStyleOnTab}>
                         確認送出 <br></br>Submit{' '}
                       </span>
                     }

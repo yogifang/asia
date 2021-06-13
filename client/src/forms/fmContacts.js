@@ -78,151 +78,153 @@ export default function BasicInfoForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
-        <div className='row'>
-          <Button className='btn-save' variant='contained' color='primary' onClick={handleClick} style={{ backgroundImage: "url("+ saveImage +")"}}></Button>
-          <div className='col s12'>
-            <div className='col s4 right-align'>
-              <div className='mb-3'>
-                <label htmlFor>電子郵件</label>
-                <label className='small' htmlFor>
-                  Contact Email
-                </label>
+        <div className='div-scroll'>
+          <div className='row'>
+            <Button className='btn-save' variant='contained' color='primary' onClick={handleClick} style={{ backgroundImage: "url(" + saveImage + ")" }}></Button>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>電子郵件</label>
+                  <label className='small' htmlFor>
+                    Contact Email
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id=' '
+                    type='text'
+                    className='validate'
+                    name='email'
+                    onChange={handleInputChange}
+                    value={values.email}
+                  />
+                </div>
               </div>
             </div>
-            <div className='col s8'>
-              <div className='mb-3'>
-                <input
-                  id=' '
-                  type='text'
-                  className='validate'
-                  name='email'
-                  onChange={handleInputChange}
-                  value={values.email}
-                />
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor='user_birth'>出生年月日</label>
+                  <label className='small' htmlFor='user_birth'>
+                    Birthdate
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <DatePicker
+                    name='birthday'
+                    selected={startDate}
+                    onChange={(date) => {
+                      setStartDate(date);
+                      values.birthday = date;
+                    }}
+                    showYearDropdown
+                    dateFormatCalendar='MMMM'
+                    yearDropdownItemNumber={30}
+                    scrollableYearDropdown
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div className='col s12'>
-            <div className='col s4 right-align'>
-              <div className='mb-3'>
-                <label htmlFor='user_birth'>出生年月日</label>
-                <label className='small' htmlFor='user_birth'>
-                  Birthdate
-                </label>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor='user_school'>就讀學校</label>
+                  <label className='small' htmlFor='user_school'>
+                    School
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id=' '
+                    type='text'
+                    className='validate'
+                    name='school'
+                    onChange={handleInputChange}
+                    value={values.school}
+                  />
+                </div>
               </div>
             </div>
-            <div className='col s8'>
-              <div className='mb-3'>
-                <DatePicker
-                  name='birthday'
-                  selected={startDate}
-                  onChange={(date) => {
-                    setStartDate(date);
-                    values.birthday = date;
-                  }}
-                  showYearDropdown
-                  dateFormatCalendar='MMMM'
-                  yearDropdownItemNumber={30}
-                  scrollableYearDropdown
-                />
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor='user_city'>居住城市</label>
+                  <label className='small' htmlFor='user_city'>
+                    What city do you live in?
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id=' '
+                    type='text'
+                    className='validate'
+                    name='liveCity'
+                    onChange={handleInputChange}
+                    value={values.liveCity}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div className='col s12'>
-            <div className='col s4 right-align'>
-              <div className='mb-3'>
-                <label htmlFor='user_school'>就讀學校</label>
-                <label className='small' htmlFor='user_school'>
-                  School
-                </label>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor='user_nationality'>*國籍</label>
+                  <label className='small' htmlFor='user_nationality'>
+                    *Nationality
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <Select
+                    className='browser-default col s6 mb-2'
+                    options={optionsCountry}
+                    name='Nationality'
+                    value={country}
+                    onChange={selCountryChangeHandler}
+                    styles={customStyles}
+                  />
+                </div>
               </div>
             </div>
-            <div className='col s8'>
-              <div className='mb-3'>
-                <input
-                  id=' '
-                  type='text'
-                  className='validate'
-                  name='school'
-                  onChange={handleInputChange}
-                  value={values.school}
-                />
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor='user_link'>其他資料或個人社群連結</label>
+                  <label className='small' htmlFor='user_link'>
+                    Other showcasing links
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id='user_link'
+                    type='text'
+                    name='links'
+                    className='validate'
+                    placeholder='請貼連結'
+                    value={values.links}
+                    onChange={handleInputChange}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div className='col s12'>
-            <div className='col s4 right-align'>
-              <div className='mb-3'>
-                <label htmlFor='user_city'>居住城市</label>
-                <label className='small' htmlFor='user_city'>
-                  What city do you live in?
-                </label>
-              </div>
+            <div className='col s12'>
+              <p className='center-align text-purple'>
+                *如有影片或其他檔案皆可email 至 service@findyourathlete.com
+                <br />
+                並註明您的姓名及生日，謝謝！
+              </p>
             </div>
-            <div className='col s8'>
-              <div className='mb-3'>
-                <input
-                  id=' '
-                  type='text'
-                  className='validate'
-                  name='liveCity'
-                  onChange={handleInputChange}
-                  value={values.liveCity}
-                />
-              </div>
-            </div>
-          </div>
-          <div className='col s12'>
-            <div className='col s4 right-align'>
-              <div className='mb-3'>
-                <label htmlFor='user_nationality'>*國籍</label>
-                <label className='small' htmlFor='user_nationality'>
-                  *Nationality
-                </label>
-              </div>
-            </div>
-            <div className='col s8'>
-              <div className='mb-3'>
-                <Select
-                  className='browser-default col s6 mb-2'
-                  options={optionsCountry}
-                  name='Nationality'
-                  value={country}
-                  onChange={selCountryChangeHandler}
-                  styles={customStyles}
-                />
-              </div>
-            </div>
-          </div>
-          <div className='col s12'>
-            <div className='col s4 right-align'>
-              <div className='mb-3'>
-                <label htmlFor='user_link'>其他資料或個人社群連結</label>
-                <label className='small' htmlFor='user_link'>
-                  Other showcasing links
-                </label>
-              </div>
-            </div>
-            <div className='col s8'>
-              <div className='mb-3'>
-                <input
-                  id='user_link'
-                  type='text'
-                  name='links'
-                  className='validate'
-                  placeholder='請貼連結'
-                  value={values.links}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-          </div>
-          <div className='col s12'>
-            <p className='center-align text-purple'>
-              *如有影片或其他檔案皆可email 至 service@findyourathlete.com
-              <br />
-              並註明您的姓名及生日，謝謝！
-            </p>
           </div>
         </div>
       </Grid>{' '}
