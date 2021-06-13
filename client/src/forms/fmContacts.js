@@ -118,16 +118,9 @@ export default function BasicInfoForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
-<<<<<<< HEAD
         <div className='div-scroll'>
           <div className='row'>
-            <Button
-              className='btn-save'
-              variant='contained'
-              color='primary'
-              onClick={handleClick}
-              style={{ backgroundImage: 'url(' + saveImage + ')' }}
-            ></Button>
+            <Button className='btn-save' variant='contained' color='primary' onClick={handleClick} style={{ backgroundImage: "url(" + saveImage + ")" }}></Button>
             <div className='col s12'>
               <div className='col s4 right-align'>
                 <div className='mb-3'>
@@ -136,17 +129,6 @@ export default function BasicInfoForm() {
                     Contact Email
                   </label>
                 </div>
-=======
-        <div className='row'>
-          <Button className='btn-save' variant='contained' color='primary' onClick={handleClick} style={{ backgroundImage: "url("+ saveImage +")"}}></Button>
-          <div className='col s12'>
-            <div className='col s4 right-align'>
-              <div className='mb-3'>
-                <label htmlFor>電子郵件</label>
-                <label className='small' htmlFor>
-                  Contact Email
-                </label>
->>>>>>> 49eef10... 修改儲存按鈕的圖
               </div>
               <div className='col s8'>
                 <div className='mb-3'>
@@ -184,7 +166,6 @@ export default function BasicInfoForm() {
                 </div>
               </div>
             </div>
-
             <div className='col s12'>
               <div className='col s4 right-align'>
                 <div className='mb-3'>
