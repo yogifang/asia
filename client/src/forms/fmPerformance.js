@@ -752,36 +752,21 @@ export default function BaseballPerformance() {
                   </label>
                 </div>
               </div>
-<<<<<<< HEAD
-          </div>
-          <div className='col s8'>
-            <div className='mb-3'>
-              <DatePicker
-                name='latestGameDate'
-                selected={latestGameDate}
-                onChange={(date) => {
-                  setLatestGameDate(new Date(date));
-                  values.latestGameDate = date;
-                }}
-                showYearDropdown
-                dateFormatCalendar='MMMM'
-                yearDropdownItemNumber={30}
-                scrollableYearDropdown
-              />
-=======
-              <div className='col s8'>
-                <div className='mb-3'>
-                  <DatePicker
-                    name='birthday'
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
-                    showYearDropdown
-                    dateFormatCalendar='MMMM'
-                    yearDropdownItemNumber={30}
-                    scrollableYearDropdown
-                  />
-                </div>
->>>>>>> 3da10e8... 修改配色, 修改儲存按鈕的位置 bug, 修改上方 Tab 的 bug, 還需要改背景圖
+            </div>
+            <div className='col s8'>
+              <div className='mb-3'>
+                <DatePicker
+                  name='latestGameDate'
+                  selected={latestGameDate}
+                  onChange={(date) => {
+                    setLatestGameDate(new Date(date));
+                    values.latestGameDate = date;
+                  }}
+                  showYearDropdown
+                  dateFormatCalendar='MMMM'
+                  yearDropdownItemNumber={30}
+                  scrollableYearDropdown
+                />
               </div>
             </div>
             <div className='col s12 center-align'>
@@ -1116,31 +1101,17 @@ export default function BaseballPerformance() {
                         </label>
                       </div>
                     </div>
-<<<<<<< HEAD
-                </div>
-                <div className='col s3'>
-                  <div className='mb-3'>
-                    <input
-                      id='user_lHR'
-                      type='number'
-                      className='validate input-xs'
-                      name='lHitHR'
-                      onChange={handleInputChange}
-                      value={values.lHitHR}
-                    />
-=======
-                    <div className='col s3'>
-                      <div className='mb-3'>
-                        <input
-                          id='user_lHR'
-                          type='number'
-                          className='validate input-xs'
-                          name='lHR'
-                          onChange={handleInputChange}
-                          value={values.lHR}
-                        />
-                      </div>
->>>>>>> 3da10e8... 修改配色, 修改儲存按鈕的位置 bug, 修改上方 Tab 的 bug, 還需要改背景圖
+                  </div>
+                  <div className='col s3'>
+                    <div className='mb-3'>
+                      <input
+                        id='user_lHR'
+                        type='number'
+                        className='validate input-xs'
+                        name='lHitHR'
+                        onChange={handleInputChange}
+                        value={values.lHitHR}
+                      />
                     </div>
                   </div>
                   <div className='col s12'>
