@@ -1120,68 +1120,16 @@ export default function BaseballPerformance() {
                       </div>
                     </div>
                   </div>
-                  <div className='col s12'>
-                    <div className='col s3 right-align'>
-                      <div className='mb-3'>
-                        <label htmlFor>安打</label>
-                        <label className='small' htmlFor>
-                          H
-                        </label>
-                      </div>
-                    </div>
-                    <div className='col s3'>
-                      <div className='mb-3'>
-                        <input
-                          id='user_lhits'
-                          type='number'
-                          className='validate input-xs'
-                          name='lHits'
-                          onChange={handleInputChange}
-                          value={values.lHits}
-                        />
-                      </div>
-                    </div>
-                    <div className='col s3 right-align'>
-                      <div className='mb-3'>
-                        <label htmlFor>被三振</label>
-                        <label className='small' htmlFor>
-                          K
-                        </label>
-                      </div>
-                    </div>
-                    <div className='col s3'>
-                      <div className='mb-3'>
-                        <input
-                          id='user_lBK'
-                          type='number'
-                          className='validate input-xs'
-                          name='lBK'
-                          onChange={handleInputChange}
-                          value={values.lBK}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className='col s12'>
-                    <div className='col s3 offset-s6  right-align'>
-                      <div className='mb-3'>
-                        <label htmlFor>被保送</label>
-                        <label className='small' htmlFor>
-                          BB
-                        </label>
-                      </div>
-                    </div>
-                </div>
-                <div className='col s3'>
-                  <div className='mb-3'>
-                    <input
-                      id='user_lHR'
-                      type='number'
-                      className='validate input-xs'
-                      name='lHitHR'
-                      onChange={handleInputChange}
-                      value={values.lHitHR}
-                    />
+                  <div className='col s3'>
+                    <div className='mb-3'>
+                      <input
+                        id='user_lHR'
+                        type='number'
+                        className='validate input-xs'
+                        name='lHitHR'
+                        onChange={handleInputChange}
+                        value={values.lHitHR}
+                      />
                     </div>
                   </div>
                   <div className='col s12'>
