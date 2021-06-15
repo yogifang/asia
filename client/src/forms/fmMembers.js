@@ -11,7 +11,7 @@ const initialFValues = {
   password: '',
   passwordConfirm: '',
   passport: false,
-  sportItem: '',
+  sportItem: optionsSportItem[0].value,
   isPrivacy: '',
   filled: false,
 };
@@ -21,8 +21,15 @@ const optionsSportItem = [
   { value: 'shooting', label: '射擊' },
 ];
 
+const PageStatus = [
+  { value: 0, label: 'Start' },
+  { value: 1, label: 'Login' },
+  { value: 2, label: 'Create' },
+];
+
 export default function MemberForm() {
   const [showP1, setShowP1] = useState(false);
+  const [pageStatus, setPageStatus] = useState(PageStatus[0]);
   const [selItem, setSelItem] = useState(optionsSportItem[0]);
   const { showTabs, setShowTabs } = useContext(Context);
   const { showBaseball, setShowBaseball } = useContext(Context);
@@ -36,10 +43,7 @@ export default function MemberForm() {
       console.log(emailAddr.email);
       const Data = await axios.get(`/asia-scouting/members/?email=${emailAddr}`);
       console.log('got data back......');
-      // console.log(Data.data);
-      // values.email = Data.data.email;
-      // values.password = Data.data.password;
-      // console.log(values);
+
       if (Data.data === null) {
         console.log('waite data back......');
         await axios.post('/asia-scouting/members/', values);
@@ -53,6 +57,21 @@ export default function MemberForm() {
     } catch (error) {
       if (error.Status === 404) alert('GET Error!!' + error);
     }
+  };
+
+  const checkExistMember = async (member = values.email, password = values.password) => {
+    const Data = await axios.get(`/asia-scouting/members/?email=${member}`);
+    if (Data.data === null) {
+      alert('帳號不存在！！');
+      return;
+    }
+    if (Data.data.password !== password) {
+      alert('密碼錯誤！！');
+      return;
+    }
+    setRecMember(values);
+    setShowTabs(true);
+    alert('登入成功！！');
   };
 
   const validate = (fieldValues = values) => {
@@ -135,6 +154,18 @@ export default function MemberForm() {
     }
   };
 
+  const handleCreate = (e) => {
+    setPageStatus(PageStatus[2]);
+  };
+
+  const handleLogin = (e) => {
+    setPageStatus(PageStatus[1]);
+  };
+
+  const handleClickSubmit = (e) => {
+    checkExistMember();
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
@@ -146,167 +177,237 @@ export default function MemberForm() {
     <Form onSubmit={handleSubmit}>
       <Grid container>
         <div className='div-scroll'>
-          <div className='row'>
-            <div className='col s12'>
-              <div className='col s6'>
-                <div className='mb-3'>
-                  <div className='input-title'>
-                    <p> * 您是否持有歐盟護照或居住在歐洲 </p>{' '}
-                    <span>* Are you an EU citizen or holding an EU citizenship ?</span>{' '}
-                  </div>{' '}
-                </div>{' '}
-              </div>{' '}
-              <div className='col s4'>
-                <div className='d-flex'>
-                  <div className='ml-2 mb-3'>
-                    <label>
-                      <input
-                        name='passport'
-                        type='radio'
-                        onChange={handleInputChange}
-                        onClick={() => setShowP1(false)}
-                        value={values.passport}
-                      />
-                      <span> 是 </span> <span> YES </span>{' '}
+          <Button variant='contained' color='primary' onClick={handleCreate}>
+            帳號建立
+          </Button>{' '}
+          <Button variant='contained' color='primary' onClick={handleLogin}>
+            登入帳號
+          </Button>{' '}
+          {pageStatus.value === 1 ? (
+            <div>
+              <div className='col s12'>
+                <div className='col s5'>
+                  <div className='mb-3'>
+                    <label className='right-align' htmlFor='user_email'>
+                      請輸入您的聯絡信箱{' '}
                     </label>{' '}
-                  </div>{' '}
-                  <div className='ml-2 mb-3'>
-                    <label>
-                      <input
-                        name='passport'
-                        type='radio'
-                        onChange={handleInputChange}
-                        onClick={() => setShowP1(true)}
-                        value={values.passport}
-                      />
-                      <span> 否 </span> <span> NO </span>{' '}
+                    <label className='right-align small' htmlFor='user_email'>
+                      Enter your email{' '}
                     </label>{' '}
                   </div>{' '}
                 </div>{' '}
+                <div className='col s7'>
+                  <div className='mb-3'>
+                    <input
+                      id='user_email'
+                      type='text'
+                      className='validate'
+                      name='email'
+                      value={values.email}
+                      onChange={handleInputChange}
+                    />{' '}
+                    <label className='left-align small'> {errors.email} </label>{' '}
+                  </div>{' '}
+                </div>{' '}
               </div>{' '}
-            </div>{' '}
-            {showP1 ? (
-              <div>
+              <div className='col s12'>
+                <div className='col s5'>
+                  <div className='mb-3'>
+                    <label className='right-align' htmlFor='user_password'>
+                      輸入密碼{' '}
+                    </label>{' '}
+                    <label className='right-align small' htmlFor='user_password'>
+                      Input Your password{' '}
+                    </label>{' '}
+                  </div>{' '}
+                </div>{' '}
+                <div className='col s5'>
+                  <input
+                    id='user_password'
+                    type='password'
+                    className='validate'
+                    name='password'
+                    value={values.password}
+                    onChange={handleInputChange}
+                  />{' '}
+                  <label className='left-align small'> {errors.password} </label>{' '}
+                </div>{' '}
+                <Button variant='contained' color='primary' onClick={handleClickSubmit}>
+                  Login
+                </Button>
+              </div>{' '}
+            </div>
+          ) : null}
+          {pageStatus.value === 2 ? (
+            <div>
+              <div className='row'>
                 <div className='col s12'>
-                  <div className='col s5'>
+                  <div className='col s6'>
                     <div className='mb-3'>
-                      <label className='right-align' htmlFor='user_email'>
-                        請輸入您的聯絡信箱{' '}
-                      </label>{' '}
-                      <label className='right-align small' htmlFor='user_email'>
-                        Enter your email{' '}
-                      </label>{' '}
+                      <div className='input-title'>
+                        <p> * 您是否持有歐盟護照或居住在歐洲 </p>{' '}
+                        <span>* Are you an EU citizen or holding an EU citizenship ?</span>{' '}
+                      </div>{' '}
                     </div>{' '}
                   </div>{' '}
-                  <div className='col s7'>
-                    <div className='mb-3'>
-                      <input
-                        id='user_email'
-                        type='text'
-                        className='validate'
-                        name='email'
-                        value={values.email}
-                        onChange={handleInputChange}
-                      />{' '}
-                      <label className='left-align small'> {errors.email} </label>{' '}
+                  <div className='col s4'>
+                    <div className='d-flex'>
+                      <div className='ml-2 mb-3'>
+                        <label>
+                          <input
+                            name='passport'
+                            type='radio'
+                            onChange={handleInputChange}
+                            onClick={() => setShowP1(false)}
+                            value={values.passport}
+                          />
+                          <span> 是 </span> <span> YES </span>{' '}
+                        </label>{' '}
+                      </div>{' '}
+                      <div className='ml-2 mb-3'>
+                        <label>
+                          <input
+                            name='passport'
+                            type='radio'
+                            onChange={handleInputChange}
+                            onClick={() => setShowP1(true)}
+                            value={values.passport}
+                          />
+                          <span> 否 </span> <span> NO </span>{' '}
+                        </label>{' '}
+                      </div>{' '}
                     </div>{' '}
                   </div>{' '}
                 </div>{' '}
-                <div className='col s12'>
-                  <div className='col s5'>
-                    <div className='mb-3'>
-                      <label className='right-align' htmlFor='user_password'>
-                        建立密碼{' '}
-                      </label>{' '}
-                      <label className='right-align small' htmlFor='user_password'>
-                        Create a password{' '}
-                      </label>{' '}
+                {showP1 ? (
+                  <div>
+                    <div className='col s12'>
+                      <div className='col s5'>
+                        <div className='mb-3'>
+                          <label className='right-align' htmlFor='user_email'>
+                            請輸入您的聯絡信箱{' '}
+                          </label>{' '}
+                          <label className='right-align small' htmlFor='user_email'>
+                            Enter your email{' '}
+                          </label>{' '}
+                        </div>{' '}
+                      </div>{' '}
+                      <div className='col s7'>
+                        <div className='mb-3'>
+                          <input
+                            id='user_email'
+                            type='text'
+                            className='validate'
+                            name='email'
+                            value={values.email}
+                            onChange={handleInputChange}
+                          />{' '}
+                          <label className='left-align small'> {errors.email} </label>{' '}
+                        </div>{' '}
+                      </div>{' '}
                     </div>{' '}
-                  </div>{' '}
-                  <div className='col s5'>
-                    <input
-                      id='user_password'
-                      type='password'
-                      className='validate'
-                      name='password'
-                      value={values.password}
-                      onChange={handleInputChange}
-                    />{' '}
-                    <label className='left-align small'> {errors.password} </label>{' '}
-                  </div>{' '}
-                </div>{' '}
-                <div className='col s12'>
-                  <div className='col s5'>
-                    <div className='mb-3'>
-                      <label className='right-align' htmlFor=''>
-                        確認密碼{' '}
-                      </label>{' '}
-                      <label className='right-align small' htmlFor=''>
-                        Create a password{' '}
-                      </label>{' '}
+                    <div className='col s12'>
+                      <div className='col s5'>
+                        <div className='mb-3'>
+                          <label className='right-align' htmlFor='user_password'>
+                            建立密碼{' '}
+                          </label>{' '}
+                          <label className='right-align small' htmlFor='user_password'>
+                            Create a password{' '}
+                          </label>{' '}
+                        </div>{' '}
+                      </div>{' '}
+                      <div className='col s5'>
+                        <input
+                          id='user_password'
+                          type='password'
+                          className='validate'
+                          name='password'
+                          value={values.password}
+                          onChange={handleInputChange}
+                        />{' '}
+                        <label className='left-align small'> {errors.password} </label>{' '}
+                      </div>{' '}
                     </div>{' '}
-                  </div>{' '}
-                  <div className='col s5'>
-                    <input
-                      id=''
-                      type='password'
-                      className='validate'
-                      name='passwordConfirm'
-                      onChange={handleInputChange}
-                      onKeyDown={handleKeyDown}
-                      value={values.passwordConfirm}
-                    />{' '}
-                    <label className='left-align small'> {errors.passwordConfirm} </label>{' '}
-                  </div>{' '}
-                </div>
-                <div className='col s12'>
-                  <div className='col s5'>
-                    <div className='mb-3'>
-                      <label className='right-align' htmlFor=''>
-                        *運動項目
-                      </label>
-                      <label className='right-align small' htmlFor=''>
-                        *Sport items
-                      </label>
+                    <div className='col s12'>
+                      <div className='col s5'>
+                        <div className='mb-3'>
+                          <label className='right-align' htmlFor=''>
+                            確認密碼{' '}
+                          </label>{' '}
+                          <label className='right-align small' htmlFor=''>
+                            Create a password{' '}
+                          </label>{' '}
+                        </div>{' '}
+                      </div>{' '}
+                      <div className='col s5'>
+                        <input
+                          id=''
+                          type='password'
+                          className='validate'
+                          name='passwordConfirm'
+                          onChange={handleInputChange}
+                          onKeyDown={handleKeyDown}
+                          value={values.passwordConfirm}
+                        />{' '}
+                        <label className='left-align small'> {errors.passwordConfirm} </label>{' '}
+                      </div>{' '}
                     </div>
-                  </div>{' '}
-                  <div className='col s7'>
-                    <div className='mb-3'>
-                      <Select
-                        className='browser-default col s7 mb-2'
-                        name='sportItem'
-                        value={selItem}
-                        autosize={true}
-                        onChange={handleSportChange}
-                        options={optionsSportItem}
-                        styles={customStyles}
-                        placeholder='選取項目'
-                      />
-                    </div>
-                  </div>{' '}
-                </div>{' '}
-                <div className='col s12 center-align'>
-                  <p className='text-purple m-0'>* 本人已閱讀並同意願遵守使用者條款及隱私權政策 </p>{' '}
-                  <span className='text-purple'>
-                    * By clicking Check box, you agree to our Terms and our Privacy Policy.{' '}
-                  </span>{' '}
-                  <label>
-                    <input name='isPrivacy' type='checkbox' onChange={handleInputChange} checked={values.isPrivacy} />{' '}
-                    <span> 是 </span> <span> YES </span>{' '}
-                  </label>{' '}
-                  <br></br>
-                  <Button variant='contained' color='primary' onClick={handleClick}>
-                    建立帳號
-                  </Button>{' '}
-                  <br></br>
-                  <br></br>
-                  <Button variant='contained' color='primary' onClick={handleClickBackdoor}>
-                    Back Door
-                  </Button>
-                </div>{' '}
-              </div>
-            ) : null}
-          </div>{' '}
+                    <div className='col s12'>
+                      <div className='col s5'>
+                        <div className='mb-3'>
+                          <label className='right-align' htmlFor=''>
+                            *運動項目
+                          </label>
+                          <label className='right-align small' htmlFor=''>
+                            *Sport items
+                          </label>
+                        </div>
+                      </div>{' '}
+                      <div className='col s7'>
+                        <div className='mb-3'>
+                          <Select
+                            className='browser-default col s7 mb-2'
+                            name='sportItem'
+                            value={selItem}
+                            autosize={true}
+                            onChange={handleSportChange}
+                            options={optionsSportItem}
+                            styles={customStyles}
+                            placeholder='選取項目'
+                          />
+                        </div>
+                      </div>{' '}
+                    </div>{' '}
+                    <div className='col s12 center-align'>
+                      <p className='text-purple m-0'>* 本人已閱讀並同意願遵守使用者條款及隱私權政策 </p>{' '}
+                      <span className='text-purple'>
+                        * By clicking Check box, you agree to our Terms and our Privacy Policy.{' '}
+                      </span>{' '}
+                      <label>
+                        <input
+                          name='isPrivacy'
+                          type='checkbox'
+                          onChange={handleInputChange}
+                          checked={values.isPrivacy}
+                        />{' '}
+                        <span> 是 </span> <span> YES </span>{' '}
+                      </label>{' '}
+                      <br></br>
+                      <Button variant='contained' color='primary' onClick={handleClick}>
+                        建立帳號
+                      </Button>{' '}
+                      <br></br>
+                      <br></br>
+                      <Button variant='contained' color='primary' onClick={handleClickBackdoor}>
+                        Back Door
+                      </Button>
+                    </div>{' '}
+                  </div>
+                ) : null}
+              </div>{' '}
+            </div>
+          ) : null}
         </div>{' '}
       </Grid>{' '}
     </Form>

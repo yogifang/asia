@@ -78,7 +78,7 @@ export default function ShootingPerformance() {
 
   useEffect(() => {
     async function fetchData() {
-      recMember.email = 'yogifang@gmail.com';
+      //recMember.email = 'yogifang@gmail.com';
       const Data = await axios.get(`/asia-scouting/shooting/?member=${recMember.email}`);
       console.log('getdata..................');
       console.log(Data.data);

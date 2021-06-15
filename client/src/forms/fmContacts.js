@@ -63,11 +63,12 @@ export default function BasicInfoForm() {
 
   useEffect(() => {
     async function fetchData() {
-      recMember.email = 'yogifang@gmail.com';
+      // recMember.email = 'yogifang@gmail.com';
       const Data = await axios.get(`/asia-scouting/contacts/?member=${recMember.email}`);
       console.log('getdata..................');
       console.log(Data.data);
       if (Data.data === null) return;
+
       let field;
       let nValues = {};
       for (field in values) {

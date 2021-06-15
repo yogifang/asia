@@ -85,7 +85,7 @@ export default function BaseballPerformance() {
   );
   useEffect(() => {
     async function fetchData() {
-      recMember.email = 'yogifang@gmail.com';
+      // recMember.email = 'yogifang@gmail.com';
       console.log(recMember.email);
       const Data = await axios.get(`/asia-scouting/baseballperformance/?member=${recMember.email}`);
       console.log('getdata..................');
