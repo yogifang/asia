@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useContext } from 'react';
+import React, { useState, useMemo, useContext, useEffect } from 'react';
 import { Grid, Button } from '@material-ui/core';
 import Context from '../components/stores';
 import axios from '../components/axios';
@@ -10,9 +10,10 @@ import countryList from '../components/controls/country-list';
 import customStyles from './customStyles';
 
 const initialFValues = {
-  email: '222',
+  _id: '',
+  email: '',
   birthday: new Date(),
-  school: '333',
+  school: '',
   liveCity: '',
   Nationality: '',
   links: '',
@@ -20,26 +21,26 @@ const initialFValues = {
   bFilled: false,
 };
 
-const initialFValues2 = {
-  email: '123',
-  birthday: new Date(),
-  school: '456',
-  liveCity: '789',
-  Nationality: '',
-  links: '',
-  member: '',
-  bFilled: false,
-};
 export default function BasicInfoForm() {
-  const [startDate, setStartDate] = useState(new Date());
-  const [country, setValue] = useState('');
+  const [birthday, setBirthday] = useState(new Date());
   const listOption = new countryList();
   const optionsCountry = useMemo(() => listOption.getData(), []);
+  const [country, setCountry] = useState(optionsCountry[0]);
   const { recMember, setMember } = useContext(Context);
 
   const selCountryChangeHandler = (country) => {
-    setValue(country);
+    console.log(country);
+    console.log(optionsCountry[30]);
+    setCountry(country);
     values.Nationality = country.label;
+  };
+
+  const findIndexByValue = (options, label) => {
+    let index = options.findIndex((options) => options.label === label);
+    console.log(index);
+    if (index === -1) index = 0;
+    return index;
+    //console.log(options[4].label);
   };
 
   const validate = (fieldValues = values) => {
@@ -60,12 +61,49 @@ export default function BasicInfoForm() {
     validate
   );
 
+  useEffect(() => {
+    async function fetchData() {
+      recMember.email = 'yogifang@gmail.com';
+      const Data = await axios.get(`/asia-scouting/contacts/?member=${recMember.email}`);
+      console.log('getdata..................');
+      console.log(Data.data);
+      if (Data.data === null) return;
+      let field;
+      let nValues = {};
+      for (field in values) {
+        console.log(field);
+        //console.log(Data.data[field]);
+        nValues[field] = Data.data[field];
+      }
+
+      setValues(nValues);
+      const index = findIndexByValue(optionsCountry, nValues.Nationality);
+      console.log(index);
+
+      setCountry(optionsCountry[index]);
+      setBirthday(new Date(nValues.birthday));
+      console.log(nValues);
+      console.log(values);
+    }
+    fetchData();
+    //values.member = recMember.email ;
+  }, []);
   const handleClick = async (e) => {
     console.log(values);
     console.log(recMember.email);
     values.member = recMember.email;
-    await axios.post('/asia-scouting/contacts/', values);
+
+    if (values._id === '') {
+      await axios.post('/asia-scouting/contacts/', values);
+    } else {
+      await axios.put('/asia-scouting/contacts/', values);
+    }
   };
+  const handleBirthdayChange = (e) => {
+    values.birthday = e;
+    setBirthday(e);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
@@ -113,11 +151,8 @@ export default function BasicInfoForm() {
               <div className='mb-3'>
                 <DatePicker
                   name='birthday'
-                  selected={startDate}
-                  onChange={(date) => {
-                    setStartDate(date);
-                    values.birthday = date;
-                  }}
+                  selected={birthday}
+                  onChange={handleBirthdayChange}
                   showYearDropdown
                   dateFormatCalendar='MMMM'
                   yearDropdownItemNumber={30}
@@ -220,10 +255,11 @@ export default function BasicInfoForm() {
               *如有影片或其他檔案皆可email 至 service@findyourathlete.com
               <br />
               並註明您的姓名及生日，謝謝！
+              <br />
+              <Button variant='contained' color='primary' onClick={handleClick}>
+                儲存資料
+              </Button>
             </p>
-            <Button variant='contained' color='primary' onClick={handleClick}>
-              儲存資料
-            </Button>
           </div>
         </div>
       </Grid>{' '}

@@ -20,8 +20,8 @@ router.get(strUrlPath, cors(), function (req, res, next) {
   }
   if (req.query.member.length > 0) {
     console.log('I am here++++performance++');
-    console.log(req.query.email);
-    let qryStr = req.query.email;
+    console.log(req.query);
+    let qryStr = req.query.member;
 
     table.findOne({ member: qryStr }, function (err, post) {
       if (err) return next(err);
@@ -33,11 +33,11 @@ router.get(strUrlPath, cors(), function (req, res, next) {
 /* GET SINGLE BY ID */
 router.get(strUrlPath + '/:member', cors(), function (req, res, next) {
   console.log('performance+++1111+++');
-  console.log(req.query.email);
+  console.log(req.query.member);
 
-  var email = req.query.email;
+  var member = req.query.member;
 
-  table.findById(email, function (err, post) {
+  table.findById(member, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
@@ -60,19 +60,20 @@ router.post(strUrlPath, cors(), function (req, res, next) {
 });
 
 /* UPDATE  */
-router.put(strUrlPath + '/:id', cors(), function (req, res, next) {
-  console.log('I am update ++++++++++++' + req.params.id);
-  table.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+router.put(strUrlPath, cors(), function (req, res, next) {
+  console.log('I am update ++++++++++++');
+  console.log(req.body._id);
+  table.findByIdAndUpdate(req.body._id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
 /* DELETE */
-router.delete(strUrlPath + '/:id', cors(), function (req, res, next) {
+router.delete(strUrlPath, cors(), function (req, res, next) {
   console.log('I am delete ++++++++++++');
   console.log(req.params.id);
-  tblStations.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+  tblStations.findByIdAndRemove(req.body._id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });

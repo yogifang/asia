@@ -23,6 +23,7 @@ const optionsSportItem = [
 
 export default function MemberForm() {
   const [showP1, setShowP1] = useState(false);
+  const [selItem, setSelItem] = useState(optionsSportItem[0]);
   const { showTabs, setShowTabs } = useContext(Context);
   const { showBaseball, setShowBaseball } = useContext(Context);
   const { recMember, setRecMember } = useContext(Context);
@@ -126,6 +127,7 @@ export default function MemberForm() {
   const handleSportChange = (event) => {
     console.log('sport-------' + event.value);
     values.sportItem = event.value;
+    setSelItem(event);
     if (event.value === 'baseball') {
       setShowBaseball(true);
     } else {
@@ -273,11 +275,12 @@ export default function MemberForm() {
                       <Select
                         className='browser-default col s7 mb-2'
                         name='sportItem'
-                        value={values.sportItem.value}
+                        value={selItem}
                         autosize={true}
                         onChange={handleSportChange}
                         options={optionsSportItem}
                         styles={customStyles}
+                        placeholder='選取項目'
                       />
                     </div>
                   </div>{' '}

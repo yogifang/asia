@@ -16,7 +16,7 @@ router.get(strUrlPath, cors(), function (req, res, next) {
     return;
   }
   if (req.query.member.length > 0) {
-    console.log('I am here++++++');
+    console.log('I am here+++contacts+++');
     console.log(req.query.member);
     let qryStr = req.query.member;
 
@@ -42,8 +42,10 @@ router.get(strUrlPath + '/:member', cors(), function (req, res, next) {
 
 /* SAVE  */
 router.post(strUrlPath, cors(), function (req, res, next) {
+  console.log('I am post  ++++++++++++' + req.params);
   let data = req.body;
   console.log(data);
+  data._id = null;
   table
     .create(data)
     .then((post) => {
@@ -55,9 +57,9 @@ router.post(strUrlPath, cors(), function (req, res, next) {
 });
 
 /* UPDATE  */
-router.put(strUrlPath + '/:id', cors(), function (req, res, next) {
+router.put(strUrlPath, cors(), function (req, res, next) {
   console.log('I am update ++++++++++++' + req.params.id);
-  table.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+  table.findByIdAndUpdate(req.body._id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });

@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Grid, Button } from '@material-ui/core';
 import axios from '../components/axios';
 import Context from '../components/stores';
@@ -7,6 +7,7 @@ import { useForm, Form } from '../components/useForm';
 import Status from './status';
 
 const initialFValues = {
+  _id: '',
   member: '',
   GPA: 0,
   AVG: 0,
@@ -38,11 +39,39 @@ export default function BasicInfoForm() {
     validate
   );
 
+  useEffect(() => {
+    async function fetchData() {
+      recMember.email = 'yogifang@gmail.com';
+      const Data = await axios.get(`/asia-scouting/subjects/?member=${recMember.email}`);
+      console.log('getdata..................');
+      console.log(Data.data);
+      if (Data.data === null) return;
+      let field;
+      let nValues = {};
+      for (field in values) {
+        console.log(field);
+        //console.log(Data.data[field]);
+        nValues[field] = Data.data[field];
+      }
+
+      setValues(nValues);
+
+      console.log(nValues);
+      console.log(values);
+    }
+    fetchData();
+    //values.member = recMember.email ;
+  }, []);
+
   const handleClick = async (e) => {
     console.log(values);
     console.log(recMember.email);
     values.member = recMember.email;
-    await axios.post('/asia-scouting/subjects/', values);
+    if (values.id === '') {
+      await axios.post('/asia-scouting/subjects/', values);
+    } else {
+      await axios.put('/asia-scouting/subjects/', values);
+    }
   };
 
   const handleSubmit = (e) => {

@@ -7,7 +7,7 @@ const strUrlPath = '/';
 
 /* GET ALL BOOKS */
 router.get(strUrlPath, cors(), function (req, res, next) {
-  if (req.query.email === undefined) {
+  if (req.query.member === undefined) {
     console.log('I am get all ++++shooting++++++++');
     table.find(function (err, products) {
       if (err) return next(err);
@@ -15,12 +15,12 @@ router.get(strUrlPath, cors(), function (req, res, next) {
     });
     return;
   }
-  if (req.query.email.length > 0) {
+  if (req.query.member.length > 0) {
     console.log('I am here++++++');
-    console.log(req.query.email);
-    let qryStr = req.query.email;
+    console.log(req.query.member);
+    let qryStr = req.query.member;
 
-    table.findOne({ email: qryStr }, function (err, post) {
+    table.findOne({ member: qryStr }, function (err, post) {
       if (err) return next(err);
       res.json(post);
     });
@@ -28,13 +28,13 @@ router.get(strUrlPath, cors(), function (req, res, next) {
 });
 
 /* GET SINGLE BY ID */
-router.get(strUrlPath + '/:email', cors(), function (req, res, next) {
+router.get(strUrlPath + '/:member', cors(), function (req, res, next) {
   console.log('I am here++shooting+++');
-  console.log(req.query.email);
+  console.log(req.query.member);
 
-  var email = req.query.email;
+  var member = req.query.member;
 
-  table.findById(email, function (err, post) {
+  table.findById(member, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
@@ -44,6 +44,7 @@ router.get(strUrlPath + '/:email', cors(), function (req, res, next) {
 router.post(strUrlPath, cors(), function (req, res, next) {
   let data = req.body;
   console.log(data);
+  data._id = null;
   table
     .create(data)
     .then((post) => {
@@ -55,19 +56,21 @@ router.post(strUrlPath, cors(), function (req, res, next) {
 });
 
 /* UPDATE  */
-router.put(strUrlPath + '/:id', cors(), function (req, res, next) {
+
+router.put(strUrlPath, cors(), function (req, res, next) {
   console.log('I am update ++++++++++++' + req.params.id);
-  table.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+  console.log(req.body);
+  table.findByIdAndUpdate(req.body._id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
 /* DELETE */
-router.delete(strUrlPath + '/:id', cors(), function (req, res, next) {
+router.delete(strUrlPath + '/:member', cors(), function (req, res, next) {
   console.log('I am delete ++++++++++++');
-  console.log(req.params.id);
-  tblStations.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+  console.log(req.params);
+  tblStations.findByIdAndRemove(req.params.member, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });

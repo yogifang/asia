@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Grid, Button } from '@material-ui/core';
 import Context from '../components/stores';
 import axios from '../components/axios';
@@ -8,6 +8,7 @@ import Select from 'react-select';
 import customStyles from './customStyles';
 
 const initialFValues = {
+  _id: '',
   member: '',
   latestGameName: '',
   lastestScore: 0,
@@ -37,9 +38,15 @@ const optionsGameLevel = [
 ];
 
 export default function ShootingPerformance() {
-  const [startDate, setStartDate] = useState(new Date());
+  const [latestGameDate, setLatestGameDate] = useState(new Date());
+  const [best10MDate, setBest10MDate] = useState(new Date());
+  const [best50M3x40Date, setBest50M3x40Date] = useState(new Date());
+  const [best50M3x20Date, setBest50M3x20Date] = useState(new Date());
+  const [selBest10MLevel, setSelBest10MLevel] = useState(optionsGameLevel[0]);
+  const [selBest50M3x20Level, setSelBest50M3x20Level] = useState(optionsGameLevel[0]);
+  const [selBest50M3x40Level, setSelBest50M3x40Level] = useState(optionsGameLevel[0]);
+
   const { recMember, setMember } = useContext(Context);
-  const { hidePart2, setHide2 } = useState(false);
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -56,11 +63,50 @@ export default function ShootingPerformance() {
     if (fieldValues === values) return Object.values(temp).every((x) => x === '');
   };
 
+  const findIndexByValue = (options, label) => {
+    console.log(label);
+    const index = options.findIndex((options) => options.label === label);
+    return index;
+    //console.log(options[4].label);
+  };
+
   const { values, setValues, errors, setErrors, handleInputChange, resetForm } = useForm(
     initialFValues,
     true,
     validate
   );
+
+  useEffect(() => {
+    async function fetchData() {
+      recMember.email = 'yogifang@gmail.com';
+      const Data = await axios.get(`/asia-scouting/shooting/?member=${recMember.email}`);
+      console.log('getdata..................');
+      console.log(Data.data);
+      if (Data.data === null) return;
+      let field;
+      let nValues = {};
+      for (field in values) {
+        console.log(field);
+        //console.log(Data.data[field]);
+        nValues[field] = Data.data[field];
+      }
+      setValues(nValues);
+      setLatestGameDate(new Date(nValues.latestGameDate));
+      setBest10MDate(new Date(nValues.best10MDate));
+      setBest50M3x20Date(new Date(nValues.best50M3x20Date));
+      setBest50M3x40Date(new Date(nValues.best50M3x40Date));
+      let index = findIndexByValue(optionsGameLevel, nValues.best10MLevel);
+      setSelBest10MLevel(optionsGameLevel[index]);
+      index = findIndexByValue(optionsGameLevel, nValues.best50M3x20Level);
+      setSelBest50M3x20Level(optionsGameLevel[index]);
+      index = findIndexByValue(optionsGameLevel, nValues.best50M3x40Level);
+      setSelBest50M3x40Level(optionsGameLevel[index]);
+
+      console.log(index);
+    }
+    fetchData();
+    //values.member = recMember.email ;
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -73,7 +119,11 @@ export default function ShootingPerformance() {
     console.log(values);
     console.log(recMember.email);
     values.member = recMember.email;
-    await axios.post('/asia-scouting/shooting/', values);
+    if (values._id === '') {
+      await axios.post('/asia-scouting/shooting/', values);
+    } else {
+      await axios.put('/asia-scouting/shooting/', values);
+    }
   };
 
   return (
@@ -147,9 +197,9 @@ export default function ShootingPerformance() {
                   <div className='mb-3'>
                     <DatePicker
                       name='latestGameDate'
-                      selected={startDate}
+                      selected={latestGameDate}
                       onChange={(date) => {
-                        setStartDate(date);
+                        setLatestGameDate(new Date(date));
                         values.latestGameDate = date;
                       }}
                       showYearDropdown
@@ -198,10 +248,11 @@ export default function ShootingPerformance() {
                       className='browser-default col s6 mb-2'
                       name='best10MLevel'
                       autosize={true}
-                      value=''
+                      value={selBest10MLevel}
                       options={optionsGameLevel}
                       onChange={(e) => {
-                        values.best10MLevel = e.target;
+                        setSelBest10MLevel(e);
+                        values.best10MLevel = e.label;
                       }}
                       styles={customStyles}
                     />
@@ -221,9 +272,9 @@ export default function ShootingPerformance() {
                   <div className='mb-3'>
                     <DatePicker
                       name='best10MDate'
-                      selected={startDate}
+                      selected={best10MDate}
                       onChange={(date) => {
-                        setStartDate(date);
+                        setBest10MDate(new Date(date));
                         values.best10MDate = date;
                       }}
                       showYearDropdown
@@ -270,12 +321,13 @@ export default function ShootingPerformance() {
                       id='user_nationality'
                       placeholder='Select Level'
                       className='browser-default col s6 mb-2'
-                      name='best10MLevel'
+                      name='best50M3x40Level'
                       autosize={true}
-                      value={values.best10MLevel.value}
+                      value={selBest50M3x40Level}
                       options={optionsGameLevel}
                       onChange={(e) => {
-                        values.best50M3x40 = e.target;
+                        setSelBest50M3x40Level(e);
+                        values.best50M3x40Level = e.label;
                       }}
                       styles={customStyles}
                     />
@@ -295,9 +347,9 @@ export default function ShootingPerformance() {
                   <div className='mb-3'>
                     <DatePicker
                       name='best50M3x40Date'
-                      selected={startDate}
+                      selected={best50M3x40Date}
                       onChange={(date) => {
-                        setStartDate(date);
+                        setBest50M3x40Date(new Date(date));
                         values.best50M3x40Date = date;
                       }}
                       showYearDropdown
@@ -344,12 +396,13 @@ export default function ShootingPerformance() {
                       id='user_nationality'
                       placeholder='Select Level'
                       className='browser-default col s6 mb-2'
-                      name='best10MLevel'
+                      name='best50M3x20Level'
                       autosize={true}
-                      value={values.best10MLevel.value}
+                      value={selBest50M3x20Level}
                       options={optionsGameLevel}
                       onChange={(e) => {
-                        values.best50M3x40 = e.target;
+                        setSelBest50M3x20Level(e);
+                        values.best50M3x20Level = e.target;
                       }}
                       styles={customStyles}
                     />
@@ -369,9 +422,9 @@ export default function ShootingPerformance() {
                   <div className='mb-3'>
                     <DatePicker
                       name='best50M3x20Date'
-                      selected={startDate}
+                      selected={best50M3x20Date}
                       onChange={(date) => {
-                        setStartDate(date);
+                        setBest50M3x20Date(new Date(date));
                         values.best50M3x20Date = date;
                       }}
                       showYearDropdown

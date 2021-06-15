@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Grid, Box, Button } from '@material-ui/core';
 import { Context } from '../components/stores';
 import { useForm, Form } from '../components/useForm';
@@ -46,6 +46,7 @@ const optionsGrads = [
 ];
 
 const initialFValues = {
+  _id: '',
   ChineseName: '',
   PassportName: '',
   Gender: '',
@@ -61,9 +62,19 @@ const initialFValues = {
 };
 
 export default function BasicInfoForm() {
-  const [startDate, setStartDate] = useState(new Date());
+  const [radioGenger, setRadioGender] = useState('Male');
+  const [selPriPosition, setSelPriPosition] = useState(optionsPosition[0]);
+  const [selSecPosition, setSelSecPosition] = useState(optionsPosition[1]);
+  const [selHands, setSelHands] = useState(optionsHands[0]);
+  const [selGrads, setSelGrads] = useState(optionsGrads[0]);
+  const [dateGrad, setDateGrad] = useState(new Date());
+  const { recMember, setRecMember } = useContext(Context);
 
-  const { recMember, setRecMember, recBaseballInfos, setRecBaseballInfos } = useContext(Context);
+  const findIndexByValue = (options, value) => {
+    const index = options.findIndex((options) => options.value === value);
+    return index;
+    //console.log(options[4].label);
+  };
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -77,27 +88,46 @@ export default function BasicInfoForm() {
     if (fieldValues === values) return Object.values(temp).every((x) => x === '');
   };
 
+  useEffect(() => {
+    async function fetchData() {
+      recMember.email = 'yogifang@gmail.com';
+      const Data = await axios.get(`/asia-scouting/baseballinfos/?member=${recMember.email}`);
+      console.log('getdata..................');
+      console.log(Data.data);
+      if (Data.data === null) return;
+      let field;
+      let nValues = {};
+      for (field in values) {
+        //  console.log(field);
+        console.log(Data.data[field]);
+        nValues[field] = Data.data[field];
+        // setValues(field, Data.data[field]);
+      }
+
+      setValues(nValues);
+      let index = findIndexByValue(optionsPosition, nValues.PriPosition);
+      setSelPriPosition(optionsPosition[index]);
+      index = findIndexByValue(optionsPosition, nValues.SecPosition);
+      setSelSecPosition(optionsPosition[index]);
+      index = findIndexByValue(optionsHands, nValues.LeftRightHand);
+      setSelHands(optionsHands[index]);
+      index = findIndexByValue(optionsGrads, nValues.currentGrad);
+      setSelGrads(optionsGrads[index]);
+      setRadioGender(nValues.Gender);
+      setDateGrad(new Date(nValues.GradDate));
+
+      console.log(nValues);
+      console.log(values);
+    }
+    fetchData();
+    //values.member = recMember.email ;
+  }, []);
+
   const { values, setValues, errors, setErrors, handleInputChange, resetForm } = useForm(
     initialFValues,
     true,
     validate
   );
-
-  async function handleRefresh() {
-    console.log('handle test..........');
-    console.log('q-------------' + recMember.email);
-    let member = recMember.email;
-    try {
-      let Data = await axios.get(`/asia-scouting/baseballinfos/?member=${recMember.email}`);
-      console.log('got data back......');
-      console.log(Data.data);
-      if (Data.data === null) {
-        setValues(initialFValues);
-      } else {
-        console.log('waite data back......' + Data.data);
-      }
-    } catch (error) {}
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -108,25 +138,43 @@ export default function BasicInfoForm() {
   };
 
   const handelSelectPriPosition = (e) => {
+    setSelPriPosition(e);
     values.PriPosition = e.value;
   };
 
   const handelSelectSecPosition = (e) => {
+    setSelSecPosition(e);
     values.SecPosition = e.value;
   };
 
   const handelSelectLRHand = (e) => {
+    setSelHands(e);
     values.LeftRightHand = e.value;
   };
   const handelSelectCurrentGrad = (e) => {
+    setSelGrads(e);
     values.currentGrad = e.value;
+  };
+
+  const handleRadioGender = (e) => {
+    setRadioGender(e.target.value);
+    values.Gender = e.target.value;
+  };
+
+  const handleSetDate = (e) => {
+    console.log(e);
+    values.GradDate = e;
+    setDateGrad(e);
   };
 
   const handleClick = async (e) => {
     console.log(values);
-    console.log(recMember.email);
-    values.member = recMember.email;
-    await axios.post('/asia-scouting/baseballinfos/', values);
+
+    if (values._id === '') {
+      await axios.post('/asia-scouting/baseballinfos/', values);
+    } else {
+      await axios.put('/asia-scouting/baseballinfos/', values);
+    }
   };
 
   return (
@@ -199,21 +247,39 @@ export default function BasicInfoForm() {
                 <div className='d-flex mb-3'>
                   <div className='ml-2'>
                     <label>
-                      <input name='Gender' type='radio' onChange={handleInputChange} value='Male' />
+                      <input
+                        name='Gender'
+                        type='radio'
+                        checked={radioGenger === 'Male'}
+                        onChange={handleRadioGender}
+                        value='Male'
+                      />
                       <span>男</span>
                       <span>Male</span>
                     </label>
                   </div>
                   <div className='ml-2'>
                     <label>
-                      <input name='Gender' type='radio' onChange={handleInputChange} value='Female' />
+                      <input
+                        name='Gender'
+                        type='radio'
+                        checked={radioGenger === 'Female'}
+                        onChange={handleRadioGender}
+                        value='Female'
+                      />
                       <span>女</span>
                       <span>Female</span>
                     </label>
                   </div>
                   <div className='ml-2'>
                     <label>
-                      <input name='Gender' type='radio' onChange={handleInputChange} value='Others' />
+                      <input
+                        name='Gender'
+                        type='radio'
+                        checked={radioGenger === 'Others'}
+                        onChange={handleRadioGender}
+                        value='Others'
+                      />
                       <span>其他</span>
                       <span>Other</span>
                     </label>
@@ -240,7 +306,7 @@ export default function BasicInfoForm() {
                     name='PriPosition'
                     autosize={true}
                     id='user_position'
-                    value={values.PriPosition.label}
+                    value={selPriPosition}
                     options={optionsPosition}
                     onChange={handelSelectPriPosition}
                     styles={customStyles}
@@ -267,7 +333,7 @@ export default function BasicInfoForm() {
                     name='SecPosition'
                     autosize={true}
                     id='user_position'
-                    value={values.SecPosition.label}
+                    value={selSecPosition}
                     onChange={handelSelectSecPosition}
                     options={optionsPosition}
                     styles={customStyles}
@@ -342,7 +408,7 @@ export default function BasicInfoForm() {
                     name='LeftRightHand'
                     autosize={true}
                     id='user_position'
-                    value={values.LeftRightHand.label}
+                    value={selHands}
                     onChange={handelSelectLRHand}
                     options={optionsHands}
                     styles={customStyles}
@@ -369,7 +435,7 @@ export default function BasicInfoForm() {
                     name='currentGrad'
                     autosize={true}
                     id='user_position'
-                    value={values.currentGrad.label}
+                    value={selGrads}
                     onChange={handelSelectCurrentGrad}
                     options={optionsGrads}
                     styles={customStyles}
@@ -393,8 +459,8 @@ export default function BasicInfoForm() {
                 <div className='mb-3'>
                   <DatePicker
                     name='GradData'
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
+                    selected={dateGrad}
+                    onChange={handleSetDate}
                     dateFormat='MM/yyyy'
                     showMonthYearPicker
                   />

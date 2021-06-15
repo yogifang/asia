@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import React, { useState, useEffect, useContext } from 'react';
+import { Grid, Button } from '@material-ui/core';
 import Controls from '../components/controls/Controls';
 import { useForm, Form } from '../components/useForm';
+import axios from '../components/axios';
+import Context from '../components/stores';
 import DatePicker from 'react-datepicker';
 
 const initialFValues = {
+  _id: '',
   member: '',
   TenYardSplit: 0,
   SixtyYardSplit: 0,
@@ -57,6 +60,8 @@ const initialFValues = {
 
 export default function BaseballPerformance() {
   const { hidePart2, setHide2 } = useState(false);
+  const [latestGameDate, setLatestGameDate] = useState(new Date());
+  const { recMember, setMember } = useContext(Context);
   const [startDate, setStartDate] = useState(new Date());
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -78,6 +83,27 @@ export default function BaseballPerformance() {
     true,
     validate
   );
+  useEffect(() => {
+    async function fetchData() {
+      recMember.email = 'yogifang@gmail.com';
+      console.log(recMember.email);
+      const Data = await axios.get(`/asia-scouting/baseballperformance/?member=${recMember.email}`);
+      console.log('getdata..................');
+      console.log(Data.data);
+      if (Data.data === null) return;
+      let field;
+      let nValues = {};
+      for (field in values) {
+        console.log(field);
+        //console.log(Data.data[field]);
+        nValues[field] = Data.data[field];
+      }
+      setValues(nValues);
+      setLatestGameDate(new Date(nValues.latestGameDate));
+    }
+    fetchData();
+    //values.member = recMember.email ;
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -87,6 +113,16 @@ export default function BaseballPerformance() {
     }
   };
 
+  const handleClick = async (e) => {
+    console.log(values);
+    console.log(recMember.email);
+    values.member = recMember.email;
+    if (values.id === '') {
+      await axios.post('/asia-scouting/baseballperformance/', values);
+    } else {
+      await axios.put('/asia-scouting/baseballperformance/', values);
+    }
+  };
   const handleInputChange60Yard = (e) => {
     e.preventDefault();
     console.log(hidePart2);
@@ -719,9 +755,12 @@ export default function BaseballPerformance() {
             <div className='col s8'>
               <div className='mb-3'>
                 <DatePicker
-                  name='birthday'
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
+                  name='latestGameDate'
+                  selected={latestGameDate}
+                  onChange={(date) => {
+                    setLatestGameDate(new Date(date));
+                    values.latestGameDate = date;
+                  }}
                   showYearDropdown
                   dateFormatCalendar='MMMM'
                   yearDropdownItemNumber={30}
@@ -1070,9 +1109,9 @@ export default function BaseballPerformance() {
                         id='user_lHR'
                         type='number'
                         className='validate input-xs'
-                        name='lHR'
+                        name='lHitHR'
                         onChange={handleInputChange}
-                        value={values.lHR}
+                        value={values.lHitHR}
                       />
                     </div>
                   </div>
@@ -1142,6 +1181,9 @@ export default function BaseballPerformance() {
                   </div>
                 </div>
               </div>
+              <Button variant='contained' color='primary' onClick={handleClick}>
+                儲存資料
+              </Button>
             </div>
           </div>
         </div>
