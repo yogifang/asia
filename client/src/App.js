@@ -72,9 +72,9 @@ function a11yProps(index) {
 
 function App() {
   // const [recMember, setRecMember] = useState(initMembers);
-  const [memberEmail, setMemberEmail] = useState('abce');
+  const [memberEmail, setMemberEmail] = useState('');
   const [showTabs, setShowTabs] = useState(false);
-  const [showBaseball, setShowBaseball] = useState(false);
+  const [showBaseball, setShowBaseball] = useState(true);
   const [value, setValue] = useState(0);
   const classes = useStyles();
   const handleChange = (event, newValue) => {
