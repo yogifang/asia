@@ -26,7 +26,7 @@ export default function BasicInfoForm() {
   const listOption = new countryList();
   const optionsCountry = useMemo(() => listOption.getData(), []);
   const [country, setCountry] = useState(optionsCountry[0]);
-  const { recMember, setMember } = useContext(Context);
+  const { memberEmail, setMemberEmail } = useContext(Context);
 
   const selCountryChangeHandler = (country) => {
     console.log(country);
@@ -64,7 +64,7 @@ export default function BasicInfoForm() {
   useEffect(() => {
     async function fetchData() {
       // recMember.email = 'yogifang@gmail.com';
-      const Data = await axios.get(`/asia-scouting/contacts/?member=${recMember.email}`);
+      const Data = await axios.get(`/asia-scouting/contacts/?member=${memberEmail}`);
       console.log('getdata..................');
       console.log(Data.data);
       if (Data.data === null) return;
@@ -91,9 +91,9 @@ export default function BasicInfoForm() {
   }, []);
   const handleClick = async (e) => {
     console.log(values);
-    console.log(recMember.email);
-    values.member = recMember.email;
-
+    console.log(memberEmail);
+    values.member = memberEmail;
+    console.log(values);
     if (values._id === '') {
       await axios.post('/asia-scouting/contacts/', values);
     } else {

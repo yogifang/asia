@@ -13,31 +13,6 @@ import Contacts from './forms/contacts';
 import Subjects from './forms/subjects';
 import Confirm from './forms/confirm';
 
-const initMembers = {
-  email: '',
-  password: '',
-  passwordConfirm: '',
-  passport: true,
-  sportItem: '',
-  isPrivacy: '',
-  filled: true,
-};
-
-const initBaseballInfos = {
-  ChineseName: '',
-  PassportName: '',
-  Gender: '',
-  GradDate: Date.now(),
-  Height: 0.0,
-  LeftRightHand: '',
-  PriPosition: '',
-  SecPosition: '',
-  Weight: 0.0,
-  bFilled: false,
-  currentGrad: '',
-  member: '123456',
-};
-
 const useStyles = makeStyles({
   paperContainer: {
     backgroundImage: `url(${Background})`,
@@ -96,8 +71,8 @@ function a11yProps(index) {
 }
 
 function App() {
-  const [recMember, setRecMember] = useState(initMembers);
-  const [recBaseballInfos, setBaseballInfos] = useState(initBaseballInfos);
+  // const [recMember, setRecMember] = useState(initMembers);
+  const [memberEmail, setMemberEmail] = useState('abce');
   const [showTabs, setShowTabs] = useState(false);
   const [showBaseball, setShowBaseball] = useState(false);
   const [value, setValue] = useState(0);
@@ -115,10 +90,8 @@ function App() {
           setShowTabs,
           showBaseball,
           setShowBaseball,
-          recMember,
-          setRecMember,
-          recBaseballInfos,
-          setBaseballInfos,
+          memberEmail,
+          setMemberEmail,
         }}
       >
         <div className='App-body'>

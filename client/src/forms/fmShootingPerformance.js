@@ -45,8 +45,7 @@ export default function ShootingPerformance() {
   const [selBest10MLevel, setSelBest10MLevel] = useState(optionsGameLevel[0]);
   const [selBest50M3x20Level, setSelBest50M3x20Level] = useState(optionsGameLevel[0]);
   const [selBest50M3x40Level, setSelBest50M3x40Level] = useState(optionsGameLevel[0]);
-
-  const { recMember, setMember } = useContext(Context);
+  const { memberEmail, setMemberEmail } = useContext(Context);
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -79,7 +78,7 @@ export default function ShootingPerformance() {
   useEffect(() => {
     async function fetchData() {
       //recMember.email = 'yogifang@gmail.com';
-      const Data = await axios.get(`/asia-scouting/shooting/?member=${recMember.email}`);
+      const Data = await axios.get(`/asia-scouting/shooting/?member=${memberEmail}`);
       console.log('getdata..................');
       console.log(Data.data);
       if (Data.data === null) return;
@@ -117,8 +116,8 @@ export default function ShootingPerformance() {
   };
   const handleClick = async (e) => {
     console.log(values);
-    console.log(recMember.email);
-    values.member = recMember.email;
+    console.log(memberEmail);
+    values.member = memberEmail;
     if (values._id === '') {
       await axios.post('/asia-scouting/shooting/', values);
     } else {

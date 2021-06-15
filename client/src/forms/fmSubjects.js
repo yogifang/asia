@@ -21,7 +21,7 @@ const initialFValues = {
 };
 
 export default function BasicInfoForm() {
-  const { recMember, setMember } = useContext(Context);
+  const { memberEmail, setMemberEmail } = useContext(Context);
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -42,7 +42,7 @@ export default function BasicInfoForm() {
   useEffect(() => {
     async function fetchData() {
       //recMember.email = 'yogifang@gmail.com';
-      const Data = await axios.get(`/asia-scouting/subjects/?member=${recMember.email}`);
+      const Data = await axios.get(`/asia-scouting/subjects/?member=${memberEmail}`);
       console.log('getdata..................');
       console.log(Data.data);
       if (Data.data === null) return;
@@ -65,9 +65,9 @@ export default function BasicInfoForm() {
 
   const handleClick = async (e) => {
     console.log(values);
-    console.log(recMember.email);
-    values.member = recMember.email;
-    if (values.id === '') {
+    console.log(memberEmail);
+    values.member = memberEmail;
+    if (values._id === '') {
       await axios.post('/asia-scouting/subjects/', values);
     } else {
       await axios.put('/asia-scouting/subjects/', values);

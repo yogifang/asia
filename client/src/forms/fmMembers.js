@@ -11,7 +11,7 @@ const initialFValues = {
   password: '',
   passwordConfirm: '',
   passport: false,
-  sportItem: optionsSportItem[0].value,
+  sportItem: '',
   isPrivacy: '',
   filled: false,
 };
@@ -31,10 +31,8 @@ export default function MemberForm() {
   const [showP1, setShowP1] = useState(false);
   const [pageStatus, setPageStatus] = useState(PageStatus[0]);
   const [selItem, setSelItem] = useState(optionsSportItem[0]);
-  const { showTabs, setShowTabs } = useContext(Context);
-  const { showBaseball, setShowBaseball } = useContext(Context);
-  const { recMember, setRecMember } = useContext(Context);
-  // setRecMember(initialFValues);
+  const { showTabs, setShowTabs, showBaseball, setShowBaseball, memberEmail, setMemberEmail } = useContext(Context);
+
   // setRecMember('initialFValues.email');
   // console.log('q-------------' + recMember.email);
 
@@ -48,7 +46,7 @@ export default function MemberForm() {
         console.log('waite data back......');
         await axios.post('/asia-scouting/members/', values);
 
-        setRecMember(values);
+        setMemberEmail(values.email);
         setShowTabs(true);
         alert('帳號建立完成！！');
       } else {
@@ -69,8 +67,19 @@ export default function MemberForm() {
       alert('密碼錯誤！！');
       return;
     }
-    setRecMember(values);
+    let field;
+    let nValues = {};
+    for (field in values) {
+      //  console.log(field);
+      //console.log(Data.data[field]);
+      nValues[field] = Data.data[field];
+    }
+    console.log(nValues.email);
+    setValues(nValues);
+
+    setMemberEmail(nValues.email);
     setShowTabs(true);
+
     alert('登入成功！！');
   };
 
@@ -100,7 +109,11 @@ export default function MemberForm() {
     if (fieldValues === values) return Object.values(temp).every((x) => x === '');
   };
 
-  const { values, setValues, errors, setErrors, handleInputChange, resetForm } = useForm(recMember, true, validate);
+  const { values, setValues, errors, setErrors, handleInputChange, resetForm } = useForm(
+    initialFValues,
+    true,
+    validate
+  );
 
   const handleClick = (e) => {
     e.preventDefault();

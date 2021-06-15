@@ -61,7 +61,7 @@ const initialFValues = {
 export default function BaseballPerformance() {
   const { hidePart2, setHide2 } = useState(false);
   const [latestGameDate, setLatestGameDate] = useState(new Date());
-  const { recMember, setMember } = useContext(Context);
+  const { memberEmail, setMemberEmail } = useContext(Context);
   const [startDate, setStartDate] = useState(new Date());
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -86,8 +86,8 @@ export default function BaseballPerformance() {
   useEffect(() => {
     async function fetchData() {
       // recMember.email = 'yogifang@gmail.com';
-      console.log(recMember.email);
-      const Data = await axios.get(`/asia-scouting/baseballperformance/?member=${recMember.email}`);
+      console.log(memberEmail);
+      const Data = await axios.get(`/asia-scouting/baseballperformance/?member=${memberEmail}`);
       console.log('getdata..................');
       console.log(Data.data);
       if (Data.data === null) return;
@@ -115,11 +115,13 @@ export default function BaseballPerformance() {
 
   const handleClick = async (e) => {
     console.log(values);
-    console.log(recMember.email);
-    values.member = recMember.email;
-    if (values.id === '') {
+    console.log(memberEmail);
+    values.member = memberEmail;
+    if (values._id === '') {
+      console.log('post');
       await axios.post('/asia-scouting/baseballperformance/', values);
     } else {
+      console.log('put');
       await axios.put('/asia-scouting/baseballperformance/', values);
     }
   };

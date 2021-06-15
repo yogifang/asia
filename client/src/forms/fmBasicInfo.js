@@ -68,7 +68,7 @@ export default function BasicInfoForm() {
   const [selHands, setSelHands] = useState(optionsHands[0]);
   const [selGrads, setSelGrads] = useState(optionsGrads[0]);
   const [dateGrad, setDateGrad] = useState(new Date());
-  const { recMember, setRecMember } = useContext(Context);
+  const { memberEmail, setMemberEmail } = useContext(Context);
 
   const findIndexByValue = (options, value) => {
     const index = options.findIndex((options) => options.value === value);
@@ -91,8 +91,10 @@ export default function BasicInfoForm() {
   useEffect(() => {
     async function fetchData() {
       //recMember.email = 'yogifang@gmail.com';
-      const Data = await axios.get(`/asia-scouting/baseballinfos/?member=${recMember.email}`);
       console.log('getdata..................');
+      console.log(memberEmail);
+      const Data = await axios.get(`/asia-scouting/baseballinfos/?member=${memberEmail}`);
+
       console.log(Data.data);
       if (Data.data === null) return;
 
@@ -104,7 +106,7 @@ export default function BasicInfoForm() {
         nValues[field] = Data.data[field];
         // setValues(field, Data.data[field]);
       }
-
+      console.log(nValues);
       setValues(nValues);
       let index = findIndexByValue(optionsPosition, nValues.PriPosition);
       setSelPriPosition(optionsPosition[index]);
@@ -169,11 +171,14 @@ export default function BasicInfoForm() {
   };
 
   const handleClick = async (e) => {
+    values.member = memberEmail;
     console.log(values);
 
     if (values._id === '') {
+      console.log('post');
       await axios.post('/asia-scouting/baseballinfos/', values);
     } else {
+      console.put('post');
       await axios.put('/asia-scouting/baseballinfos/', values);
     }
   };

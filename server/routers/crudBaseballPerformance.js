@@ -48,6 +48,7 @@ router.post(strUrlPath, cors(), function (req, res, next) {
   console.log(req.body);
 
   let data = req.body;
+  data._id = null;
   console.log(data);
   table
     .create(data)
