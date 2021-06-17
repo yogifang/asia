@@ -207,7 +207,7 @@ export default function MemberForm() {
             登入帳號
           </Button>{' '}
           {pageStatus.value === 1 ? (
-            <div>
+            <div className='row'>
               <div className='col s12'>
                 <div className='col s5'>
                   <div className='mb-3'>
