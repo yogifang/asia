@@ -349,6 +349,33 @@ export default function BasicInfoForm() {
                     </div>
                   </div>
                 </div>
+                <div className='col s12'>
+                  <div className='col s4'>
+                    <div className='mb-3'>
+                      <label className='right-align' htmlFor>
+                        投/打慣用手
+                      </label>
+                      <label className='right-align small' htmlFor>
+                        B/T
+                      </label>
+                    </div>
+                  </div>
+                  <div className='col s8'>
+                    <div className='mb-3'>
+                      <Select
+                        placeholder='Select Hands'
+                        className='browser-default col s5 mb-2'
+                        name='LeftRightHand'
+                        autosize={true}
+                        id='user_position'
+                        value={selHands}
+                        onChange={handelSelectLRHand}
+                        options={optionsHands}
+                        styles={customStyles}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             ) : null}
 
@@ -400,33 +427,7 @@ export default function BasicInfoForm() {
                 </div>
               </div>
             </div>
-            <div className='col s12'>
-              <div className='col s4'>
-                <div className='mb-3'>
-                  <label className='right-align' htmlFor>
-                    投/打慣用手
-                  </label>
-                  <label className='right-align small' htmlFor>
-                    B/T
-                  </label>
-                </div>
-              </div>
-              <div className='col s8'>
-                <div className='mb-3'>
-                  <Select
-                    placeholder='Select Hands'
-                    className='browser-default col s5 mb-2'
-                    name='LeftRightHand'
-                    autosize={true}
-                    id='user_position'
-                    value={selHands}
-                    onChange={handelSelectLRHand}
-                    options={optionsHands}
-                    styles={customStyles}
-                  />
-                </div>
-              </div>
-            </div>
+
             <div className='col s12'>
               <div className='col s4'>
                 <div className='mb-3'>

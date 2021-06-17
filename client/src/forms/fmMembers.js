@@ -35,6 +35,13 @@ export default function MemberForm() {
 
   // setRecMember('initialFValues.email');
   // console.log('q-------------' + recMember.email);
+  const findIndexByValue = (options, value) => {
+    let index = options.findIndex((options) => options.value === value);
+    console.log(index);
+    if (index === -1) index = 0;
+    return index;
+    //console.log(options[4].label);
+  };
 
   const getExistEmail = async (emailAddr = values.email) => {
     try {
@@ -70,12 +77,15 @@ export default function MemberForm() {
     let field;
     let nValues = {};
     for (field in values) {
-      //  console.log(field);
-      //console.log(Data.data[field]);
       nValues[field] = Data.data[field];
     }
     console.log(nValues.email);
+    console.log(Data.data);
     setValues(nValues);
+
+    let index = findIndexByValue(optionsSportItem, nValues.sportItem);
+    setSelItem(optionsSportItem[index]);
+    index === 0 ? setShowBaseball(true) : setShowBaseball(false);
 
     setMemberEmail(nValues.email);
     setShowTabs(true);

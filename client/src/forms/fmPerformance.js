@@ -62,7 +62,7 @@ export default function BaseballPerformance() {
   const { hidePart2, setHide2 } = useState(false);
   const [latestGameDate, setLatestGameDate] = useState(new Date());
   const { memberEmail, setMemberEmail } = useContext(Context);
-  const [startDate, setStartDate] = useState(new Date());
+
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
     if ('rankDomestic' in fieldValues) temp.rankDomestic = fieldValues.rankDomestic ? '' : 'This field is required.';
