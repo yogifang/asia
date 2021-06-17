@@ -69,6 +69,7 @@ export default function BasicInfoForm() {
   const [selGrads, setSelGrads] = useState(optionsGrads[0]);
   const [dateGrad, setDateGrad] = useState(new Date());
   const { memberEmail, setMemberEmail } = useContext(Context);
+  const { showBaseball, setShowBaseball } = useContext(Context);
 
   const findIndexByValue = (options, value) => {
     const index = options.findIndex((options) => options.value === value);
@@ -292,60 +293,65 @@ export default function BasicInfoForm() {
                 </div>
               </div>
             </div>
-            <div className='col s12'>
-              <div className='col s4'>
-                <div className='mb-3'>
-                  <label className='right-align' htmlFor='user_position'>
-                    *守備位置
-                  </label>
-                  <label className='right-align small' htmlFor='user_position'>
-                    *Position
-                  </label>
+            {showBaseball ? (
+              <div>
+                <div className='col s12'>
+                  <div className='col s4'>
+                    <div className='mb-3'>
+                      <label className='right-align' htmlFor='user_position'>
+                        *守備位置
+                      </label>
+                      <label className='right-align small' htmlFor='user_position'>
+                        *Position
+                      </label>
+                    </div>
+                  </div>
+                  <div className='col s8'>
+                    <div className='mb-3'>
+                      <Select
+                        placeholder='Select Position'
+                        className='browser-default col s5 mb-2'
+                        name='PriPosition'
+                        autosize={true}
+                        id='user_position'
+                        value={selPriPosition}
+                        options={optionsPosition}
+                        onChange={handelSelectPriPosition}
+                        styles={customStyles}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className='col s12'>
+                  <div className='col s4'>
+                    <div className='mb-3'>
+                      <label className='right-align' htmlFor='user_second_position'>
+                        *第二守備位置
+                      </label>
+                      <label className='right-align small' htmlFor='user_second_position'>
+                        *Second Position(s)
+                      </label>
+                    </div>
+                  </div>
+                  <div className='col s8'>
+                    <div className='mb-3'>
+                      <Select
+                        placeholder='Select Position'
+                        className='browser-default col s5 mb-2'
+                        name='SecPosition'
+                        autosize={true}
+                        id='user_position'
+                        value={selSecPosition}
+                        onChange={handelSelectSecPosition}
+                        options={optionsPosition}
+                        styles={customStyles}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className='col s8'>
-                <div className='mb-3'>
-                  <Select
-                    placeholder='Select Position'
-                    className='browser-default col s5 mb-2'
-                    name='PriPosition'
-                    autosize={true}
-                    id='user_position'
-                    value={selPriPosition}
-                    options={optionsPosition}
-                    onChange={handelSelectPriPosition}
-                    styles={customStyles}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className='col s12'>
-              <div className='col s4'>
-                <div className='mb-3'>
-                  <label className='right-align' htmlFor='user_second_position'>
-                    *第二守備位置
-                  </label>
-                  <label className='right-align small' htmlFor='user_second_position'>
-                    *Second Position(s)
-                  </label>
-                </div>
-              </div>
-              <div className='col s8'>
-                <div className='mb-3'>
-                  <Select
-                    placeholder='Select Position'
-                    className='browser-default col s5 mb-2'
-                    name='SecPosition'
-                    autosize={true}
-                    id='user_position'
-                    value={selSecPosition}
-                    onChange={handelSelectSecPosition}
-                    options={optionsPosition}
-                    styles={customStyles}
-                  />
-                </div>
-              </div>
-            </div>
+            ) : null}
+
             <div className='col s12'>
               <div className='col s4'>
                 <div className='mb-3'>
