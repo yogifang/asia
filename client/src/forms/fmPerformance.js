@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useContext } from 'react';
 import { Grid, Button } from '@material-ui/core';
+=======
+import React, { useState } from 'react';
+import { Grid, Typography, Button } from '@material-ui/core';
+>>>>>>> 76c918be6b5303670ff48f8ecaacadb316df18b7
 import Controls from '../components/controls/Controls';
 import { useForm, Form } from '../components/useForm';
 import axios from '../components/axios';
@@ -136,8 +141,8 @@ export default function BaseballPerformance() {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
-        <div>
-          <div className='row div-scroll'>
+        <div className='div-scroll'>
+          <div className='row'>
             <Button className='btn-save' variant='contained' color='primary' style={{ backgroundImage: "url(" + saveImage + ")" }}></Button>
             <div className='col s12 center-align'>
               <p>
