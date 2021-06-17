@@ -99,6 +99,7 @@ export default function BasicInfoForm() {
     } else {
       await axios.put('/asia-scouting/contacts/', values);
     }
+    alert('Data is Saved!!');
   };
   const handleBirthdayChange = (e) => {
     values.birthday = e;

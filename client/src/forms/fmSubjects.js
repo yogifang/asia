@@ -72,6 +72,7 @@ export default function BasicInfoForm() {
     } else {
       await axios.put('/asia-scouting/subjects/', values);
     }
+    alert('Data is Saved!!');
   };
 
   const handleSubmit = (e) => {

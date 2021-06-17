@@ -123,6 +123,7 @@ export default function ShootingPerformance() {
     } else {
       await axios.put('/asia-scouting/shooting/', values);
     }
+    alert('Data is Saved!!');
   };
 
   return (

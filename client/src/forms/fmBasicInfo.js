@@ -175,12 +175,11 @@ export default function BasicInfoForm() {
     console.log(values);
 
     if (values._id === '') {
-      console.log('post');
       await axios.post('/asia-scouting/baseballinfos/', values);
     } else {
-      console.put('post');
       await axios.put('/asia-scouting/baseballinfos/', values);
     }
+    alert('Data is Saved!!');
   };
 
   return (

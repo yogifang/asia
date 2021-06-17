@@ -124,6 +124,7 @@ export default function BaseballPerformance() {
       console.log('put');
       await axios.put('/asia-scouting/baseballperformance/', values);
     }
+    alert('Data is Saved!!');
   };
   const handleInputChange60Yard = (e) => {
     e.preventDefault();
