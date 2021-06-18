@@ -158,20 +158,21 @@ export default function BasicInfoForm() {
                   </label>
                 </div>
               </div>
-            </div>
-            <div className='col s8'>
-              <div className='mb-3'>
-                <DatePicker
-                  name='birthday'
-                  selected={birthday}
-                  onChange={handleBirthdayChange}
-                  showYearDropdown
-                  dateFormatCalendar='MMMM'
-                  yearDropdownItemNumber={30}
-                  scrollableYearDropdown
-                />
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <DatePicker
+                    name='birthday'
+                    selected={birthday}
+                    onChange={handleBirthdayChange}
+                    showYearDropdown
+                    dateFormatCalendar='MMMM'
+                    yearDropdownItemNumber={30}
+                    scrollableYearDropdown
+                  />
+                </div>
               </div>
             </div>
+
             <div className='col s12'>
               <div className='col s4 right-align'>
                 <div className='mb-3'>
@@ -264,13 +265,10 @@ export default function BasicInfoForm() {
           </div>
           <div className='col s12'>
             <p className='center-align text-purple'>
-              *如有影片或其他檔案皆可email 至 service@findyourathlete.com
+              *如有影片或其他檔案皆可email 至 support＠findyourathlete.com
               <br />
               並註明您的姓名及生日，謝謝！
               <br />
-              <Button variant='contained' color='primary' onClick={handleClick}>
-                儲存資料
-              </Button>
             </p>
           </div>
         </div>

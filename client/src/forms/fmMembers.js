@@ -208,57 +208,59 @@ export default function MemberForm() {
           </Button>{' '}
           {pageStatus.value === 1 ? (
             <div>
-              <div className='col s12'>
-                <div className='col s5'>
-                  <div className='mb-3'>
-                    <label className='right-align' htmlFor='user_email'>
-                      請輸入您的聯絡信箱{' '}
-                    </label>{' '}
-                    <label className='right-align small' htmlFor='user_email'>
-                      Enter your email{' '}
-                    </label>{' '}
+              <div className='row'>
+                <div className='col s12'>
+                  <div className='col s5'>
+                    <div className='mb-3'>
+                      <label className='right-align' htmlFor='user_email'>
+                        請輸入您的聯絡信箱{' '}
+                      </label>{' '}
+                      <label className='right-align small' htmlFor='user_email'>
+                        Enter your email{' '}
+                      </label>{' '}
+                    </div>{' '}
+                  </div>{' '}
+                  <div className='col s7'>
+                    <div className='mb-3'>
+                      <input
+                        id='user_email'
+                        type='text'
+                        className='validate'
+                        name='email'
+                        value={values.email}
+                        onChange={handleInputChange}
+                      />{' '}
+                      <label className='left-align small'> {errors.email} </label>{' '}
+                    </div>{' '}
                   </div>{' '}
                 </div>{' '}
-                <div className='col s7'>
-                  <div className='mb-3'>
+                <div className='col s12'>
+                  <div className='col s5'>
+                    <div className='mb-3'>
+                      <label className='right-align' htmlFor='user_password'>
+                        輸入密碼{' '}
+                      </label>{' '}
+                      <label className='right-align small' htmlFor='user_password'>
+                        Input Your password{' '}
+                      </label>{' '}
+                    </div>{' '}
+                  </div>{' '}
+                  <div className='col s5'>
                     <input
-                      id='user_email'
-                      type='text'
+                      id='user_password'
+                      type='password'
                       className='validate'
-                      name='email'
-                      value={values.email}
+                      name='password'
+                      value={values.password}
                       onChange={handleInputChange}
                     />{' '}
-                    <label className='left-align small'> {errors.email} </label>{' '}
+                    <label className='left-align small'> {errors.password} </label>{' '}
                   </div>{' '}
                 </div>{' '}
-              </div>{' '}
-              <div className='col s12'>
-                <div className='col s5'>
-                  <div className='mb-3'>
-                    <label className='right-align' htmlFor='user_password'>
-                      輸入密碼{' '}
-                    </label>{' '}
-                    <label className='right-align small' htmlFor='user_password'>
-                      Input Your password{' '}
-                    </label>{' '}
-                  </div>{' '}
-                </div>{' '}
-                <div className='col s5'>
-                  <input
-                    id='user_password'
-                    type='password'
-                    className='validate'
-                    name='password'
-                    value={values.password}
-                    onChange={handleInputChange}
-                  />{' '}
-                  <label className='left-align small'> {errors.password} </label>{' '}
-                </div>{' '}
-                <Button variant='contained' color='primary' onClick={handleClickSubmit}>
-                  Login
-                </Button>
-              </div>{' '}
+              </div>
+              <Button variant='contained' color='primary' onClick={handleClickSubmit}>
+                Login
+              </Button>
             </div>
           ) : null}
           {pageStatus.value === 2 ? (
