@@ -97,7 +97,6 @@ body{
     width: 1000px;
     height: calc(100vh - 325px);
     background: #ffffff;
-    overflow-y: auto;
 }
 .form-container{
     box-shadow: unset!important;
@@ -117,21 +116,28 @@ body{
 .list-step img{
     width: 92px;
 }
+.MuiBox-root{
+    padding: 0!important;
+}
+.MuiGrid-container{
+    height: calc(100vh - 370px);
+}
 .div-scroll{
+    width: 100%;
     height: 100%;
     overflow-y: auto;
 }
 label{
     display: block;
     font-weight: bold;
-    color: #1B1464;
+    color: #333333;
     font-size: 18px;
 }
 label.small{
     font-size: 10px;
 }
 .input-title{
-    color: #1B1464;
+    color: #333333;
     text-align: right;
     font-weight: bold;
 }
@@ -151,7 +157,7 @@ select{
     margin-bottom: 0;
     width: 253px!important;
     height: 25px!important;
-    border: 1px solid #1B1464!important;
+    border: 1px solid #333333!important;
 }
 .input-sm{
     width: 100px!important;
@@ -171,15 +177,51 @@ input[type=text]:not(.browser-default):focus:not([readonly]){
     box-shadow: unset;
 }
 [type="radio"]:checked+span:after{
-    background-color: #1B1464!important;
+    background-color: #333333!important;
 }
 [type="radio"]:checked+span:after{
-    border: 2px solid #1B1464!important;
+    border: 2px solid #333333!important;
 }
 button:focus{
     background-color: unset;
 }
 /* 上方標籤按鈕的底線 */
 .PrivateTabIndicator-colorSecondary-7{
-    background-color: #1B1464!important;
+    background-color: #1F2A53!important;
+}
+/* 儲存按鈕 */
+.btn-save{
+    position: absolute!important;
+    top: 120px;
+    right: 100px;
+    width: 85px;
+    height: 47px;
+    border: none;
+    background-image: url('./assets/buttons/save.png');
+    background-size: contain;
+    background-color: unset!important;
+}
+
+/* mobile */
+@media (max-width: 575.98px) { 
+    .div-header,
+    .div-form{
+        width: 400px!important;
+    }
+}
+
+/* pad */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .div-header,
+    .div-form{
+        width: 600px!important;
+    }
+}
+
+/* pc */
+@media (min-width: 992px) {
+    .div-header,
+    .div-form{
+        width: 1000px!important;
+    }
 }

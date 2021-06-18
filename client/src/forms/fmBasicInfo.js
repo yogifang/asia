@@ -6,6 +6,7 @@ import axios from '../components/axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import customStyles from './customStyles';
+import saveImage from '../assets/buttons/save.png';
 
 import Select from 'react-select';
 
@@ -188,6 +189,13 @@ export default function BasicInfoForm() {
       <Box pl={100} />
       <Grid container>
         <div className='div-scroll'>
+          <Button
+            className='btn-save'
+            variant='contained'
+            color='primary'
+            onClick={handleClick}
+            style={{ backgroundImage: 'url(' + saveImage + ')' }}
+          ></Button>
           <div className='row'>
             <div className='col s12'>
               <p className='center-align text-orange'>若以下資料有不便回答者 可填入N</p>
@@ -477,9 +485,6 @@ export default function BasicInfoForm() {
                     showMonthYearPicker
                   />
                 </div>
-                <Button variant='contained' color='primary' onClick={handleClick}>
-                  儲存資料
-                </Button>
               </div>
             </div>
           </div>
