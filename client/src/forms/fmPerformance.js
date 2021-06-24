@@ -138,12 +138,7 @@ export default function BaseballPerformance() {
       <Grid container>
         <div className='div-scroll'>
           <div className='row'>
-            <Button
-              className='btn-save'
-              variant='contained'
-              color='primary'
-              style={{ backgroundImage: 'url(' + saveImage + ')' }}
-            ></Button>
+            <Button className='btn-save' variant='contained' onClick={handleClick} color='primary' style={{ backgroundImage: "url(" + saveImage + ")" }}></Button>
             <div className='col s12 center-align'>
               <p>
                 <span className='text-purple'>個人運動表現與比賽數據</span>

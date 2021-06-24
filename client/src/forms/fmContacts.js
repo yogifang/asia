@@ -8,7 +8,7 @@ import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 import countryList from '../components/controls/country-list';
 import customStyles from './customStyles';
-import saveImage from '../assets/buttons/save.png';
+import saveImage from '../assets/buttons/save.png'
 
 const initialFValues = {
   _id: '',
@@ -120,13 +120,7 @@ export default function BasicInfoForm() {
       <Grid container>
         <div className='div-scroll'>
           <div className='row'>
-            <Button
-              className='btn-save'
-              variant='contained'
-              color='primary'
-              onClick={handleClick}
-              style={{ backgroundImage: 'url(' + saveImage + ')' }}
-            ></Button>
+            <Button className='btn-save' variant='contained' color='primary' onClick={handleClick} style={{ backgroundImage: "url(" + saveImage + ")" }}></Button>
             <div className='col s12'>
               <div className='col s4 right-align'>
                 <div className='mb-3'>
@@ -172,7 +166,6 @@ export default function BasicInfoForm() {
                 </div>
               </div>
             </div>
-
             <div className='col s12'>
               <div className='col s4 right-align'>
                 <div className='mb-3'>

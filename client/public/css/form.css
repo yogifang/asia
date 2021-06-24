@@ -95,7 +95,7 @@ body{
     margin: 0 auto;
     padding: 46px 0 0 46px;
     width: 1000px;
-    height: calc(100vh - 325px);
+    height: calc(100vh - 200px);
     background: #ffffff;
 }
 .form-container{
@@ -191,15 +191,14 @@ button:focus{
 }
 /* 儲存按鈕 */
 .btn-save{
-    position: absolute!important;
-    top: 120px;
-    right: 100px;
     width: 85px;
     height: 47px;
     border: none;
     background-image: url('./assets/buttons/save.png');
     background-size: contain;
+    background-repeat: no-repeat;
     background-color: unset!important;
+    box-shadow: unset!important;
 }
 
 /* mobile */

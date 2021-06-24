@@ -5,6 +5,8 @@ import { useForm, Form } from '../components/useForm';
 import axios from '../components/axios';
 import Select from 'react-select';
 import { customStyles } from './customStyles.js';
+import registerImage from '../assets/buttons/register.png'
+import loginImage from '../assets/buttons/login.png'
 
 const initialFValues = {
   email: '',
@@ -200,12 +202,10 @@ export default function MemberForm() {
     <Form onSubmit={handleSubmit}>
       <Grid container>
         <div className='div-scroll'>
-          <Button variant='contained' color='primary' onClick={handleCreate}>
-            帳號建立
-          </Button>{' '}
-          <Button variant='contained' color='primary' onClick={handleLogin}>
-            登入帳號
-          </Button>{' '}
+          <div className="center-align">
+            <Button className='btn-save' variant='contained' color='primary' onClick={handleCreate} style={{ backgroundImage: "url(" + registerImage + ")", width: "196px", height: "100px" }}></Button>{' '}
+            <Button className='btn-save' variant='contained' color='primary' onClick={handleLogin} style={{ backgroundImage: "url(" + loginImage + ")", width: "196px", height: "100px" }}></Button>{' '}
+          </div>
           {pageStatus.value === 1 ? (
             <div>
               <div className='row'>
