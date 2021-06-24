@@ -75,10 +75,10 @@ function App() {
   const [memberEmail, setMemberEmail] = useState('');
   const [showTabs, setShowTabs] = useState(false);
   const [showBaseball, setShowBaseball] = useState(true);
-  const [value, setValue] = useState(0);
+  const [valueTabs, setValueTabs] = useState(0);
   const classes = useStyles();
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setValueTabs(newValue);
   };
 
   return (
@@ -86,6 +86,8 @@ function App() {
       <CssBaseline />
       <Context.Provider
         value={{
+          valueTabs,
+          setValueTabs,
           showTabs,
           setShowTabs,
           showBaseball,
@@ -100,13 +102,13 @@ function App() {
               <Toolbar>
                 <Tabs
                   className='div-header'
-                  value={value}
+                  value={valueTabs}
                   onChange={handleChange}
                   aria-label='asia-scouting main buttons'
                 >
                   <Tab
                     label={
-                      <span className={value === 0 ? classes.activeTab : classes.customStyleOnTab}>
+                      <span className={valueTabs === 0 ? classes.activeTab : classes.customStyleOnTab}>
                         帳號建立<br></br>Sign Up for Free{' '}
                       </span>
                     }
@@ -114,7 +116,7 @@ function App() {
                   />{' '}
                   <Tab
                     label={
-                      <span className={value === 1 ? classes.activeTab : classes.customStyleOnTab}>
+                      <span className={valueTabs === 1 ? classes.activeTab : classes.customStyleOnTab}>
                         基本資料 <br></br>Basic Info{' '}
                       </span>
                     }
@@ -124,11 +126,11 @@ function App() {
                   <Tab
                     label={
                       showBaseball === true ? (
-                        <span className={value === 2 ? classes.activeTab : classes.customStyleOnTab}>
+                        <span className={valueTabs === 2 ? classes.activeTab : classes.customStyleOnTab}>
                           成績及運動表現 <br></br>Physical Performance{' '}
                         </span>
                       ) : (
-                        <span className={value === 2 ? classes.activeTab : classes.customStyleOnTab}>
+                        <span className={valueTabs === 2 ? classes.activeTab : classes.customStyleOnTab}>
                           射擊成績 <br></br>Shooting{' '}
                         </span>
                       )
@@ -138,7 +140,7 @@ function App() {
                   />{' '}
                   <Tab
                     label={
-                      <span className={value === 3 ? classes.activeTab : classes.customStyleOnTab}>
+                      <span className={valueTabs === 3 ? classes.activeTab : classes.customStyleOnTab}>
                         {' '}
                         聯繫資料 <br></br>Contact{' '}
                       </span>
@@ -148,7 +150,7 @@ function App() {
                   />{' '}
                   <Tab
                     label={
-                      <span className={value === 4 ? classes.activeTab : classes.customStyleOnTab}>
+                      <span className={valueTabs === 4 ? classes.activeTab : classes.customStyleOnTab}>
                         學科相關成績 <br></br>Academic Achievements{' '}
                       </span>
                     }
@@ -157,7 +159,7 @@ function App() {
                   />{' '}
                   <Tab
                     label={
-                      <span className={value === 5 ? classes.activeTab : classes.customStyleOnTab}>
+                      <span className={valueTabs === 5 ? classes.activeTab : classes.customStyleOnTab}>
                         確認送出 <br></br>Submit{' '}
                       </span>
                     }
@@ -167,17 +169,17 @@ function App() {
                 </Tabs>{' '}
               </Toolbar>{' '}
             </AppBar>
-            <TabPanel value={value} index={0}>
+            <TabPanel value={valueTabs} index={0}>
               <Members />
             </TabPanel>
-            <TabPanel value={value} index={1}>
+            <TabPanel value={valueTabs} index={1}>
               {showTabs ? (
                 <>
                   <BasicInfo />
                 </>
               ) : null}
             </TabPanel>
-            <TabPanel value={value} index={2}>
+            <TabPanel value={valueTabs} index={2}>
               {showBaseball ? (
                 <>
                   <Performance />
@@ -188,13 +190,13 @@ function App() {
                 </>
               )}
             </TabPanel>
-            <TabPanel value={value} index={3}>
+            <TabPanel value={valueTabs} index={3}>
               <Contacts />
             </TabPanel>
-            <TabPanel value={value} index={4}>
+            <TabPanel value={valueTabs} index={4}>
               <Subjects />
             </TabPanel>
-            <TabPanel value={value} index={5}>
+            <TabPanel value={valueTabs} index={5}>
               <Confirm />
             </TabPanel>{' '}
           </div>{' '}

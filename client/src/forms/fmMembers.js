@@ -5,8 +5,8 @@ import { useForm, Form } from '../components/useForm';
 import axios from '../components/axios';
 import Select from 'react-select';
 import { customStyles } from './customStyles.js';
-import registerImage from '../assets/buttons/register.png'
-import loginImage from '../assets/buttons/login.png'
+import registerImage from '../assets/buttons/register.png';
+import loginImage from '../assets/buttons/login.png';
 
 const initialFValues = {
   email: '',
@@ -33,7 +33,8 @@ export default function MemberForm() {
   const [showP1, setShowP1] = useState(false);
   const [pageStatus, setPageStatus] = useState(PageStatus[0]);
   const [selItem, setSelItem] = useState(optionsSportItem[0]);
-  const { showTabs, setShowTabs, showBaseball, setShowBaseball, memberEmail, setMemberEmail } = useContext(Context);
+  const { valueTabs, setValueTabs, showTabs, setShowTabs, showBaseball, setShowBaseball, memberEmail, setMemberEmail } =
+    useContext(Context);
 
   // setRecMember('initialFValues.email');
   // console.log('q-------------' + recMember.email);
@@ -58,6 +59,7 @@ export default function MemberForm() {
         setMemberEmail(values.email);
         setShowTabs(true);
         alert('帳號建立完成！！');
+        setValueTabs(1);
       } else {
         alert('帳號已存在！！');
       }
@@ -93,6 +95,7 @@ export default function MemberForm() {
     setShowTabs(true);
 
     alert('登入成功！！');
+    setValueTabs(1);
   };
 
   const validate = (fieldValues = values) => {
@@ -202,9 +205,21 @@ export default function MemberForm() {
     <Form onSubmit={handleSubmit}>
       <Grid container>
         <div className='div-scroll'>
-          <div className="center-align">
-            <Button className='btn-save' variant='contained' color='primary' onClick={handleCreate} style={{ backgroundImage: "url(" + registerImage + ")", width: "196px", height: "100px" }}></Button>{' '}
-            <Button className='btn-save' variant='contained' color='primary' onClick={handleLogin} style={{ backgroundImage: "url(" + loginImage + ")", width: "196px", height: "100px" }}></Button>{' '}
+          <div className='center-align'>
+            <Button
+              className='btn-save'
+              variant='contained'
+              color='primary'
+              onClick={handleCreate}
+              style={{ backgroundImage: 'url(' + registerImage + ')', width: '196px', height: '100px' }}
+            ></Button>{' '}
+            <Button
+              className='btn-save'
+              variant='contained'
+              color='primary'
+              onClick={handleLogin}
+              style={{ backgroundImage: 'url(' + loginImage + ')', width: '196px', height: '100px' }}
+            ></Button>{' '}
           </div>
           {pageStatus.value === 1 ? (
             <div>
@@ -254,13 +269,14 @@ export default function MemberForm() {
                       value={values.password}
                       onChange={handleInputChange}
                     />{' '}
-                    <label className='left-align small'> {errors.password} </label>{' '}
+                    <label className='left-align small'> {errors.password} </label> <br />
+                    <br />
+                    <Button variant='contained' color='primary' onClick={handleClickSubmit}>
+                      Login
+                    </Button>
                   </div>{' '}
                 </div>{' '}
               </div>
-              <Button variant='contained' color='primary' onClick={handleClickSubmit}>
-                Login
-              </Button>
             </div>
           ) : null}
           {pageStatus.value === 2 ? (
@@ -424,9 +440,6 @@ export default function MemberForm() {
                       </Button>{' '}
                       <br></br>
                       <br></br>
-                      <Button variant='contained' color='primary' onClick={handleClickBackdoor}>
-                        Back Door
-                      </Button>
                     </div>{' '}
                   </div>
                 ) : null}
