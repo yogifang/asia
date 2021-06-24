@@ -753,33 +753,20 @@ export default function BaseballPerformance() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className='col s8'>
-            <div className='mb-3'>
-              <DatePicker
-                name='latestGameDate'
-                selected={latestGameDate}
-                onChange={(date) => {
-                  setLatestGameDate(new Date(date));
-                  values.latestGameDate = date;
-                }}
-                showYearDropdown
-                dateFormatCalendar='MMMM'
-                yearDropdownItemNumber={30}
-                scrollableYearDropdown
-              />
-              <div className='col s8'>
-                <div className='mb-3'>
-                  <DatePicker
-                    name='birthday'
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
-                    showYearDropdown
-                    dateFormatCalendar='MMMM'
-                    yearDropdownItemNumber={30}
-                    scrollableYearDropdown
-                  />
-                </div>
+            <div className='col s8'>
+              <div className='mb-3'>
+                <DatePicker
+                  name='latestGameDate'
+                  selected={latestGameDate}
+                  onChange={(date) => {
+                    setLatestGameDate(new Date(date));
+                    values.latestGameDate = date;
+                  }}
+                  showYearDropdown
+                  dateFormatCalendar='MMMM'
+                  yearDropdownItemNumber={30}
+                  scrollableYearDropdown
+                />
               </div>
             </div>
             <div className='col s12 center-align'>
