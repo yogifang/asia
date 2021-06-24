@@ -135,6 +135,7 @@ export default function MemberForm() {
     console.log('The link was clicked.');
     console.log(values);
     console.log('errors...' + errors);
+    values.sportItem = selItem.value;
     if (
       (values.email === '') |
       (values.password === '') |
