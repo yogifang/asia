@@ -208,18 +208,16 @@ export default function MemberForm() {
         <div className='div-scroll'>
           <div className='center-align'>
             <Button
-              className='btn-save'
+              className='btn-login'
               variant='contained'
-              color='primary'
               onClick={handleCreate}
-              style={{ backgroundImage: 'url(' + registerImage + ')', width: '196px', height: '100px' }}
+              style={{ backgroundImage: 'url(' + registerImage + ')' }}
             ></Button>{' '}
             <Button
-              className='btn-save'
+              className='btn-login'
               variant='contained'
-              color='primary'
               onClick={handleLogin}
-              style={{ backgroundImage: 'url(' + loginImage + ')', width: '196px', height: '100px' }}
+              style={{ backgroundImage: 'url(' + loginImage + ')' }}
             ></Button>{' '}
           </div>
           {pageStatus.value === 1 ? (

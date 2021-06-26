@@ -3,6 +3,7 @@ import { Grid, Typography, Button } from '@material-ui/core';
 import Controls from '../components/controls/Controls';
 import { useForm, Form } from '../components/useForm';
 import Status from './status';
+import submitImage from '../assets/buttons/submit.png'
 
 const confirmItems = [
   { id: 'yap', title: '確定' },
@@ -60,9 +61,7 @@ export default function BasicInfoForm() {
                 <span>YES</span>
               </label>
               <div style={{ 'margin': "50px auto" }}>
-                <Button variant='contained' color='primary'>
-                  送出
-                </Button>
+                <Button className='btn-save' variant='contained' color='primary' style={{ backgroundImage: "url(" + submitImage + ")" }}></Button>
               </div>
               <div className="d-inline-block boder-orange p-1">
                 <p className="text-orange">

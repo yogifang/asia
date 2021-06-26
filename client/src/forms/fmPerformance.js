@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Grid, Button } from '@material-ui/core';
+import { Grid, Button, BottomNavigation } from '@material-ui/core';
 import Controls from '../components/controls/Controls';
 import { useForm, Form } from '../components/useForm';
 import axios from '../components/axios';
 import Context from '../components/stores';
 import DatePicker from 'react-datepicker';
-import saveImage from '../assets/buttons/save.png';
+import saveImage from '../assets/buttons/next.png';
 
 const initialFValues = {
   _id: '',
@@ -138,7 +138,6 @@ export default function BaseballPerformance() {
       <Grid container>
         <div className='div-scroll'>
           <div className='row'>
-            <Button className='btn-save' variant='contained' onClick={handleClick} color='primary' style={{ backgroundImage: "url(" + saveImage + ")" }}></Button>
             <div className='col s12 center-align'>
               <p>
                 <span className='text-purple'>個人運動表現與比賽數據</span>
@@ -752,21 +751,21 @@ export default function BaseballPerformance() {
                   </label>
                 </div>
               </div>
-            </div>
-            <div className='col s8'>
-              <div className='mb-3'>
-                <DatePicker
-                  name='latestGameDate'
-                  selected={latestGameDate}
-                  onChange={(date) => {
-                    setLatestGameDate(new Date(date));
-                    values.latestGameDate = date;
-                  }}
-                  showYearDropdown
-                  dateFormatCalendar='MMMM'
-                  yearDropdownItemNumber={30}
-                  scrollableYearDropdown
-                />
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <DatePicker
+                    name='latestGameDate'
+                    selected={latestGameDate}
+                    onChange={(date) => {
+                      setLatestGameDate(new Date(date));
+                      values.latestGameDate = date;
+                    }}
+                    showYearDropdown
+                    dateFormatCalendar='MMMM'
+                    yearDropdownItemNumber={30}
+                    scrollableYearDropdown
+                  />
+                </div>
               </div>
             </div>
             <div className='col s12 center-align'>
@@ -778,7 +777,7 @@ export default function BaseballPerformance() {
                 </p>
               </div>
             </div>
-            <div className='col s12'>
+            <div className='col s12' style={{ marginBottom: "10px" }}>
               <div className='col s6'>
                 <div className='d-inline-block boder-orange'>
                   <p className='center-align text-orange'>
@@ -1101,17 +1100,17 @@ export default function BaseballPerformance() {
                         </label>
                       </div>
                     </div>
-                  </div>
-                  <div className='col s3'>
-                    <div className='mb-3'>
-                      <input
-                        id='user_lHR'
-                        type='number'
-                        className='validate input-xs'
-                        name='lHitHR'
-                        onChange={handleInputChange}
-                        value={values.lHitHR}
-                      />
+                    <div className='col s3'>
+                      <div className='mb-3'>
+                        <input
+                          id='user_lHR'
+                          type='number'
+                          className='validate input-xs'
+                          name='lHitHR'
+                          onChange={handleInputChange}
+                          value={values.lHitHR}
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className='col s12'>
@@ -1180,10 +1179,8 @@ export default function BaseballPerformance() {
                   </div>
                 </div>
               </div>
-              <Button variant='contained' color='primary' onClick={handleClick}>
-                儲存資料
-              </Button>
             </div>
+            <Button className='btn-save' variant='contained' onClick={handleClick} color='primary' style={{ backgroundImage: "url(" + saveImage + ")" }}></Button>
           </div>
         </div>
       </Grid>{' '}

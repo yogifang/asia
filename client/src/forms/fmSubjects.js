@@ -3,7 +3,7 @@ import { Grid, Button } from '@material-ui/core';
 import axios from '../components/axios';
 import Context from '../components/stores';
 import { useForm, Form } from '../components/useForm';
-import saveImage from '../assets/buttons/save.png'
+import saveImage from '../assets/buttons/next.png'
 import Status from './status';
 
 const initialFValues = {
@@ -88,7 +88,6 @@ export default function BasicInfoForm() {
       <Grid container>
         <div className='div-scroll'>
           <div className='row'>
-            <Button className='btn-save' variant='contained' color='primary' onClick={handleClick} style={{ backgroundImage: "url(" + saveImage + ")" }}></Button>
             <div className='col s12'>
               <div className='col s12 text-orange center-align'>
                 <div className='bg-orange d-inline-block mb-3 p-1'>
@@ -290,6 +289,7 @@ export default function BasicInfoForm() {
                 </div>
               </div>
             </div>
+            <Button className='btn-save' variant='contained' color='primary' onClick={handleClick} style={{ backgroundImage: "url(" + saveImage + ")" }}></Button>
           </div>
         </div>
       </Grid>{' '}
