@@ -7,6 +7,7 @@ import Select from 'react-select';
 import { customStyles } from './customStyles.js';
 import registerImage from '../assets/buttons/register.png';
 import loginImage from '../assets/buttons/login.png';
+import saveImage from '../assets/buttons/next.png';
 
 const initialFValues = {
   email: '',
@@ -224,7 +225,7 @@ export default function MemberForm() {
             <div>
               <div className='row'>
                 <div className='col s12'>
-                  <div className='col s5'>
+                  <div className='col s12 m6'>
                     <div className='mb-3'>
                       <label className='right-align' htmlFor='user_email'>
                         請輸入您的聯絡信箱{' '}
@@ -234,7 +235,7 @@ export default function MemberForm() {
                       </label>{' '}
                     </div>{' '}
                   </div>{' '}
-                  <div className='col s7'>
+                  <div className='col s12 m6'>
                     <div className='mb-3'>
                       <input
                         id='user_email'
@@ -249,7 +250,7 @@ export default function MemberForm() {
                   </div>{' '}
                 </div>{' '}
                 <div className='col s12'>
-                  <div className='col s5'>
+                  <div className='col s12 m6'>
                     <div className='mb-3'>
                       <label className='right-align' htmlFor='user_password'>
                         輸入密碼{' '}
@@ -259,7 +260,7 @@ export default function MemberForm() {
                       </label>{' '}
                     </div>{' '}
                   </div>{' '}
-                  <div className='col s5'>
+                  <div className='col s12 m6'>
                     <input
                       id='user_password'
                       type='password'
@@ -270,11 +271,30 @@ export default function MemberForm() {
                     />{' '}
                     <label className='left-align small'> {errors.password} </label> <br />
                     <br />
-                    <Button variant='contained' color='primary' onClick={handleClickSubmit}>
-                      Login
-                    </Button>
                   </div>{' '}
                 </div>{' '}
+                <div className='col s12 center-align'>
+                      <p className='m-0'>* 本人已閱讀並同意願遵守使用者條款及<a href='https://www.findyourathlete.com/%E9%9A%B1%E7%A7%81%E6%AC%8A%E6%94%BF%E7%AD%96' target='_blank'>隱私權政策</a> </p>{' '}
+                      <span>
+                        * By clicking Check box, you agree to our Terms and our Privacy Policy.{' '}
+                      </span>{' '}
+                      <label>
+                        <input
+                          name='isPrivacy'
+                          type='checkbox'
+                          onChange={handleInputChange}
+                          checked={values.isPrivacy}
+                        />{' '}
+                        <span> 是 </span> <span> YES </span>{' '}
+                      </label>{' '}
+                      <br></br>
+                      <Button 
+                        className='btn-save'
+                        variant='contained'
+                        onClick={handleClickSubmit}
+                        style={{ backgroundImage: 'url(' + loginImage + ')' }}>
+                      </Button>
+                  </div>{' '}
               </div>
             </div>
           ) : null}
@@ -420,8 +440,8 @@ export default function MemberForm() {
                       </div>{' '}
                     </div>{' '}
                     <div className='col s12 center-align'>
-                      <p className='text-purple m-0'>* 本人已閱讀並同意願遵守使用者條款及隱私權政策 </p>{' '}
-                      <span className='text-purple'>
+                      <p className='m-0'>* 本人已閱讀並同意願遵守使用者條款及<a href='https://www.findyourathlete.com/%E9%9A%B1%E7%A7%81%E6%AC%8A%E6%94%BF%E7%AD%96' target='_blank'>隱私權政策</a></p>{' '}
+                      <span>
                         * By clicking Check box, you agree to our Terms and our Privacy Policy.{' '}
                       </span>{' '}
                       <label>
@@ -434,8 +454,12 @@ export default function MemberForm() {
                         <span> 是 </span> <span> YES </span>{' '}
                       </label>{' '}
                       <br></br>
-                      <Button variant='contained' color='primary' onClick={handleClick}>
-                        建立帳號
+                      <Button
+                        className='btn-save'
+                        variant='contained'
+                        color='primary'
+                        onClick={handleClick}
+                        style={{ backgroundImage: 'url(' + saveImage + ')' }}>
                       </Button>{' '}
                       <br></br>
                       <br></br>

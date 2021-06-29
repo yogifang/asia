@@ -140,7 +140,7 @@ export default function BaseballPerformance() {
           <div className='row'>
             <div className='col s12 center-align'>
               <p>
-                <span className='text-purple'>個人運動表現與比賽數據</span>
+                <span>個人運動表現與比賽數據</span>
                 <br />
                 <span className='text-orange'>若以下資料有不便回答者 可填入N</span>
               </p>

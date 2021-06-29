@@ -51,7 +51,7 @@ export default function BasicInfoForm() {
         <div className='div-scroll'>
           <div className="row">
             <div className="col s12 center-align">
-              <p className="text-purple">
+              <p>
                 本人確定以上所有資訊皆據實填寫<br />
                 I hereby declare that the above information is true and accurate to the best of my knowledge.
               </p>
