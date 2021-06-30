@@ -20,7 +20,6 @@ const initialFValues = {
   best50M3x40: 0,
   best50M3x40Level: '',
   best50M3x40Date: Date.now(),
-  bFilled: false,
   best50M3x20: 0,
   best50M3x20Level: '',
   best50M3x20Date: Date.now(),
@@ -133,7 +132,13 @@ export default function ShootingPerformance() {
         <div>
           <div className='div-scroll'>
             <div className='row'>
-              <Button className='btn-save' variant='contained' color='primary' onClick={handleClick} style={{ backgroundImage: "url(" + saveImage + ")" }}></Button>
+              <Button
+                className='btn-save'
+                variant='contained'
+                color='primary'
+                onClick={handleClick}
+                style={{ backgroundImage: 'url(' + saveImage + ')' }}
+              ></Button>
               <div className='col s12 center-align'>
                 <p>
                   <span className='text-purple'>射擊成績及運動表現</span>
