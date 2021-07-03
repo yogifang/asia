@@ -6,7 +6,7 @@ import { useForm, Form } from '../components/useForm';
 import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 import customStyles from './customStyles';
-import saveImage from '../assets/buttons/save.png';
+import saveImage from '../assets/buttons/next.png'
 
 const initialFValues = {
   _id: '',

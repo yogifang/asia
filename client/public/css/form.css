@@ -95,7 +95,7 @@ body{
     margin: 0 auto;
     padding: 46px 0 0 46px;
     width: 1000px;
-    height: calc(100vh - 200px);
+    height: calc(100vh - 250px);
     background: #ffffff;
 }
 .form-container{
@@ -189,16 +189,26 @@ button:focus{
 .PrivateTabIndicator-colorSecondary-7{
     background-color: #1F2A53!important;
 }
+
 /* 儲存按鈕 */
-.btn-save{
+.btn-save,
+.btn-login{
+    display: block!important;
+    margin: 0 auto!important;
     width: 85px;
     height: 47px;
     border: none;
-    background-image: url('./assets/buttons/save.png');
+    background-image: url('../assets/buttons/next.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-color: unset!important;
     box-shadow: unset!important;
+}
+.btn-login{
+    display: inline-block!important;
+    margin: unset!important;
+    width: 196px;
+    height: 100px;
 }
 
 /* mobile */
