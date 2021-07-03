@@ -129,16 +129,8 @@ export default function ShootingPerformance() {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
-        <div>
           <div className='div-scroll'>
             <div className='row'>
-              <Button
-                className='btn-save'
-                variant='contained'
-                color='primary'
-                onClick={handleClick}
-                style={{ backgroundImage: 'url(' + saveImage + ')' }}
-              ></Button>
               <div className='col s12 center-align'>
                 <p>
                   <span className='text-purple'>射擊成績及運動表現</span>
@@ -528,9 +520,15 @@ export default function ShootingPerformance() {
                   </div>
                 </div>
               </div>
+              <Button
+                className='btn-save'
+                variant='contained'
+                color='primary'
+                onClick={handleClick}
+                style={{ backgroundImage: 'url(' + saveImage + ')' }}
+              ></Button>
             </div>
           </div>
-        </div>
       </Grid>{' '}
     </Form>
   );

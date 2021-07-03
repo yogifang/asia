@@ -46,7 +46,7 @@ export default function BasicInfoForm() {
           <div className='row'>
             <div className='col s12 center-align'>
               <div className='ImgChecked'>
-                <img src={ImgChecked} alt='imageButton' />;
+                <img src={ImgChecked} alt='imageButton' width='150'/>
               </div>
               <p className='text-purple'>
                 已送出
