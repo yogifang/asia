@@ -156,40 +156,31 @@ body {
     height: 100%;
     overflow-y: auto;
 }
-<<<<<<< HEAD
 
-label {
-=======
 label,
-span.label-checkbox{
->>>>>>> front-end-fixed
+span.label-checkbox {
     display: block;
     font-weight: bold;
     color: #333333;
     font-size: 18px;
 }
-<<<<<<< HEAD
 
-label.small {
-    font-size: 10px;
-}
-
-.input-title {
-=======
-span.label-checkbox{
+span.label-checkbox {
     display: block!important;
     height: 18px!important;
     font-size: 18px!important;
 }
+
 label.small,
-span.label-small{
+span.label-small {
     font-size: 10px;
 }
-span.label-small{
+
+span.label-small {
     padding-left: 35px;
 }
-.input-title{
->>>>>>> front-end-fixed
+
+.input-title {
     color: #333333;
     text-align: right;
     font-weight: bold;
@@ -253,12 +244,9 @@ button:focus {
 
 
 /* 上方標籤按鈕的底線 */
-<<<<<<< HEAD
 
-.PrivateTabIndicator-colorSecondary-7 {
-=======
+
 /* .MuiTabs-indicator{
->>>>>>> front-end-fixed
     background-color: #1F2A53!important;
 } */
 
