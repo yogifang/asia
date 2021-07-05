@@ -63,6 +63,7 @@ export default function BaseballPerformance() {
   const { hidePart2, setHide2 } = useState(false);
   const [latestGameDate, setLatestGameDate] = useState(new Date());
   const { memberEmail, setMemberEmail } = useContext(Context);
+  const { valueTabs, setValueTabs } = useContext(Context);
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -126,6 +127,7 @@ export default function BaseballPerformance() {
       await axios.put('/asia-scouting/baseballperformance/', values);
     }
     alert('Data is Saved!!');
+    setValueTabs(3);
   };
   const handleInputChange60Yard = (e) => {
     e.preventDefault();
@@ -777,7 +779,7 @@ export default function BaseballPerformance() {
                 </p>
               </div>
             </div>
-            <div className='col s12' style={{ marginBottom: "10px" }}>
+            <div className='col s12' style={{ marginBottom: '10px' }}>
               <div className='col s6'>
                 <div className='d-inline-block boder-orange'>
                   <p className='center-align text-orange'>
@@ -1180,7 +1182,13 @@ export default function BaseballPerformance() {
                 </div>
               </div>
             </div>
-            <Button className='btn-save' variant='contained' onClick={handleClick} color='primary' style={{ backgroundImage: "url(" + saveImage + ")" }}></Button>
+            <Button
+              className='btn-save'
+              variant='contained'
+              onClick={handleClick}
+              color='primary'
+              style={{ backgroundImage: 'url(' + saveImage + ')' }}
+            ></Button>
           </div>
         </div>
       </Grid>{' '}

@@ -71,7 +71,7 @@ export default function BasicInfoForm() {
   const [dateGrad, setDateGrad] = useState(new Date());
   const { memberEmail, setMemberEmail } = useContext(Context);
   const { showBaseball, setShowBaseball } = useContext(Context);
-
+  const { valueTabs, setValueTabs } = useContext(Context);
   const findIndexByValue = (options, value) => {
     const index = options.findIndex((options) => options.value === value);
     return index;
@@ -182,6 +182,7 @@ export default function BasicInfoForm() {
       await axios.put('/asia-scouting/baseballinfos/', values);
     }
     alert('Data is Saved!!');
+    setValueTabs(2);
   };
 
   return (

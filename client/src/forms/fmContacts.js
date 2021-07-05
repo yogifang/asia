@@ -8,7 +8,7 @@ import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 import countryList from '../components/controls/country-list';
 import customStyles from './customStyles';
-import saveImage from '../assets/buttons/next.png'
+import saveImage from '../assets/buttons/next.png';
 
 const initialFValues = {
   _id: '',
@@ -28,7 +28,7 @@ export default function BasicInfoForm() {
   const optionsCountry = useMemo(() => listOption.getData(), []);
   const [country, setCountry] = useState(optionsCountry[0]);
   const { memberEmail, setMemberEmail } = useContext(Context);
-
+  const { valueTabs, setValueTabs } = useContext(Context);
   const selCountryChangeHandler = (country) => {
     console.log(country);
     console.log(optionsCountry[30]);
@@ -101,6 +101,7 @@ export default function BasicInfoForm() {
       await axios.put('/asia-scouting/contacts/', values);
     }
     alert('Data is Saved!!');
+    setValueTabs(4);
   };
   const handleBirthdayChange = (e) => {
     values.birthday = e;
@@ -263,7 +264,13 @@ export default function BasicInfoForm() {
               <br />
             </p>
           </div>
-          <Button className='btn-save' variant='contained' color='primary' onClick={handleClick} style={{ backgroundImage: "url(" + saveImage + ")" }}></Button>
+          <Button
+            className='btn-save'
+            variant='contained'
+            color='primary'
+            onClick={handleClick}
+            style={{ backgroundImage: 'url(' + saveImage + ')' }}
+          ></Button>
         </div>
       </Grid>{' '}
     </Form>

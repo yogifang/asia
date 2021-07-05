@@ -3,7 +3,7 @@ import { Grid, Button } from '@material-ui/core';
 import axios from '../components/axios';
 import Context from '../components/stores';
 import { useForm, Form } from '../components/useForm';
-import saveImage from '../assets/buttons/next.png'
+import saveImage from '../assets/buttons/next.png';
 import Status from './status';
 
 const initialFValues = {
@@ -22,7 +22,7 @@ const initialFValues = {
 
 export default function BasicInfoForm() {
   const { memberEmail, setMemberEmail } = useContext(Context);
-
+  const { valueTabs, setValueTabs } = useContext(Context);
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
 
@@ -73,6 +73,7 @@ export default function BasicInfoForm() {
       await axios.put('/asia-scouting/subjects/', values);
     }
     alert('Data is Saved!!');
+    setValueTabs(5);
   };
 
   const handleSubmit = (e) => {
@@ -289,7 +290,13 @@ export default function BasicInfoForm() {
                 </div>
               </div>
             </div>
-            <Button className='btn-save' variant='contained' color='primary' onClick={handleClick} style={{ backgroundImage: "url(" + saveImage + ")" }}></Button>
+            <Button
+              className='btn-save'
+              variant='contained'
+              color='primary'
+              onClick={handleClick}
+              style={{ backgroundImage: 'url(' + saveImage + ')' }}
+            ></Button>
           </div>
         </div>
       </Grid>{' '}

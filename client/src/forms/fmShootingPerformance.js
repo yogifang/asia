@@ -6,7 +6,7 @@ import { useForm, Form } from '../components/useForm';
 import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 import customStyles from './customStyles';
-import saveImage from '../assets/buttons/next.png'
+import saveImage from '../assets/buttons/next.png';
 
 const initialFValues = {
   _id: '',
@@ -46,6 +46,7 @@ export default function ShootingPerformance() {
   const [selBest50M3x20Level, setSelBest50M3x20Level] = useState(optionsGameLevel[0]);
   const [selBest50M3x40Level, setSelBest50M3x40Level] = useState(optionsGameLevel[0]);
   const { memberEmail, setMemberEmail } = useContext(Context);
+  const { valueTabs, setValueTabs } = useContext(Context);
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -124,6 +125,7 @@ export default function ShootingPerformance() {
       await axios.put('/asia-scouting/shooting/', values);
     }
     alert('Data is Saved!!');
+    setValueTabs(3);
   };
 
   return (
