@@ -32,6 +32,7 @@ const PageStatus = [
 
 export default function MemberForm() {
   const [showP1, setShowP1] = useState(false);
+  const [showButton, setShowButton] = useState(true);
   const [pageStatus, setPageStatus] = useState(PageStatus[0]);
   const [selItem, setSelItem] = useState(optionsSportItem[0]);
   const { valueTabs, setValueTabs, showTabs, setShowTabs, showBaseball, setShowBaseball, memberEmail, setMemberEmail } =
@@ -186,10 +187,12 @@ export default function MemberForm() {
 
   const handleCreate = (e) => {
     setPageStatus(PageStatus[2]);
+    setShowButton(false);
   };
 
   const handleLogin = (e) => {
     setPageStatus(PageStatus[1]);
+    setShowButton(false);
   };
 
   const handleClickSubmit = (e) => {
@@ -207,20 +210,25 @@ export default function MemberForm() {
     <Form onSubmit={handleSubmit}>
       <Grid container>
         <div className='div-scroll'>
-          <div className='center-align'>
-            <Button
-              className='btn-login'
-              variant='contained'
-              onClick={handleCreate}
-              style={{ backgroundImage: 'url(' + registerImage + ')' }}
-            ></Button>{' '}
-            <Button
-              className='btn-login'
-              variant='contained'
-              onClick={handleLogin}
-              style={{ backgroundImage: 'url(' + loginImage + ')' }}
-            ></Button>{' '}
-          </div>
+          {showButton === true ? (
+            <div>
+              <div className='center-align'>
+                <Button
+                  className='btn-login'
+                  variant='contained'
+                  onClick={handleCreate}
+                  style={{ backgroundImage: 'url(' + registerImage + ')' }}
+                ></Button>{' '}
+                <Button
+                  className='btn-login'
+                  variant='contained'
+                  onClick={handleLogin}
+                  style={{ backgroundImage: 'url(' + loginImage + ')' }}
+                ></Button>{' '}
+              </div>
+            </div>
+          ) : null}
+
           {pageStatus.value === 1 ? (
             <div>
               <div className='row'>
@@ -274,31 +282,29 @@ export default function MemberForm() {
                   </div>{' '}
                 </div>{' '}
                 <div className='col s12 center-align'>
-                      <p className='m-0'>
-                        * 本人已閱讀並同意願遵守使用者
-                        <a href='https://www.findyourathlete.com/termsofuse' target='_blank'>條款</a>及
-                        <a href='https://www.findyourathlete.com/privacypolicy' target='_blank'>隱私權政策</a>
-                      </p>{' '}
-                      <span>
-                        * By clicking Check box, you agree to our Terms and our Privacy Policy.{' '}
-                      </span>{' '}
-                      <label>
-                        <input
-                          name='isPrivacy'
-                          type='checkbox'
-                          onChange={handleInputChange}
-                          checked={values.isPrivacy}
-                        />{' '}
-                        <span> 是 </span> <span> YES </span>{' '}
-                      </label>{' '}
-                      <br></br>
-                      <Button 
-                        className='btn-save'
-                        variant='contained'
-                        onClick={handleClickSubmit}
-                        style={{ backgroundImage: 'url(' + loginImage + ')' }}>
-                      </Button>
-                  </div>{' '}
+                  <p className='m-0'>
+                    * 本人已閱讀並同意願遵守使用者
+                    <a href='https://www.findyourathlete.com/termsofuse' target='_blank'>
+                      條款
+                    </a>
+                    及
+                    <a href='https://www.findyourathlete.com/privacypolicy' target='_blank'>
+                      隱私權政策
+                    </a>
+                  </p>{' '}
+                  <span>* By clicking Check box, you agree to our Terms and our Privacy Policy. </span>{' '}
+                  <label>
+                    <input name='isPrivacy' type='checkbox' onChange={handleInputChange} checked={values.isPrivacy} />{' '}
+                    <span> 是 </span> <span> YES </span>{' '}
+                  </label>{' '}
+                  <br></br>
+                  <Button
+                    className='btn-save'
+                    variant='contained'
+                    onClick={handleClickSubmit}
+                    style={{ backgroundImage: 'url(' + loginImage + ')' }}
+                  ></Button>
+                </div>{' '}
               </div>
             </div>
           ) : null}
@@ -444,10 +450,16 @@ export default function MemberForm() {
                       </div>{' '}
                     </div>{' '}
                     <div className='col s12 center-align'>
-                      <p className='m-0'>* 本人已閱讀並同意願遵守使用者條款及<a href='https://www.findyourathlete.com/%E9%9A%B1%E7%A7%81%E6%AC%8A%E6%94%BF%E7%AD%96' target='_blank'>隱私權政策</a></p>{' '}
-                      <span>
-                        * By clicking Check box, you agree to our Terms and our Privacy Policy.{' '}
-                      </span>{' '}
+                      <p className='m-0'>
+                        * 本人已閱讀並同意願遵守使用者條款及
+                        <a
+                          href='https://www.findyourathlete.com/%E9%9A%B1%E7%A7%81%E6%AC%8A%E6%94%BF%E7%AD%96'
+                          target='_blank'
+                        >
+                          隱私權政策
+                        </a>
+                      </p>{' '}
+                      <span>* By clicking Check box, you agree to our Terms and our Privacy Policy. </span>{' '}
                       <label>
                         <input
                           name='isPrivacy'
@@ -463,8 +475,8 @@ export default function MemberForm() {
                         variant='contained'
                         color='primary'
                         onClick={handleClick}
-                        style={{ backgroundImage: 'url(' + saveImage + ')' }}>
-                      </Button>{' '}
+                        style={{ backgroundImage: 'url(' + saveImage + ')' }}
+                      ></Button>{' '}
                       <br></br>
                       <br></br>
                     </div>{' '}
