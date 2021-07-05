@@ -274,7 +274,11 @@ export default function MemberForm() {
                   </div>{' '}
                 </div>{' '}
                 <div className='col s12 center-align'>
-                      <p className='m-0'>* 本人已閱讀並同意願遵守使用者條款及<a href='https://www.findyourathlete.com/%E9%9A%B1%E7%A7%81%E6%AC%8A%E6%94%BF%E7%AD%96' target='_blank'>隱私權政策</a> </p>{' '}
+                      <p className='m-0'>
+                        * 本人已閱讀並同意願遵守使用者
+                        <a href='https://www.findyourathlete.com/termsofuse' target='_blank'>條款</a>及
+                        <a href='https://www.findyourathlete.com/privacypolicy' target='_blank'>隱私權政策</a>
+                      </p>{' '}
                       <span>
                         * By clicking Check box, you agree to our Terms and our Privacy Policy.{' '}
                       </span>{' '}
