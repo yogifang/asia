@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Grid, Button, BottomNavigation } from '@material-ui/core';
-import Controls from '../components/controls/Controls';
+import { Grid, Button } from '@material-ui/core';
 import { useForm, Form } from '../components/useForm';
 import axios from '../components/axios';
 import Context from '../components/stores';
@@ -60,10 +59,9 @@ const initialFValues = {
 };
 
 export default function BaseballPerformance() {
-  const { hidePart2, setHide2 } = useState(false);
   const [latestGameDate, setLatestGameDate] = useState(new Date());
-  const { memberEmail, setMemberEmail } = useContext(Context);
-  const { valueTabs, setValueTabs } = useContext(Context);
+  const { memberEmail } = useContext(Context);
+  const { setValueTabs } = useContext(Context);
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -105,7 +103,7 @@ export default function BaseballPerformance() {
     }
     fetchData();
     //values.member = recMember.email ;
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -128,11 +126,6 @@ export default function BaseballPerformance() {
     }
     alert('Data is Saved!!');
     setValueTabs(3);
-  };
-  const handleInputChange60Yard = (e) => {
-    e.preventDefault();
-    console.log(hidePart2);
-    setHide2(true);
   };
 
   return (

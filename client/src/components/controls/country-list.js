@@ -71,8 +71,4 @@ class CountryList {
   }
 }
 
-const countryList = () => {
-  if (!(this instanceof CountryList)) return new CountryList();
-};
-
 export default CountryList;

@@ -4,7 +4,6 @@ import axios from '../components/axios';
 import Context from '../components/stores';
 import { useForm, Form } from '../components/useForm';
 import saveImage from '../assets/buttons/next.png';
-import Status from './status';
 
 const initialFValues = {
   _id: '',
@@ -21,8 +20,8 @@ const initialFValues = {
 };
 
 export default function BasicInfoForm() {
-  const { memberEmail, setMemberEmail } = useContext(Context);
-  const { valueTabs, setValueTabs } = useContext(Context);
+  const { memberEmail } = useContext(Context);
+  const { setValueTabs } = useContext(Context);
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
 
@@ -61,7 +60,7 @@ export default function BasicInfoForm() {
     }
     fetchData();
     //values.member = recMember.email ;
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleClick = async (e) => {
     console.log(values);

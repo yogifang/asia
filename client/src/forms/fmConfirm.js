@@ -1,13 +1,8 @@
 import React from 'react';
-import { Grid, Typography, Button } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import ImgChecked from '../assets/buttons/imgChecked.png';
 
 import { useForm, Form } from '../components/useForm';
-
-const confirmItems = [
-  { id: 'yap', title: '確定' },
-  { id: 'nope', title: '不確定' },
-];
 
 const initialFValues = {
   id: 0,
@@ -25,11 +20,7 @@ export default function BasicInfoForm() {
     if (fieldValues === values) return Object.values(temp).every((x) => x === '');
   };
 
-  const { values, setValues, errors, setErrors, handleInputChange, resetForm } = useForm(
-    initialFValues,
-    true,
-    validate
-  );
+  const { values, errors, setErrors, resetForm } = useForm(initialFValues, true, validate);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,7 +37,7 @@ export default function BasicInfoForm() {
           <div className='row'>
             <div className='col s12 center-align'>
               <div className='ImgChecked'>
-                <img src={ImgChecked} alt='imageButton' width='150'/>
+                <img src={ImgChecked} alt='imageButton' width='150' />
               </div>
               <p className='text-purple'>
                 已送出

@@ -25,10 +25,10 @@ const initialFValues = {
 export default function BasicInfoForm() {
   const [birthday, setBirthday] = useState(new Date());
   const listOption = new countryList();
-  const optionsCountry = useMemo(() => listOption.getData(), []);
+  const optionsCountry = useMemo(() => listOption.getData(), []); // eslint-disable-line react-hooks/exhaustive-deps
   const [country, setCountry] = useState(optionsCountry[0]);
-  const { memberEmail, setMemberEmail } = useContext(Context);
-  const { valueTabs, setValueTabs } = useContext(Context);
+  const { memberEmail } = useContext(Context);
+  const { setValueTabs } = useContext(Context);
   const selCountryChangeHandler = (country) => {
     console.log(country);
     console.log(optionsCountry[30]);
@@ -89,7 +89,7 @@ export default function BasicInfoForm() {
     }
     fetchData();
     //values.member = recMember.email ;
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const handleClick = async (e) => {
     console.log(values);
     console.log(memberEmail);

@@ -69,9 +69,9 @@ export default function BasicInfoForm() {
   const [selHands, setSelHands] = useState(optionsHands[0]);
   const [selGrads, setSelGrads] = useState(optionsGrads[0]);
   const [dateGrad, setDateGrad] = useState(new Date());
-  const { memberEmail, setMemberEmail } = useContext(Context);
-  const { showBaseball, setShowBaseball } = useContext(Context);
-  const { valueTabs, setValueTabs } = useContext(Context);
+  const { memberEmail } = useContext(Context);
+  const { showBaseball } = useContext(Context);
+  const { setValueTabs } = useContext(Context);
   const findIndexByValue = (options, value) => {
     const index = options.findIndex((options) => options.value === value);
     return index;
@@ -90,11 +90,17 @@ export default function BasicInfoForm() {
     if (fieldValues === values) return Object.values(temp).every((x) => x === '');
   };
 
+  const { values, setValues, errors, setErrors, handleInputChange, resetForm } = useForm(
+    initialFValues,
+    true,
+    validate
+  );
+
   useEffect(() => {
     async function fetchData() {
       //recMember.email = 'yogifang@gmail.com';
       console.log('getdata..................');
-      console.log(memberEmail);
+
       const Data = await axios.get(`/asia-scouting/baseballinfos/?member=${memberEmail}`);
 
       console.log(Data.data);
@@ -126,13 +132,7 @@ export default function BasicInfoForm() {
     }
     fetchData();
     //values.member = recMember.email ;
-  }, []);
-
-  const { values, setValues, errors, setErrors, handleInputChange, resetForm } = useForm(
-    initialFValues,
-    true,
-    validate
-  );
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = (e) => {
     e.preventDefault();

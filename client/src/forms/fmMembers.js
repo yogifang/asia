@@ -35,8 +35,7 @@ export default function MemberForm() {
   const [showButton, setShowButton] = useState(true);
   const [pageStatus, setPageStatus] = useState(PageStatus[0]);
   const [selItem, setSelItem] = useState(optionsSportItem[0]);
-  const { valueTabs, setValueTabs, showTabs, setShowTabs, showBaseball, setShowBaseball, memberEmail, setMemberEmail } =
-    useContext(Context);
+  const { setValueTabs, setShowTabs, setShowBaseball, setMemberEmail } = useContext(Context);
 
   // setRecMember('initialFValues.email');
   // console.log('q-------------' + recMember.email);
@@ -158,10 +157,6 @@ export default function MemberForm() {
     getExistEmail(values.email);
   };
 
-  const handleClickBackdoor = (e) => {
-    setShowTabs(true);
-    alert('Back Door is Open');
-  };
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       console.log(values.password);
@@ -284,11 +279,11 @@ export default function MemberForm() {
                 <div className='col s12 center-align'>
                   <p className='m-0'>
                     * 本人已閱讀並同意願遵守使用者
-                    <a href='https://www.findyourathlete.com/termsofuse' target='_blank'>
+                    <a href='https://www.findyourathlete.com/termsofuse' target='_blank' rel='noreferrer'>
                       條款
                     </a>
                     及
-                    <a href='https://www.findyourathlete.com/privacypolicy' target='_blank'>
+                    <a href='https://www.findyourathlete.com/privacypolicy' target='_blank' rel='noreferrer'>
                       隱私權政策
                     </a>
                   </p>{' '}
@@ -455,6 +450,7 @@ export default function MemberForm() {
                         <a
                           href='https://www.findyourathlete.com/%E9%9A%B1%E7%A7%81%E6%AC%8A%E6%94%BF%E7%AD%96'
                           target='_blank'
+                          rel='noreferrer'
                         >
                           隱私權政策
                         </a>

@@ -43,8 +43,8 @@ function TabPanel(props) {
     <div
       role='tabpanel'
       hidden={value !== index}
-      id={'simple-tabpanel-${index}'}
-      aria-labelledby={'simple-tab-${index}'}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
       className='div-form'
       {...other}
     >
@@ -80,7 +80,7 @@ function App() {
   const handleChange = (event, newValue) => {
     setValueTabs(newValue);
   };
-  
+
   return (
     <>
       <CssBaseline />
@@ -105,7 +105,7 @@ function App() {
                   value={valueTabs}
                   onChange={handleChange}
                   aria-label='asia-scouting main buttons'
-                  TabIndicatorProps={{style: {background:'#1F2A53'}}}
+                  TabIndicatorProps={{ style: { background: '#1F2A53' } }}
                 >
                   <Tab
                     label={

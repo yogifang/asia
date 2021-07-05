@@ -45,8 +45,8 @@ export default function ShootingPerformance() {
   const [selBest10MLevel, setSelBest10MLevel] = useState(optionsGameLevel[0]);
   const [selBest50M3x20Level, setSelBest50M3x20Level] = useState(optionsGameLevel[0]);
   const [selBest50M3x40Level, setSelBest50M3x40Level] = useState(optionsGameLevel[0]);
-  const { memberEmail, setMemberEmail } = useContext(Context);
-  const { valueTabs, setValueTabs } = useContext(Context);
+  const { memberEmail } = useContext(Context);
+  const { setValueTabs } = useContext(Context);
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
@@ -106,7 +106,7 @@ export default function ShootingPerformance() {
     }
     fetchData();
     //values.member = recMember.email ;
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = (e) => {
     e.preventDefault();
