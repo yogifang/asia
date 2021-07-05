@@ -131,406 +131,406 @@ export default function ShootingPerformance() {
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>
-          <div className='div-scroll'>
-            <div className='row'>
-              <div className='col s12 center-align'>
-                <p>
-                  <span className='text-purple'>射擊成績及運動表現</span>
-                  <br />
-                  <span className='text-orange'>若以下資料有不便回答者 可填入N</span>
-                </p>
+        <div className='div-scroll'>
+          <div className='row'>
+            <div className='col s12 center-align'>
+              <div>
+                <span className='text-purple'>射擊成績及運動表現</span>
+                <br />
+                <span className='text-orange'>若以下資料有不便回答者 可填入N</span>
               </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor>最近一次比賽名稱</label>
-                    <label className='small' htmlFor>
-                      Latest Competition Name
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <input
-                      id='user_height'
-                      className='validate'
-                      name='latestGameName'
-                      onChange={handleInputChange}
-                      value={values.latestGameName}
-                      type='text'
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor>最近一次比賽成績</label>
-                    <label className='small' htmlFor>
-                      Latest Competition Results
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <input
-                      id='user_height'
-                      className='validate'
-                      name='lastestScore'
-                      onChange={handleInputChange}
-                      value={values.lastestScore}
-                      type='number'
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor>比賽日期</label>
-                    <label className='small' htmlFor>
-                      Date
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <DatePicker
-                      name='latestGameDate'
-                      selected={latestGameDate}
-                      onChange={(date) => {
-                        setLatestGameDate(new Date(date));
-                        values.latestGameDate = date;
-                      }}
-                      showYearDropdown
-                      dateFormatCalendar='MMMM'
-                      scrollableYearDropdown
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor>10米生涯最佳成績（60發）</label>
-                    <label className='small' htmlFor>
-                      10M Air Rifle Record (60 shots)
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <input
-                      id=''
-                      className='validate'
-                      name='best10M60R'
-                      onChange={handleInputChange}
-                      value={values.best10M60R}
-                      type='number'
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor>在哪一層級之賽事達到該成績</label>
-                    <label className='small' htmlFor>
-                      Record Broken in What Level
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <Select
-                      id='user_nationality'
-                      placeholder='Select Level'
-                      className='browser-default col s6 mb-2'
-                      name='best10MLevel'
-                      autosize={true}
-                      value={selBest10MLevel}
-                      options={optionsGameLevel}
-                      onChange={(e) => {
-                        setSelBest10MLevel(e);
-                        values.best10MLevel = e.label;
-                      }}
-                      styles={customStyles}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor>比賽日期</label>
-                    <label className='small' htmlFor>
-                      Date
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <DatePicker
-                      name='best10MDate'
-                      selected={best10MDate}
-                      onChange={(date) => {
-                        setBest10MDate(new Date(date));
-                        values.best10MDate = date;
-                      }}
-                      showYearDropdown
-                      dateFormatCalendar='MMMM'
-                      scrollableYearDropdown
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor>50米生涯最佳成績（3x40）</label>
-                    <label className='small' htmlFor>
-                      50M Rifle Record (3x40)
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <input
-                      id=''
-                      className='validate'
-                      name='best50M3x40'
-                      onChange={handleInputChange}
-                      value={values.best50M3x40}
-                      type='number'
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor='user_nationality'>在哪一層級之賽事達到該成績</label>
-                    <label className='small' htmlFor='user_nationality'>
-                      Record Broken in What Level
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <Select
-                      id='user_nationality'
-                      placeholder='Select Level'
-                      className='browser-default col s6 mb-2'
-                      name='best50M3x40Level'
-                      autosize={true}
-                      value={selBest50M3x40Level}
-                      options={optionsGameLevel}
-                      onChange={(e) => {
-                        setSelBest50M3x40Level(e);
-                        values.best50M3x40Level = e.label;
-                      }}
-                      styles={customStyles}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor>比賽日期</label>
-                    <label className='small' htmlFor>
-                      Date
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <DatePicker
-                      name='best50M3x40Date'
-                      selected={best50M3x40Date}
-                      onChange={(date) => {
-                        setBest50M3x40Date(new Date(date));
-                        values.best50M3x40Date = date;
-                      }}
-                      showYearDropdown
-                      dateFormatCalendar='MMMM'
-                      scrollableYearDropdown
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor>50米生涯最佳成績（3x20）</label>
-                    <label className='small' htmlFor>
-                      50M Rifle Record (3x20)
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <input
-                      id=''
-                      className='validate'
-                      name='best50M3x20'
-                      onChange={handleInputChange}
-                      value={values.best50M3x20}
-                      type='number'
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor='user_nationality'>在哪一層級之賽事達到該成績</label>
-                    <label className='small' htmlFor='user_nationality'>
-                      Record Broken in What Level
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <Select
-                      id='user_nationality'
-                      placeholder='Select Level'
-                      className='browser-default col s6 mb-2'
-                      name='best50M3x20Level'
-                      autosize={true}
-                      value={selBest50M3x20Level}
-                      options={optionsGameLevel}
-                      onChange={(e) => {
-                        setSelBest50M3x20Level(e);
-                        values.best50M3x20Level = e.target;
-                      }}
-                      styles={customStyles}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor>比賽日期</label>
-                    <label className='small' htmlFor>
-                      Date
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <DatePicker
-                      name='best50M3x20Date'
-                      selected={best50M3x20Date}
-                      onChange={(date) => {
-                        setBest50M3x20Date(new Date(date));
-                        values.best50M3x20Date = date;
-                      }}
-                      showYearDropdown
-                      dateFormatCalendar='MMMM'
-                      scrollableYearDropdown
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor>國內排名</label>
-                    <label className='small' htmlFor>
-                      National Rank
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <input
-                      id=''
-                      className='validate'
-                      name='rankNational'
-                      onChange={handleInputChange}
-                      value={values.rankNational}
-                      type='number'
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor>世界排名</label>
-                    <label className='small' htmlFor>
-                      World Rank
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <input
-                      id=''
-                      className='validate'
-                      name='rankWorld'
-                      onChange={handleInputChange}
-                      value={values.rankWorld}
-                      type='number'
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor>ISSF 官網選手連結</label>
-                    <label className='small' htmlFor>
-                      ISSF Profile Link
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <input
-                      id=''
-                      className='validate'
-                      name='linkISSF'
-                      onChange={handleInputChange}
-                      value={values.linkISSF}
-                      type='text'
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className='col s12'>
-                <div className='col s4 right-align'>
-                  <div className='mb-3'>
-                    <label htmlFor>比賽或訓練影片</label>
-                    <label className='small' htmlFor>
-                      Showcasing Vidoes
-                    </label>
-                  </div>
-                </div>
-                <div className='col s8'>
-                  <div className='mb-3'>
-                    <input
-                      id=''
-                      className='validate'
-                      name='linkVideo'
-                      onChange={handleInputChange}
-                      value={values.linkVideo}
-                      type='text'
-                    />
-                  </div>
-                </div>
-              </div>
-              <Button
-                className='btn-save'
-                variant='contained'
-                color='primary'
-                onClick={handleClick}
-                style={{ backgroundImage: 'url(' + saveImage + ')' }}
-              ></Button>
             </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>最近一次比賽名稱</label>
+                  <label className='small' htmlFor>
+                    Latest Competition Name
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id='user_height'
+                    className='validate'
+                    name='latestGameName'
+                    onChange={handleInputChange}
+                    value={values.latestGameName}
+                    type='text'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>最近一次比賽成績</label>
+                  <label className='small' htmlFor>
+                    Latest Competition Results
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id='user_height'
+                    className='validate'
+                    name='lastestScore'
+                    onChange={handleInputChange}
+                    value={values.lastestScore}
+                    type='number'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>比賽日期</label>
+                  <label className='small' htmlFor>
+                    Date
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <DatePicker
+                    name='latestGameDate'
+                    selected={latestGameDate}
+                    onChange={(date) => {
+                      setLatestGameDate(new Date(date));
+                      values.latestGameDate = date;
+                    }}
+                    showYearDropdown
+                    dateFormatCalendar='MMMM'
+                    scrollableYearDropdown
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>10米生涯最佳成績（60發）</label>
+                  <label className='small' htmlFor>
+                    10M Air Rifle Record (60 shots)
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id=''
+                    className='validate'
+                    name='best10M60R'
+                    onChange={handleInputChange}
+                    value={values.best10M60R}
+                    type='number'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>在哪一層級之賽事達到該成績</label>
+                  <label className='small' htmlFor>
+                    Record Broken in What Level
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <Select
+                    id='user_nationality'
+                    placeholder='Select Level'
+                    className='browser-default col s6 mb-2'
+                    name='best10MLevel'
+                    autosize={true}
+                    value={selBest10MLevel}
+                    options={optionsGameLevel}
+                    onChange={(e) => {
+                      setSelBest10MLevel(e);
+                      values.best10MLevel = e.label;
+                    }}
+                    styles={customStyles}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>比賽日期</label>
+                  <label className='small' htmlFor>
+                    Date
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <DatePicker
+                    name='best10MDate'
+                    selected={best10MDate}
+                    onChange={(date) => {
+                      setBest10MDate(new Date(date));
+                      values.best10MDate = date;
+                    }}
+                    showYearDropdown
+                    dateFormatCalendar='MMMM'
+                    scrollableYearDropdown
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>50米生涯最佳成績（3x40）</label>
+                  <label className='small' htmlFor>
+                    50M Rifle Record (3x40)
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id=''
+                    className='validate'
+                    name='best50M3x40'
+                    onChange={handleInputChange}
+                    value={values.best50M3x40}
+                    type='number'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor='user_nationality'>在哪一層級之賽事達到該成績</label>
+                  <label className='small' htmlFor='user_nationality'>
+                    Record Broken in What Level
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <Select
+                    id='user_nationality'
+                    placeholder='Select Level'
+                    className='browser-default col s6 mb-2'
+                    name='best50M3x40Level'
+                    autosize={true}
+                    value={selBest50M3x40Level}
+                    options={optionsGameLevel}
+                    onChange={(e) => {
+                      setSelBest50M3x40Level(e);
+                      values.best50M3x40Level = e.label;
+                    }}
+                    styles={customStyles}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>比賽日期</label>
+                  <label className='small' htmlFor>
+                    Date
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <DatePicker
+                    name='best50M3x40Date'
+                    selected={best50M3x40Date}
+                    onChange={(date) => {
+                      setBest50M3x40Date(new Date(date));
+                      values.best50M3x40Date = date;
+                    }}
+                    showYearDropdown
+                    dateFormatCalendar='MMMM'
+                    scrollableYearDropdown
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>50米生涯最佳成績（3x20）</label>
+                  <label className='small' htmlFor>
+                    50M Rifle Record (3x20)
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id=''
+                    className='validate'
+                    name='best50M3x20'
+                    onChange={handleInputChange}
+                    value={values.best50M3x20}
+                    type='number'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor='user_nationality'>在哪一層級之賽事達到該成績</label>
+                  <label className='small' htmlFor='user_nationality'>
+                    Record Broken in What Level
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <Select
+                    id='user_nationality'
+                    placeholder='Select Level'
+                    className='browser-default col s6 mb-2'
+                    name='best50M3x20Level'
+                    autosize={true}
+                    value={selBest50M3x20Level}
+                    options={optionsGameLevel}
+                    onChange={(e) => {
+                      setSelBest50M3x20Level(e);
+                      values.best50M3x20Level = e.target;
+                    }}
+                    styles={customStyles}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>比賽日期</label>
+                  <label className='small' htmlFor>
+                    Date
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <DatePicker
+                    name='best50M3x20Date'
+                    selected={best50M3x20Date}
+                    onChange={(date) => {
+                      setBest50M3x20Date(new Date(date));
+                      values.best50M3x20Date = date;
+                    }}
+                    showYearDropdown
+                    dateFormatCalendar='MMMM'
+                    scrollableYearDropdown
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>國內排名</label>
+                  <label className='small' htmlFor>
+                    National Rank
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id=''
+                    className='validate'
+                    name='rankNational'
+                    onChange={handleInputChange}
+                    value={values.rankNational}
+                    type='number'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>世界排名</label>
+                  <label className='small' htmlFor>
+                    World Rank
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id=''
+                    className='validate'
+                    name='rankWorld'
+                    onChange={handleInputChange}
+                    value={values.rankWorld}
+                    type='number'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>ISSF 官網選手連結</label>
+                  <label className='small' htmlFor>
+                    ISSF Profile Link
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id=''
+                    className='validate'
+                    name='linkISSF'
+                    onChange={handleInputChange}
+                    value={values.linkISSF}
+                    type='text'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='col s12'>
+              <div className='col s4 right-align'>
+                <div className='mb-3'>
+                  <label htmlFor>比賽或訓練影片</label>
+                  <label className='small' htmlFor>
+                    Showcasing Vidoes
+                  </label>
+                </div>
+              </div>
+              <div className='col s8'>
+                <div className='mb-3'>
+                  <input
+                    id=''
+                    className='validate'
+                    name='linkVideo'
+                    onChange={handleInputChange}
+                    value={values.linkVideo}
+                    type='text'
+                  />
+                </div>
+              </div>
+            </div>
+            <Button
+              className='btn-save'
+              variant='contained'
+              color='primary'
+              onClick={handleClick}
+              style={{ backgroundImage: 'url(' + saveImage + ')' }}
+            ></Button>
           </div>
+        </div>
       </Grid>{' '}
     </Form>
   );

@@ -247,7 +247,7 @@ export default function BasicInfoForm() {
             <div className='col s12'>
               <div className='col s4'>
                 <div className='input-title mb-3'>
-                  <p>*性別</p>
+                  <div>*性別</div>
                   <span>*Sex</span>
                 </div>
               </div>

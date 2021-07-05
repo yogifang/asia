@@ -1,62 +1,77 @@
-.d-flex{
+.d-flex {
     display: flex;
 }
-.d-inline-block{
+
+.d-inline-block {
     display: inline-block;
 }
-.align-items-center{
+
+.align-items-center {
     align-items: center;
 }
-.m-0{
+
+.m-0 {
     margin: 0;
 }
-.m-1{
+
+.m-1 {
     margin: 5px;
 }
-.mb-3{
+
+.mb-3 {
     margin-bottom: 30px;
 }
-.mt-100{
+
+.mt-100 {
     margin-top: 100px;
 }
-.ml-2{
+
+.ml-2 {
     margin-left: 10px;
 }
-.p-1{
+
+.p-1 {
     padding: 5px;
 }
-body{
+
+body {
     width: 100%;
     height: 100vh;
-    background-image: url('../images/bg_0515.png');
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: top left;
 }
-.text-purple{
+
+.text-purple {
     color: #1B1464;
     font-weight: bold;
 }
-.text-orange{
+
+.text-orange {
     color: #F7931E;
     font-weight: bold;
 }
-.bg-orange{
+
+.bg-orange {
     color: #ffffff;
     font-weight: bold;
     background-color: #F7931E;
 }
-.boder-orange{
+
+.boder-orange {
     border: 1px solid #F7931E;
 }
-.div-content{
+
+.div-content {
     padding-top: 120px;
 }
-.bar-header{
+
+.bar-header {
     background-color: unset!important;
     box-shadow: unset!important;
 }
-.div-header{
+
+.div-header {
     margin: 0 auto;
     padding-top: 20px;
     display: flex;
@@ -64,7 +79,8 @@ body{
     min-height: 64px!important;
     background: #ffffff;
 }
-.div-header ul{
+
+.div-header ul {
     display: flex;
     justify-content: space-around;
     width: 100%;
@@ -72,25 +88,31 @@ body{
     margin-right: 50px;
     margin-left: 60px;
 }
-.div-header li{
+
+.div-header li {
     margin-top: 3px;
     text-align: center;
     color: #A8AFD4;
 }
-.div-header li.active{
+
+.div-header li.active {
     color: #1B1464;
 }
-.div-header li span{
+
+.div-header li span {
     display: block;
 }
-.div-header li span.border{
+
+.div-header li span.border {
     font-size: 12px;
 }
-.div-header li.active span.border{
+
+.div-header li.active span.border {
     padding: 0 5px;
     border-bottom: 2px solid #1B1464;
 }
-.div-form{
+
+.div-form {
     position: relative;
     margin: 0 auto;
     padding: 46px 0 0 46px;
@@ -98,101 +120,128 @@ body{
     height: calc(100vh - 250px);
     background: #ffffff;
 }
-.form-container{
+
+.form-container {
     box-shadow: unset!important;
 }
-.div-step{
+
+.div-step {
     position: absolute;
     left: -46px;
     width: 100px;
     height: calc(100vh - 325px);
 }
-.div-step ul{
+
+.div-step ul {
     display: flex;
     height: 100%;
     flex-direction: column;
     justify-content: space-between;
 }
-.list-step img{
+
+.list-step img {
     width: 92px;
 }
-.MuiBox-root{
+
+.MuiBox-root {
     padding: 0!important;
 }
-.MuiGrid-container{
+
+.MuiGrid-container {
     height: calc(100vh - 370px);
 }
-.div-scroll{
+
+.div-scroll {
     width: 100%;
     height: 100%;
     overflow-y: auto;
 }
-label{
+
+label {
     display: block;
     font-weight: bold;
     color: #333333;
     font-size: 18px;
 }
-label.small{
+
+label.small {
     font-size: 10px;
 }
-.input-title{
+
+.input-title {
     color: #333333;
     text-align: right;
     font-weight: bold;
 }
-.input-title p{
+
+.input-title p {
     margin: 0;
     font-size: 18px;
 }
-.input-title span{
+
+.input-title span {
     font-size: 10px;
 }
-.input-field-margin{
+
+.input-field-margin {
     margin-top: 18px;
     margin-left: 11px!important;
 }
+
 input,
-select{
+select {
     margin-bottom: 0;
     width: 253px!important;
     height: 25px!important;
     border: 1px solid #333333!important;
 }
-.input-sm{
+
+.input-sm {
     width: 100px!important;
 }
-.input-xs{
+
+.input-xs {
     width: 50px!important;
 }
-.browser-default input{
+
+.browser-default input {
     width: unset!important;
     border: unset!important;
 }
-select{
+
+select {
     padding: 0 0 0 5px;
     height: 27px!important;
 }
-input[type=text]:not(.browser-default):focus:not([readonly]){
+
+input[type=text]:not(.browser-default):focus:not([readonly]) {
     box-shadow: unset;
 }
-[type="radio"]:checked+span:after{
+
+[type="radio"]:checked+span:after {
     background-color: #333333!important;
 }
-[type="radio"]:checked+span:after{
+
+[type="radio"]:checked+span:after {
     border: 2px solid #333333!important;
 }
-button:focus{
+
+button:focus {
     background-color: unset;
 }
+
+
 /* 上方標籤按鈕的底線 */
-.PrivateTabIndicator-colorSecondary-7{
+
+.PrivateTabIndicator-colorSecondary-7 {
     background-color: #1F2A53!important;
 }
 
+
 /* 儲存按鈕 */
+
 .btn-save,
-.btn-login{
+.btn-login {
     display: block!important;
     margin: 0 auto!important;
     width: 85px;
@@ -204,33 +253,40 @@ button:focus{
     background-color: unset!important;
     box-shadow: unset!important;
 }
-.btn-login{
+
+.btn-login {
     display: inline-block!important;
     margin: unset!important;
     width: 196px;
     height: 100px;
 }
 
+
 /* mobile */
-@media (max-width: 575.98px) { 
+
+@media (max-width: 575.98px) {
     .div-header,
-    .div-form{
+    .div-form {
         width: 400px!important;
     }
 }
 
+
 /* pad */
+
 @media (min-width: 768px) and (max-width: 991.98px) {
     .div-header,
-    .div-form{
+    .div-form {
         width: 600px!important;
     }
 }
 
+
 /* pc */
+
 @media (min-width: 992px) {
     .div-header,
-    .div-form{
+    .div-form {
         width: 1000px!important;
     }
 }

@@ -210,7 +210,7 @@ export default function MemberForm() {
     <Form onSubmit={handleSubmit}>
       <Grid container>
         <div className='div-scroll'>
-          {showButton === true ? (
+          {showButton ? (
             <div>
               <div className='center-align'>
                 <Button
@@ -315,7 +315,7 @@ export default function MemberForm() {
                   <div className='col s6'>
                     <div className='mb-3'>
                       <div className='input-title'>
-                        <p> * 您是否持有歐盟護照或居住在歐洲 </p>{' '}
+                        <div> * 您是否持有歐盟護照或居住在歐洲 </div>{' '}
                         <span>* Are you an EU citizen or holding an EU citizenship ?</span>{' '}
                       </div>{' '}
                     </div>{' '}

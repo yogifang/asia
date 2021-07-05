@@ -141,11 +141,11 @@ export default function BaseballPerformance() {
         <div className='div-scroll'>
           <div className='row'>
             <div className='col s12 center-align'>
-              <p>
+              <div>
                 <span>個人運動表現與比賽數據</span>
                 <br />
                 <span className='text-orange'>若以下資料有不便回答者 可填入N</span>
-              </p>
+              </div>
               <div className='bg-orange d-inline-block mb-3 p-1'>
                 <p className='m-0'>
                   <span>速度</span>
