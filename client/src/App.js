@@ -80,7 +80,7 @@ function App() {
   const handleChange = (event, newValue) => {
     setValueTabs(newValue);
   };
-
+  
   return (
     <>
       <CssBaseline />
@@ -105,6 +105,7 @@ function App() {
                   value={valueTabs}
                   onChange={handleChange}
                   aria-label='asia-scouting main buttons'
+                  TabIndicatorProps={{style: {background:'#1F2A53'}}}
                 >
                   <Tab
                     label={

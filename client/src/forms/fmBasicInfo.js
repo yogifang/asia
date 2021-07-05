@@ -262,8 +262,8 @@ export default function BasicInfoForm() {
                         onChange={handleRadioGender}
                         value='Male'
                       />
-                      <span>男</span>
-                      <span>Male</span>
+                      <span className='label-checkbox'>男</span>
+                      <span className='label-small'>Male</span>
                     </label>
                   </div>
                   <div className='ml-2'>
@@ -275,8 +275,8 @@ export default function BasicInfoForm() {
                         onChange={handleRadioGender}
                         value='Female'
                       />
-                      <span>女</span>
-                      <span>Female</span>
+                      <span className='label-checkbox'>女</span>
+                      <span className='label-small'>Female</span>
                     </label>
                   </div>
                   <div className='ml-2'>
@@ -288,8 +288,8 @@ export default function BasicInfoForm() {
                         onChange={handleRadioGender}
                         value='Others'
                       />
-                      <span>其他</span>
-                      <span>Other</span>
+                      <span className='label-checkbox'>其他</span>
+                      <span className='label-small'>Other</span>
                     </label>
                   </div>
                 </div>
