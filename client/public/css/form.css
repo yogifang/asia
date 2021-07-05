@@ -127,14 +127,24 @@ body{
     height: 100%;
     overflow-y: auto;
 }
-label{
+label,
+span.label-checkbox{
     display: block;
     font-weight: bold;
     color: #333333;
     font-size: 18px;
 }
-label.small{
+span.label-checkbox{
+    display: block!important;
+    height: 18px!important;
+    font-size: 18px!important;
+}
+label.small,
+span.label-small{
     font-size: 10px;
+}
+span.label-small{
+    padding-left: 35px;
 }
 .input-title{
     color: #333333;
@@ -186,9 +196,9 @@ button:focus{
     background-color: unset;
 }
 /* 上方標籤按鈕的底線 */
-.PrivateTabIndicator-colorSecondary-7{
+/* .MuiTabs-indicator{
     background-color: #1F2A53!important;
-}
+} */
 
 /* 儲存按鈕 */
 .btn-save,
