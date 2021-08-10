@@ -23,11 +23,28 @@ const optionsPosition = [
   { value: 'DH', label: '指定打擊' },
 ];
 
+const optionsPosition2 = [
+  { value: 'N', label: '無' },
+  { value: 'P', label: '投手' },
+  { value: 'C', label: '捕手' },
+  { value: '1B', label: '一壘手' },
+  { value: '2B', label: '二壘手' },
+  { value: '3B', label: '三壘手' },
+  { value: 'SS', label: '游擊手' },
+  { value: 'LF', label: '左外野手' },
+  { value: 'CF', label: '中外野手' },
+  { value: 'RF', label: '右外野手' },
+  { value: 'DH', label: '指定打擊' },
+];
+
+
 const optionsHands = [
   { value: 'LPLH', label: '左投左打' },
   { value: 'RPRH', label: '右投右打' },
   { value: 'LPRH', label: '左投右打' },
   { value: 'RPLH', label: '右投左打' },
+  { value: 'LPDH', label: '左投兩打' },
+  { value: 'RPDH', label: '右投兩打' },
 ];
 
 const optionsGrads = [
@@ -65,7 +82,7 @@ const initialFValues = {
 export default function BasicInfoForm() {
   const [radioGenger, setRadioGender] = useState('Male');
   const [selPriPosition, setSelPriPosition] = useState(optionsPosition[0]);
-  const [selSecPosition, setSelSecPosition] = useState(optionsPosition[1]);
+  const [selSecPosition, setSelSecPosition] = useState(optionsPosition2[0]);
   const [selHands, setSelHands] = useState(optionsHands[0]);
   const [selGrads, setSelGrads] = useState(optionsGrads[0]);
   const [dateGrad, setDateGrad] = useState(new Date());
@@ -118,8 +135,8 @@ export default function BasicInfoForm() {
       setValues(nValues);
       let index = findIndexByValue(optionsPosition, nValues.PriPosition);
       setSelPriPosition(optionsPosition[index]);
-      index = findIndexByValue(optionsPosition, nValues.SecPosition);
-      setSelSecPosition(optionsPosition[index]);
+      index = findIndexByValue(optionsPosition2, nValues.SecPosition);
+      setSelSecPosition(optionsPosition2[index]);
       index = findIndexByValue(optionsHands, nValues.LeftRightHand);
       setSelHands(optionsHands[index]);
       index = findIndexByValue(optionsGrads, nValues.currentGrad);
@@ -345,7 +362,7 @@ export default function BasicInfoForm() {
                         id='user_position'
                         value={selSecPosition}
                         onChange={handelSelectSecPosition}
-                        options={optionsPosition}
+                        options={optionsPosition2}
                         styles={customStyles}
                       />
                     </div>
