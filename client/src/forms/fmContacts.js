@@ -13,7 +13,7 @@ import saveImage from '../assets/buttons/next.png';
 const initialFValues = {
   _id: '',
   email: '',
-  birthday: new Date(),
+  birthday: Date.now(),
   school: '',
   liveCity: '',
   Nationality: '',
